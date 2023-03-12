@@ -1,9 +1,10 @@
 package simcity;
 
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 
@@ -14,6 +15,8 @@ public class GameScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private IsometricRenderer renderer;
+    private Viewport viewport;
+    private InputHandler inputHandler;
 
     public GameScreen(SpriteBatch batch) {
         this.batch = batch;
@@ -22,49 +25,36 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void show() {    // Called when this screen becomes the current screen for a Game.
         camera = new OrthographicCamera(WIDTH, HEIGHT);
-        camera.position.set(WIDTH/2, HEIGHT/2, 10);
+        camera.position.set(WIDTH/2, HEIGHT/2, 0);
         camera.zoom = 4f;
 
+        viewport = new FitViewport(WIDTH, HEIGHT, camera);
+
         renderer = new IsometricRenderer();
+        inputHandler = new InputHandler(camera, renderer.getGrid());
+    }
+
+    @Override
+    public void resize(int width, int height) {    // Called when the Application is resized.
+        viewport.update(width, height);
     }
 
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);    // Set the clear color to black.
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);   // Clear the screen.
-        batch.setProjectionMatrix(camera.combined);  
+        batch.setProjectionMatrix(viewport.getCamera().combined);  
 
         camera.update();
-        
-        if (Gdx.input.isKeyPressed(Keys.UP)) {
-            camera.translate(0, 10);
-        }
-        if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-            camera.translate(0, -10);
-        }
-        if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-            camera.translate(-10, 0);
-        }
-        if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-            camera.translate(10, 0);
-        }
-        if (Gdx.input.isKeyPressed(Keys.Q)) {  // Zoom in
-            camera.zoom -= 0.02;               //La vraie touche c'est A parce que QWERTY
-        }
-        if (Gdx.input.isKeyPressed(Keys.W)) {  // Zoom out
-            camera.zoom += 0.02;               //La vraie touche c'est Z parce que QWERTY
-        }
-
-        Gdx.app.debug("GameScreen", "camera position: " + camera.position);
-
+        inputHandler.handleInput();
 
         batch.begin();
-        renderer.drawGround(batch);
+        renderer.draw(batch);
         batch.end();
     }
 
     @Override
     public void dispose() {    // Called when this screen should release all resources.
-        
+        renderer.dispose();
     }
 }
