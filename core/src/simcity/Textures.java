@@ -21,10 +21,10 @@ public class Textures {
     public static void load() {
         // Textures
         for (int i = 1; i <= 4; i++) {
-            sky.add(new Texture(Gdx.files.internal(String.format("assets/Sky/Clouds 1/%d.png",i))));
+            sky.add(new Texture(Gdx.files.internal(String.format("Sky/Clouds 1/%d.png",i))));
         }
 
-        Texture spriteShTexture = new Texture(Gdx.files.internal("assets/IsometricTilesEtAutre/256x256 Cubes.png"));
+        Texture spriteShTexture = new Texture(Gdx.files.internal("IsometricTilesEtAutre/256x256 Cubes.png"));
         for (int i = 0; i < 10; i++) {
             grasses.add(new TextureRegion(spriteShTexture, i * TILE_SIZE, 0 * TILE_SIZE, TILE_SIZE, TILE_SIZE));
         }
