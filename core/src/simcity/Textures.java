@@ -11,13 +11,18 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Textures {
     public static final int TILE_SIZE = 256;
 
+    public static final int SKY_WIDTH = 576;
+    public static final int SKY_HEIGHT = 324;
+
     public static List<TextureRegion> grasses = new ArrayList<TextureRegion>();
     public static List<TextureRegion> waters = new ArrayList<TextureRegion>();
-    public static Texture sky;
+    public static List<Texture> sky = new ArrayList<Texture>();
 
     public static void load() {
         // Textures
-        sky = new Texture(Gdx.files.internal("assets/Sky/Clouds 1/1.png"));
+        for (int i = 1; i <= 4; i++) {
+            sky.add(new Texture(Gdx.files.internal(String.format("assets/Sky/Clouds 1/%d.png",i))));
+        }
 
         Texture spriteShTexture = new Texture(Gdx.files.internal("assets/IsometricTilesEtAutre/256x256 Cubes.png"));
         for (int i = 0; i < 10; i++) {
@@ -29,7 +34,9 @@ public class Textures {
     }
 
     public static void dispose() {
-        sky.dispose();
+        for (Texture skyPart : sky) {
+            skyPart.dispose();
+        }
         for (TextureRegion grass : grasses) {
             grass.getTexture().dispose();
         }

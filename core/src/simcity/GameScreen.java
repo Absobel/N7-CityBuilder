@@ -2,6 +2,7 @@ package simcity;
 
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -13,9 +14,10 @@ public class GameScreen extends ScreenAdapter {
     public static final int HEIGHT = 180*4;
 
     private SpriteBatch batch;
+    private Viewport viewport;
+
     private OrthographicCamera camera;
     private IsometricRenderer renderer;
-    private Viewport viewport;
     private InputHandler inputHandler;
 
     public GameScreen(SpriteBatch batch) {
@@ -49,6 +51,12 @@ public class GameScreen extends ScreenAdapter {
         inputHandler.handleInput();
 
         batch.begin();
+        int effectiveScreenWidth = (int) Math.floor(WIDTH*camera.zoom) + 100;
+        int effectiveScreenHeight = (int) Math.floor(HEIGHT*camera.zoom) + 100;
+        // bug quand on bouge la camera y'a un offeset d'un pixel qui se rajoute je sais pas pourquoi
+        for (Texture skyPart : Textures.sky) {
+            batch.draw(skyPart, camera.position.x-effectiveScreenWidth/2, camera.position.y-effectiveScreenHeight/2, effectiveScreenWidth, effectiveScreenHeight);
+        }
         renderer.draw(batch);
         batch.end();
     }
