@@ -23,6 +23,7 @@ public class GameScreen extends ScreenAdapter {
     public void show() {    // Called when this screen becomes the current screen for a Game.
         camera = new OrthographicCamera(WIDTH, HEIGHT);
         camera.position.set(WIDTH/2, HEIGHT/2, 10);
+        camera.zoom = 4f;
 
         renderer = new IsometricRenderer();
     }
@@ -33,21 +34,29 @@ public class GameScreen extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);   // Clear the screen.
         batch.setProjectionMatrix(camera.combined);  
 
-        if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-            camera.translate(-10, 0, 0);
-        }
-        if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-            camera.translate(10, 0, 0);
-        }
+        camera.update();
+        
         if (Gdx.input.isKeyPressed(Keys.UP)) {
-            camera.translate(0, 10, 0);
+            camera.translate(0, 10);
         }
         if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-            camera.translate(0, -10, 0);
+            camera.translate(0, -10);
         }
-        System.out.println(camera.position);
+        if (Gdx.input.isKeyPressed(Keys.LEFT)) {
+            camera.translate(-10, 0);
+        }
+        if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
+            camera.translate(10, 0);
+        }
+        if (Gdx.input.isKeyPressed(Keys.Q)) {  // Zoom in
+            camera.zoom -= 0.02;               //La vraie touche c'est A parce que QWERTY
+        }
+        if (Gdx.input.isKeyPressed(Keys.W)) {  // Zoom out
+            camera.zoom += 0.02;               //La vraie touche c'est Z parce que QWERTY
+        }
 
-        camera.update();
+        Gdx.app.debug("GameScreen", "camera position: " + camera.position);
+
 
         batch.begin();
         renderer.drawGround(batch);

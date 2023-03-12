@@ -1,7 +1,6 @@
 package simcity;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 
@@ -13,6 +12,7 @@ public class Isometric extends Game {
 	public void create () {   // Called when the Application is first created.
 		batch = new SpriteBatch();
 		gameScreen = new GameScreen(batch);
+		setScreen(gameScreen);
 	}
 
 
