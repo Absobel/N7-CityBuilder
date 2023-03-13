@@ -47,18 +47,19 @@ public class GameScreen extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);   // Clear the screen.
         batch.setProjectionMatrix(viewport.getCamera().combined);  
 
-        camera.update();
-        inputHandler.handleInput();
+
 
         batch.begin();
         int effectiveScreenWidth = (int) Math.floor(WIDTH*camera.zoom) + 100;
         int effectiveScreenHeight = (int) Math.floor(HEIGHT*camera.zoom) + 100;
-        // bug quand on bouge la camera y'a un offeset d'un pixel qui se rajoute je sais pas pourquoi
         for (Texture skyPart : Textures.sky) {
             batch.draw(skyPart, camera.position.x-effectiveScreenWidth/2, camera.position.y-effectiveScreenHeight/2, effectiveScreenWidth, effectiveScreenHeight);
         }
         renderer.draw(batch);
         batch.end();
+
+        inputHandler.handleInput();
+        camera.update();
     }
 
     @Override
