@@ -50,7 +50,7 @@ public class GameScreen extends ScreenAdapter {
 
 
         batch.begin();
-        int effectiveScreenWidth = (int) Math.floor(WIDTH*camera.zoom) + 100;
+        int effectiveScreenWidth = (int) Math.floor(WIDTH*camera.zoom) + 100;  // Add 100 to avoid black borders
         int effectiveScreenHeight = (int) Math.floor(HEIGHT*camera.zoom) + 100;
         for (Texture skyPart : Textures.sky) {
             batch.draw(skyPart, camera.position.x-effectiveScreenWidth/2, camera.position.y-effectiveScreenHeight/2, effectiveScreenWidth, effectiveScreenHeight);
@@ -58,12 +58,13 @@ public class GameScreen extends ScreenAdapter {
         renderer.draw(batch);
         batch.end();
 
-        inputHandler.handleInput();
-        camera.update();
+        inputHandler.handleInput(Gdx.graphics.getDeltaTime());
+        camera.update();        
     }
 
     @Override
     public void dispose() {    // Called when this screen should release all resources.
         renderer.dispose();
     }
+
 }

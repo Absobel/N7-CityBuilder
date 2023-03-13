@@ -1,6 +1,7 @@
 package simcity;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
 public class Grid {
     private Tile[][][] tiles;
@@ -15,11 +16,15 @@ public class Grid {
         tiles = new Tile[nbCols][nbRows][nbLayers];
     }
 
+
     public void setTile(Tile tile, int col, int row, int height) {
-        tiles[col][row][height] = tile;
-    }
-    public void placeTile(Tile tile, int x, int y) {  // Pareil mais avec les coordonnées sur l'écran
-        // TODO
+        if (col >= 0 && col < nbCols && 
+            row >= 0 && row < nbRows && 
+            height >= 0 && height < nbLayers &&
+            (tile != null && tiles[col][row][height] == null || tile == null))
+        {
+            tiles[col][row][height] = tile;
+        }
     }
 
     public void translateTile(int col, int row, int height, int colOffset, int rowOffset, int heightOffset) {
@@ -52,5 +57,13 @@ public class Grid {
                 }
             }
         }
+    }
+
+
+
+    public static Vector2 coordAbsToIso(Vector2 coordAbs) {
+        int col = (int) ((coordAbs.x+2*coordAbs.y)/Textures.TILE_SIZE_CUBE - 1.5f);   // 1.5f et 0.5f valeurs empiriques d'un offset qui vient de je ne sais où
+        int row = (int) ((2*coordAbs.y-coordAbs.x)/Textures.TILE_SIZE_CUBE - 0.5f);
+        return new Vector2(col, row);
     }
 }
