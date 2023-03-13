@@ -40,7 +40,7 @@ public class InputHandler {
             camera.zoom -= CAMERA_ZOOM_SPEED;               //La vraie touche c'est A parce que QWERTY
         }
         if (Gdx.input.isKeyPressed(Keys.E)) {  // Zoom out
-            camera.zoom += CAMERA_ZOOM_SPEED;               //La vraie touche c'est Z parce que QWERTY
+            camera.zoom += CAMERA_ZOOM_SPEED;
         }
 
         // place tiles

@@ -35,7 +35,7 @@ public class Textures {
             waters.add(new TextureRegion(spriteShTextureCubes, i * TILE_SIZE_CUBE, 2 * TILE_SIZE_CUBE, TILE_SIZE_CUBE, TILE_SIZE_CUBE));
         }
 
-        Texture spriteShTextureFloor = new Texture(Gdx.files.internal("assets/IsometricTilesEtAutre/256x152 Floorings.png"));
+        Texture spriteShTextureFloor = new Texture(Gdx.files.internal("IsometricTilesEtAutre/256x152 Floorings.png"));
         chemin_bois_1 = new TextureRegion(spriteShTextureFloor, 0 * TILE_SIZE_FLOOR_X, 0 * TILE_SIZE_FLOOR_Y, TILE_SIZE_FLOOR_X, TILE_SIZE_FLOOR_Y);
     }
 
