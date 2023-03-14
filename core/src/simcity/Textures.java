@@ -19,6 +19,8 @@ public class Textures {
     public static List<TextureRegion> grasses = new ArrayList<TextureRegion>();
     public static List<TextureRegion> waters = new ArrayList<TextureRegion>();
     public static TextureRegion chemin_bois_1;
+    public static List<TextureRegion> tonneaux = new ArrayList<TextureRegion>();
+    public static List<TextureRegion> a_suppr = new ArrayList<TextureRegion>();
     public static List<Texture> sky = new ArrayList<Texture>();
 
     public static void load() {
@@ -37,6 +39,16 @@ public class Textures {
 
         Texture spriteShTextureFloor = new Texture(Gdx.files.internal("IsometricTilesEtAutre/256x152 Floorings.png"));
         chemin_bois_1 = new TextureRegion(spriteShTextureFloor, 0 * TILE_SIZE_FLOOR_X, 0 * TILE_SIZE_FLOOR_Y, TILE_SIZE_FLOOR_X, TILE_SIZE_FLOOR_Y);
+
+        Texture spriteShTextureTonneaux = new Texture(Gdx.files.internal("IsometricTilesEtAutre/256x256 Objects.png"));
+        for (int i = 0; i < 2; i++) {
+            tonneaux.add(new TextureRegion(spriteShTextureTonneaux, i+6 * TILE_SIZE_CUBE, 0 * TILE_SIZE_CUBE, TILE_SIZE_CUBE, TILE_SIZE_CUBE));
+        }
+
+        Texture spriteShTextureASuppr = new Texture(Gdx.files.internal("IsometricTilesEtAutre/256x512 Trees.png"));
+        for (int i = 0; i < 24; i++) {
+            a_suppr.add(new TextureRegion(spriteShTextureASuppr, i%6 * TILE_SIZE_CUBE, ((int) i/6 )* TILE_SIZE_CUBE, TILE_SIZE_CUBE, TILE_SIZE_CUBE));
+        }
     }
 
     public static void dispose() {

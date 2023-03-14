@@ -3,6 +3,7 @@ package simcity;
 import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
@@ -57,8 +58,12 @@ public class InputHandler {
             int col = (int) iso.x;
             int row = (int) iso.y;
 
-            Random rand = new java.util.Random();
-            grid.setTile(new Tile(Textures.waters.get(rand.nextInt(Textures.waters.size()))), col, row, 1);
+            if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+                Random rand = new java.util.Random();
+                grid.setTile(new Tile(Textures.waters.get(rand.nextInt(Textures.waters.size()))), col, row, 1);
+            } else {
+                grid.setTile(null, col, row, 1);
+            }
             //grid.setTile(new Tile(Textures.chemin_bois_1), col, row, 1);        // Pour tester mais à terme on placera d'autres trucs
         }
     }
