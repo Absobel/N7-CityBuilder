@@ -27,6 +27,8 @@ public class Grid {
             (tile != null && tiles[col][row][height] == null || tile == null))
         {
             tiles[col][row][height] = tile;
+        } else {
+            //Gdx.app.error("Grid", "Invalid tile position");   // à remettre quand le placement de tuile se fera une par une
         }
     }
 
@@ -65,6 +67,8 @@ public class Grid {
 
     /** 
      * Convertit des coordonnées absolues de l'écran en coordonnées isométriques sur la grille
+     * Utilise une matrice de changement de base tout ce qu'il y a de plus classique
+     * puis cast en int pour avoir des coordonnées de tuiles au lieu de coordonnées de pixels
      * @param coordIso Coordonnées isométriques
      * @return Coordonnées absolues
      */

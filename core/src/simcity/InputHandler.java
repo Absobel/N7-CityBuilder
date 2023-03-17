@@ -49,6 +49,7 @@ public class InputHandler {
         }
 
         // place tiles
+        // à terme faudra changer pour que l'ont place les tuiles une par une au lieu de pouvoir laisser appyer avec la souris
         if (Gdx.input.isTouched()) {
             // Coordonnées de la souris sur l'écran
             int x = Gdx.input.getX();
