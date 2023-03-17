@@ -3,6 +3,9 @@ package simcity;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * Grille isométrique, là où sont stockés les tuiles (batiments, terrain, etc)
+ */
 public class Grid {
     private Tile[][][] tiles;
     private int nbCols;
@@ -60,7 +63,11 @@ public class Grid {
     }
 
 
-
+    /** 
+     * Convertit des coordonnées absolues de l'écran en coordonnées isométriques sur la grille
+     * @param coordIso Coordonnées isométriques
+     * @return Coordonnées absolues
+     */
     public static Vector2 coordAbsToIso(Vector2 coordAbs) {
         int col = (int) ((coordAbs.x+2*coordAbs.y)/Textures.TILE_SIZE_CUBE - 1.5f);   // 1.5f et 0.5f valeurs empiriques d'un offset qui vient de je ne sais où
         int row = (int) ((2*coordAbs.y-coordAbs.x)/Textures.TILE_SIZE_CUBE - 0.5f);

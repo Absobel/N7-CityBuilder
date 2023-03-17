@@ -7,7 +7,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-
+/**
+ * Classe qui contient toutes les textures du jeu, à améliorer pour la performance même si pour l'instant osef un peu
+ */
 public class Textures {
     public static final int TILE_SIZE_CUBE = 256;
     public static final int TILE_SIZE_FLOOR_X = 256;

@@ -9,9 +9,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
+/**
+ * Gère les entrées de l'utilisateur
+ */
 public class InputHandler {
-    public static final float CAMERA_SPEED = 10f;
-    public static final float CAMERA_ZOOM_SPEED = 0.02f;
+    public static final float BASE_CAMERA_SPEED = 7f;
+    public static final float CAMERA_ZOOM_SPEED = 0.04f;
 
     private OrthographicCamera camera;
     private Grid grid;
@@ -23,17 +26,18 @@ public class InputHandler {
 
     public void handleInput(float delta) {
         // Camera movement
+        float actualCameraSpeed = BASE_CAMERA_SPEED * camera.zoom;  // Calcul de la vitesse de la caméra en fonction du zoom
         if (Gdx.input.isKeyPressed(Keys.UP)) {
-            camera.translate(0, CAMERA_SPEED);
+            camera.translate(0, actualCameraSpeed);
         }
         if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-            camera.translate(0, -CAMERA_SPEED);
+            camera.translate(0, -actualCameraSpeed);
         }
         if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-            camera.translate(-CAMERA_SPEED, 0);
+            camera.translate(-actualCameraSpeed, 0);
         }
         if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-            camera.translate(CAMERA_SPEED, 0);
+            camera.translate(actualCameraSpeed, 0);
         }
         
         // Camera zoom
@@ -58,13 +62,14 @@ public class InputHandler {
             int col = (int) iso.x;
             int row = (int) iso.y;
 
+
+            // Pour l'instant c'est juste pour tester le placement de tuiles, à termes il faudra faire un système de sélection de tuiles avec un menu et tout
             if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
                 Random rand = new java.util.Random();
                 grid.setTile(new Tile(Textures.waters.get(rand.nextInt(Textures.waters.size()))), col, row, 1);
             } else {
                 grid.setTile(null, col, row, 1);
             }
-            //grid.setTile(new Tile(Textures.chemin_bois_1), col, row, 1);        // Pour tester mais à terme on placera d'autres trucs
         }
     }
 }

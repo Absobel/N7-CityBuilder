@@ -3,7 +3,9 @@ package simcity;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-
+/**
+ * Classe principale du jeu
+ */
 public class Isometric extends Game {
 	SpriteBatch batch;
 	private GameScreen gameScreen;

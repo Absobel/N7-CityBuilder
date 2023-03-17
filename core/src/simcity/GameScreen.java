@@ -9,6 +9,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 
+/**
+ * L'écran principal du jeu.
+ */
 public class GameScreen extends ScreenAdapter {
     public static final int WIDTH = 320*4;   // 16:9 aspect ratio 
     public static final int HEIGHT = 180*4;

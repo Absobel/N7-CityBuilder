@@ -4,6 +4,9 @@ import java.util.Random;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+/**
+ * C'est ici que la grille est créée, y'a peut-être moyen de faire mieux et le nom de la classe est pas top
+ */
 public class IsometricRenderer {
     public static final int GRID_WIDTH = 16;
     public static final int GRID_HEIGHT = 16;
