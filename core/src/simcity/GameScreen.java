@@ -8,6 +8,13 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+
 
 /**
  * L'écran principal du jeu.
@@ -18,6 +25,8 @@ public class GameScreen extends ScreenAdapter {
 
     private SpriteBatch batch;
     private Viewport viewport;
+    private Stage hudStage;
+    private Label labell;
 
     private OrthographicCamera camera;
     private IsometricRenderer renderer;
@@ -37,6 +46,30 @@ public class GameScreen extends ScreenAdapter {
 
         renderer = new IsometricRenderer();
         inputHandler = new InputHandler(camera, renderer.getGrid());
+        //Nouveau stage
+        hudStage = new Stage(new ScreenViewport(), batch);
+        
+        //les skins faut trouver les images
+        Skin skin = new Skin(Gdx.files.internal("skins."));
+
+        // les labels a mettre en dessous.
+        labell = new Label("exe", skin);
+
+        //creer le tableau
+        Table table = new Table();
+        table.setFillParent(true);
+        table.setDebug(true);
+        table.align(Align.topLeft);
+
+        //labeliser le tableau
+        table.add(labell).pad(3);
+
+        // le mettre dessus
+        hudStage.addActor(table);
+
+        //le mettre en tant qu'entrée
+        Gdx.input.setInputProcessor(hudStage);
+        
     }
 
     @Override
@@ -62,12 +95,16 @@ public class GameScreen extends ScreenAdapter {
         batch.end();
 
         inputHandler.handleInput(Gdx.graphics.getDeltaTime());
-        camera.update();        
+        camera.update();
+        
+        //MAJ du HUD
+        hudStage.act(delta);
     }
 
     @Override
     public void dispose() {    // Called when this screen should release all resources.
         renderer.dispose();
+        hudStage.dispose();
     }
 
 }
