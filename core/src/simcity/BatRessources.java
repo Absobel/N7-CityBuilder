@@ -4,20 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class BatRessources extends Batiment { // moyen que ce soit la classe batiment directement 
 
-    private enum ResourceType {
-        EAU,
-        ELECTRICITE,
-        Bonheur
-        // Ajoutez d'autres types de ressources en fonction de votre jeu
-    }
-    private ResourceType resourceType;
-    private int resourceProductionRate;
 
-    public BatRessources(Texture texture, float x, float y, float width, float height, ResourceType typeresource, int production) {
-        super(texture, x, y, width, height);
-        this.resourceType = typeresource;
-        this.resourceProductionRate = production;
-    }
 
 
 

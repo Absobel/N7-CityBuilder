@@ -7,7 +7,7 @@ public class miniAffichage {
 
     public miniAffichage(String message, String tauxProd){
         this.message = message;
-        this.tauxProd = tauxProd;
+        this.tauxProd = tauxProd; // a recuperer du get ressource batiment
     }
 
     
