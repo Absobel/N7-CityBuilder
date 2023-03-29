@@ -2,6 +2,8 @@ package simcity;
 
 import java.util.Random;
 
+import javax.swing.text.StyledEditorKit.BoldAction;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
@@ -18,13 +20,28 @@ public class InputHandler {
 
     private OrthographicCamera camera;
     private Grid grid;
+    private Boolean essai;
 
-    public InputHandler(OrthographicCamera camera, Grid grid) {
+
+    public InputHandler(OrthographicCamera camera, Grid grid, Boolean saispas) {
         this.camera = camera;
         this.grid = grid;
+        this.essai = saispas; //trouver un moyen de passer de accueil à jeu
+
+
     }
 
-    public void handleInput(float delta) {
+
+
+    public void handleInput(float delta, boolean essai) {
+
+        if (essai) {
+            if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
+                this.essai = false;
+            }
+            return ;
+        } else { // pour evite les mouvements si écran d'accueil
+
         // Camera movement
         float actualCameraSpeed = BASE_CAMERA_SPEED * camera.zoom;  // Calcul de la vitesse de la caméra en fonction du zoom
         if (Gdx.input.isKeyPressed(Keys.UP)) {
@@ -72,5 +89,12 @@ public class InputHandler {
                 grid.setTile(null, col, row, 1);
             }
         }
+
+    }
+
+    }
+
+    public Boolean getBoolean(){
+        return this.essai;
     }
 }

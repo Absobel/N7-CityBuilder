@@ -4,7 +4,9 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class BatRessources extends Batiment { // moyen que ce soit la classe batiment directement 
 
-
+    public BatRessources() {
+        super(null, 0, 0, 0, 0, null, 0);
+    }
 
 
 

@@ -24,17 +24,17 @@ public class Isometric extends Game {
 		
 		batch = new SpriteBatch();
 		gameScreen = new GameScreen(batch); // faire d'abord appel à écran d'accueil.
-		setScreen(gameScreen);
-		//accueil = new Accueil();
-		//setScreen(accueil);
-		//if( Gdx.input.isKeyPressed(Keys.SPACE)) { // passer au jeu quand on appuie sur espace
-	//		commencerJeu();
+		//setScreen(gameScreen);
+		accueil = new Accueil(batch, true);
+		setScreen(accueil);
+		if (accueil.getEtat() == false) {
+			commencerJeu();
 		}
- 
+	}
 
 	public void commencerJeu() {
 		accueil.hide();
-		
+		setScreen(gameScreen);
 	}
 
 

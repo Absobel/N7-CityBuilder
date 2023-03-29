@@ -44,7 +44,7 @@ public class GameScreen extends ScreenAdapter {
         viewport = new FitViewport(WIDTH, HEIGHT, camera);
 
         renderer = new IsometricRenderer();
-        inputHandler = new InputHandler(camera, renderer.getGrid());
+        inputHandler = new InputHandler(camera, renderer.getGrid(), false);
         //Nouveau stage
         hudStage = new Stage(new ScreenViewport(), batch);
 
@@ -80,7 +80,7 @@ public class GameScreen extends ScreenAdapter {
         renderer.draw(batch);
         batch.end();
 
-        inputHandler.handleInput(Gdx.graphics.getDeltaTime());
+        inputHandler.handleInput(Gdx.graphics.getDeltaTime(), false); // bool rajouté pour écran d'accueil
         camera.update();
         
         //MAJ du HUD
@@ -93,5 +93,6 @@ public class GameScreen extends ScreenAdapter {
         musiq.dispose();
 //        hudStage.dispose();
     }
+
 
 }
