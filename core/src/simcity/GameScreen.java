@@ -54,10 +54,11 @@ public class GameScreen extends ScreenAdapter {
 
         //la musique
         AssetManager assetManager = new AssetManager();
-        assetManager.load("assets/musique_chill.mp3", Music.class);
-        assetManager.finishLoading();
 
-        this.musiq = assetManager.get("assets/musique_chill.mp3", Music.class);
+        assetManager.load("musique_chill.mp3", Music.class);
+        assetManager.finishLoading();
+        //Gdx.files.internal("assets/musique_chill.mp3");
+        this.musiq = assetManager.get("musique_chill.mp3", Music.class);
         this.musiq.setLooping(true);
         this.musiq.play();
         
@@ -116,6 +117,7 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void dispose() {    // Called when this screen should release all resources.
         renderer.dispose();
+        musiq.dispose();
 //        hudStage.dispose();
     }
 
