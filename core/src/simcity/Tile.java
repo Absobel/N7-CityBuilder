@@ -3,6 +3,7 @@ package simcity;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+
 /**
  * Définition et methodes d'une tuile
  */

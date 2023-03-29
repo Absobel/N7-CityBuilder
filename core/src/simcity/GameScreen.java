@@ -1,6 +1,8 @@
 package simcity;
 
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -26,7 +28,8 @@ public class GameScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private Viewport viewport;
     private Stage hudStage;
-    private Label labell;
+    private Music musiq;
+  //  private Label labell;
 
     private OrthographicCamera camera;
     private IsometricRenderer renderer;
@@ -48,27 +51,36 @@ public class GameScreen extends ScreenAdapter {
         inputHandler = new InputHandler(camera, renderer.getGrid());
         //Nouveau stage
         hudStage = new Stage(new ScreenViewport(), batch);
+
+        //la musique
+        AssetManager assetManager = new AssetManager();
+        assetManager.load("assets/musique_chill.mp3", Music.class);
+        assetManager.finishLoading();
+
+        this.musiq = assetManager.get("assets/musique_chill.mp3", Music.class);
+        this.musiq.setLooping(true);
+        this.musiq.play();
         
         //les skins faut trouver les images
-        Skin skin = new Skin(Gdx.files.internal("skins."));
+  //      Skin skin = new Skin(Gdx.files.internal("assets"));
 
         // les labels a mettre en dessous.
-        labell = new Label("exe", skin);
+  //      labell = new Label("exe", skin);
 
         //creer le tableau
-        Table table = new Table();
-        table.setFillParent(true);
-        table.setDebug(true);
-        table.align(Align.topLeft);
+    //    Table table = new Table();
+    //    table.setFillParent(true);
+    //    table.setDebug(true);
+    //    table.align(Align.topLeft);
 
         //labeliser le tableau
-        table.add(labell).pad(3);
+    //    table.add(labell).pad(10);
 
         // le mettre dessus
-        hudStage.addActor(table);
+    //    hudStage.addActor(table);
 
         //le mettre en tant qu'entrée
-        Gdx.input.setInputProcessor(hudStage);
+    //    Gdx.input.setInputProcessor(hudStage);
         
     }
 
@@ -104,7 +116,7 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void dispose() {    // Called when this screen should release all resources.
         renderer.dispose();
-        hudStage.dispose();
+//        hudStage.dispose();
     }
 
 }
