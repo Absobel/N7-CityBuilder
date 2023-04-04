@@ -40,7 +40,7 @@ public class InputHandler {
                 this.essai = false;
             }
             return ;
-        } else { // pour evite les mouvements si écran d'accueil
+        } else { // pour eviter les mouvements si écran d'accueil
 
         // Camera movement
         float actualCameraSpeed = BASE_CAMERA_SPEED * camera.zoom;  // Calcul de la vitesse de la caméra en fonction du zoom
@@ -55,6 +55,9 @@ public class InputHandler {
         }
         if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
             camera.translate(actualCameraSpeed, 0);
+        }
+        if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {  // aller dans le menu pour pouvoir retourner en arrière si jamais 
+            this.essai = false;
         }
         
         // Camera zoom
@@ -96,5 +99,9 @@ public class InputHandler {
 
     public Boolean getBoolean(){
         return this.essai;
+    }
+
+    public void setBoolean(Boolean saispas){
+        this.essai = saispas;
     }
 }

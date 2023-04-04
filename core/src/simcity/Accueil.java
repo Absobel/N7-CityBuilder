@@ -17,7 +17,7 @@ public class Accueil extends ScreenAdapter{
     private boolean dansecranaccueil;
     private InputHandler inputHandler;
     
-    public Accueil(SpriteBatch batch, boolean dedans) {
+    public Accueil(SpriteBatch batch, Boolean dedans) {
         this.batch = batch;
         this.dansecranaccueil = dedans;
     }
@@ -66,6 +66,9 @@ public class Accueil extends ScreenAdapter{
 
     public void setEtat(boolean etat) { // pouvoir mettre en vrai ou faux directmenet modifiabme par isomteric
             this.dansecranaccueil = etat;
+
     }
+
+    
 }
     

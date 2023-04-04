@@ -23,28 +23,43 @@ public class Isometric extends Game {
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 		
 		batch = new SpriteBatch();
-		gameScreen = new GameScreen(batch); // faire d'abord appel à écran d'accueil.
+		gameScreen = new GameScreen(batch, false); // faire d'abord appel à écran d'accueil.
 		//setScreen(gameScreen);
 		accueil = new Accueil(batch, true);
 		setScreen(accueil);
-		if (accueil.getEtat() == false) {
-			commencerJeu();
-		}
 	}
+		
 
 	public void commencerJeu() {
 		accueil.hide();
 		setScreen(gameScreen);
+		gameScreen.setEstdansGame(true); // on est dans le jeu
 	}
 
+	public void retourAccueil() {
+		gameScreen.hide();
+		accueil.show();
+	}
 
 	@Override
 	public void render() {   // Called several times per second. Updates and renders the game.
 		super.render();
+		if (!accueil.getEtat()) { // transition vers le jeu
+			commencerJeu();
+			accueil.setEtat(true); // pour éviter de répéter l'opération
+
+		}
+		if (!gameScreen.getEstdansGame()){
+			retourAccueil();
+			accueil.setEtat(true); // eviter de répéter l'opération
+
+		}
 	}
 	
 	@Override
 	public void dispose() {   // Called when the Application is destroyed.
 		batch.dispose();
 	}
+
+
 }

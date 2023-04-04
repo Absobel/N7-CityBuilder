@@ -30,9 +30,13 @@ public class GameScreen extends ScreenAdapter {
     private OrthographicCamera camera;
     private IsometricRenderer renderer;
     private InputHandler inputHandler;
+    private Boolean estdansGame;
 
-    public GameScreen(SpriteBatch batch) {
+
+
+    public GameScreen(SpriteBatch batch, boolean dedans) {
         this.batch = batch;
+        this.estdansGame = dedans;
     }
 
     @Override
@@ -94,5 +98,19 @@ public class GameScreen extends ScreenAdapter {
 //        hudStage.dispose();
     }
 
+    //réaliser un cycle jour nuit
+     public void cycleJN() {
+         CycleJN cycleJN = new CycleJN(batch, camera, Textures.sky, 10);
+         cycleJN.update(Gdx.graphics.getDeltaTime());
+         cycleJN.render();
+    }
+
+    public void setEstdansGame(Boolean estdansGame) {
+        this.estdansGame = estdansGame;
+    }
+
+    public Boolean getEstdansGame() {
+        return estdansGame;
+    }
 
 }
