@@ -84,7 +84,7 @@ public class GameScreen extends ScreenAdapter {
         renderer.draw(batch);
         batch.end();
 
-        inputHandler.handleInput(Gdx.graphics.getDeltaTime(), false); // bool rajouté pour écran d'accueil
+        inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame); // bool rajouté pour écran d'accueil
         camera.update();
         
         //MAJ du HUD
@@ -115,6 +115,10 @@ public class GameScreen extends ScreenAdapter {
 
     public InputHandler getInputHandler() {
         return inputHandler;
+    }
+
+    public void setBooldeInput(InputHandler inputHandler ,boolean bool) {
+        inputHandler.setBoolean(bool);
     }
 
 }

@@ -20,24 +20,25 @@ public class InputHandler {
 
     private OrthographicCamera camera;
     private Grid grid;
-    private Boolean essai;
+    private Boolean modifie;
 
 
     public InputHandler(OrthographicCamera camera, Grid grid, Boolean saispas) {
         this.camera = camera;
         this.grid = grid;
-        this.essai = saispas; //trouver un moyen de passer de accueil à jeu
+        this.modifie = saispas; //trouver un moyen de passer de accueil à jeu
 
 
     }
 
 
 
-    public void handleInput(float delta, boolean essai) {
+    public void handleInput(float delta, boolean dansacc) {
 
-        if (essai) {
+        if (!dansacc) {
             if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
-                this.essai = false;
+                dansacc = true;
+                this.modifie = true; 
             }
             return ;
         } else { // pour eviter les mouvements si écran d'accueil
@@ -56,8 +57,10 @@ public class InputHandler {
         if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
             camera.translate(actualCameraSpeed, 0);
         }
+
         if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {  // aller dans le menu pour pouvoir retourner en arrière si jamais 
-            this.essai = false;
+            this.modifie = true;
+            dansacc = false;
         }
         
         // Camera zoom
@@ -98,10 +101,10 @@ public class InputHandler {
     }
 
     public Boolean getBoolean(){
-        return this.essai;
+        return this.modifie;
     }
 
     public void setBoolean(Boolean saispas){
-        this.essai = saispas;
+        this.modifie = saispas;
     }
 }
