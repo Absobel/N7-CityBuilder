@@ -27,18 +27,19 @@ public class Isometric extends Game {
 		//setScreen(gameScreen);
 		accueil = new Accueil(batch, true);
 		setScreen(accueil);
+	
+
 	}
 		
 
 	public void commencerJeu() {
-		accueil.hide();
-		setScreen(gameScreen);
+	    setScreen(gameScreen);
 		gameScreen.setEstdansGame(true); // on est dans le jeu
 	}
 
 	public void retourAccueil() {
-		gameScreen.hide();
-		accueil.show();
+		setScreen(accueil);
+		gameScreen.setEstdansGame(false); // on est dans l'accueil
 	}
 
 	@Override

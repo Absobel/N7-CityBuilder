@@ -38,6 +38,7 @@ public class Accueil extends ScreenAdapter{
         batch.end();
         inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.dansecranaccueil); // bool rajouté pour écran d'accueil
         this.dansecranaccueil = inputHandler.getBoolean();
+        inputHandler.setBoolean(true);
     }
     
     @Override

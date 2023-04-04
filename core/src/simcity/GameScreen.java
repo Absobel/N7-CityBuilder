@@ -113,4 +113,8 @@ public class GameScreen extends ScreenAdapter {
         return estdansGame;
     }
 
+    public InputHandler getInputHandler() {
+        return inputHandler;
+    }
+
 }
