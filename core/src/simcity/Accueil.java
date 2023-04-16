@@ -5,8 +5,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -16,7 +18,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-public class Accueil extends ScreenAdapter{
+public class Accueil extends ScreenAdapter {
 
     public static final int WIDTH = 320*4;   // 16:9 aspect ratio 
     public static final int HEIGHT = 180*4;
@@ -28,9 +30,12 @@ public class Accueil extends ScreenAdapter{
     private OrthographicCamera camera;
     private IsometricRenderer renderer;
     private Viewport viewport;
-    private Object quitterButton;
-    private Object jouerButton;
+    private TextButton quitterButton;
+    private TextButton jouerButton;
+    private Stage stageboutton;
+    
 
+    private Skin skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
     
     public Accueil(SpriteBatch batch, Boolean dedans) {
         this.batch = batch;
@@ -48,14 +53,24 @@ public class Accueil extends ScreenAdapter{
         camera = new OrthographicCamera(WIDTH, HEIGHT);
 
  
-        camera.zoom = 4f;
+        camera.zoom = 1f;
 
         viewport = new FitViewport(WIDTH, HEIGHT, camera);
 
         renderer = new IsometricRenderer();
         menuTexture = new Texture(Gdx.files.internal("image-18-1024x585.png"));
         inputHandler = new InputHandler(camera, renderer.getGrid(), true);
+        stageboutton = new Stage(viewport, batch);
 
+        quitterButton = new TextButton("Quitter", skin);
+        quitterButton.setPosition(700, 100);
+        stageboutton.addActor(quitterButton);
+
+        jouerButton = new TextButton("Jouer", skin);
+        jouerButton.setPosition(700, 300);
+        stageboutton.addActor(jouerButton);
+        viewport.setScreenBounds(0, 0, Gdx.graphics.getWidth(), (int) (Gdx.graphics.getHeight() + quitterButton.getHeight()));
+        viewport.apply(true);
         
     }
     
@@ -70,11 +85,12 @@ public class Accueil extends ScreenAdapter{
         batch.begin();
         
 
-        batch.draw(menuTexture, -WIDTH/2 , -HEIGHT/2, WIDTH, HEIGHT);
+        batch.draw(menuTexture, 0 , 0, WIDTH, HEIGHT);
         batch.end();
 
         inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.dansecranaccueil); // bool rajouté pour écran d'accueil
-
+        stageboutton.act();
+        stageboutton.draw();
     }
     
 
