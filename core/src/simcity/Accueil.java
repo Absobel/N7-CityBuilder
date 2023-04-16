@@ -69,8 +69,7 @@ public class Accueil extends ScreenAdapter {
         jouerButton = new TextButton("Jouer", skin);
         jouerButton.setPosition(700, 300);
         stageboutton.addActor(jouerButton);
-        viewport.setScreenBounds(0, 0, Gdx.graphics.getWidth(), (int) (Gdx.graphics.getHeight() + quitterButton.getHeight()));
-        viewport.apply(true);
+        
         
     }
     
