@@ -2,7 +2,9 @@ package simcity;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.AddListenerAction;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import java.net.http.WebSocket.Listener;
 
@@ -49,7 +51,20 @@ public class Isometric extends Game {
 	}
 	@Override
 	public void render() {   // Called several times per second. Updates and renders the game.
-		
+		accueil.getbutton("jouer").addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				commencerJeu();
+			}
+		});
+		accueil.getbutton("quitter").addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				Gdx.app.exit();
+			}
+		});
+
+
 		super.render(); // le faire seulement ici pour pas forcer le rendu à chaque fois		
 		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
             if (!gameScreen.getEstdansGame()) {

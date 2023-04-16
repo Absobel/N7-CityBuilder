@@ -68,8 +68,10 @@ public class Accueil extends ScreenAdapter {
 
         jouerButton = new TextButton("Jouer", skin);
         jouerButton.setPosition(700, 300);
+
+
         stageboutton.addActor(jouerButton);
-        
+
         
     }
     
@@ -130,6 +132,18 @@ public class Accueil extends ScreenAdapter {
 
     public void setBooldeInput(InputHandler inputHandler ,boolean bool) {
         inputHandler.setBoolean(bool);
+    }
+
+    public TextButton getbutton(String nom) {
+        if (nom == "quitter") {
+            return quitterButton;
+        }
+        else if (nom == "jouer") {
+            return jouerButton;
+        }
+        else {
+            return null;
+        }
     }
 
 
