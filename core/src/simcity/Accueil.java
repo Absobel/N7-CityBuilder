@@ -42,8 +42,12 @@ public class Accueil extends ScreenAdapter{
     
     @Override
     public void show() {
+
+
+
         camera = new OrthographicCamera(WIDTH, HEIGHT);
-        camera.position.set(WIDTH/2, HEIGHT/2, 0);
+
+ 
         camera.zoom = 4f;
 
         viewport = new FitViewport(WIDTH, HEIGHT, camera);
@@ -57,19 +61,20 @@ public class Accueil extends ScreenAdapter{
     
     @Override
     public void render(float delta) {
+
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        
+        batch.setProjectionMatrix(viewport.getCamera().combined); // utiliser la deuxième caméra pour dessiner l'image
 
 
         batch.begin();
+        
 
-        int effectiveScreenWidth = (int) Math.floor(WIDTH*camera.zoom) ;
-        int effectiveScreenHeight = (int) Math.floor(HEIGHT*camera.zoom) ;
-        batch.draw(menuTexture, camera.position.x-effectiveScreenWidth/2, camera.position.y-effectiveScreenHeight/2, effectiveScreenWidth, effectiveScreenHeight);
+        batch.draw(menuTexture, -WIDTH/2 , -HEIGHT/2, WIDTH, HEIGHT);
         batch.end();
+
         inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.dansecranaccueil); // bool rajouté pour écran d'accueil
-        //camera.update();
+
     }
     
 
@@ -81,7 +86,6 @@ public class Accueil extends ScreenAdapter{
     
     @Override
     public void resize(int width, int height) {    // Called when the Application is resized.
-        viewport.update(width, height);
     }
     
     @Override
@@ -94,6 +98,7 @@ public class Accueil extends ScreenAdapter{
     public void hide() {
   
     }
+
 
     public boolean getEtat() { // recuperer dans les autres classes la valeure
         return this.dansecranaccueil;
