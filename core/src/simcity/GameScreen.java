@@ -25,6 +25,7 @@ public class GameScreen extends ScreenAdapter {
     private Viewport viewport;
     private Stage hudStage;
     private Music musiq;
+    private menuHUD constructionMenu;
   //  private Label labell;
 
     private OrthographicCamera camera;
@@ -50,7 +51,7 @@ public class GameScreen extends ScreenAdapter {
         renderer = new IsometricRenderer();
         inputHandler = new InputHandler(camera, renderer.getGrid(), false);
         //Nouveau stage
-        hudStage = new Stage(new ScreenViewport(), batch);
+       // hudStage = new Stage(new ScreenViewport(), batch);
 
         //la musique
         AssetManager assetManager = new AssetManager();
@@ -60,6 +61,9 @@ public class GameScreen extends ScreenAdapter {
         this.musiq = assetManager.get("musique_chill.mp3", Music.class);
         this.musiq.setLooping(true);
         this.musiq.play();
+
+        //constructionMenu = new ConstructionMenu(skin);
+        //hudStage.addActor(constructionMenu);
     }
 
     @Override
@@ -94,7 +98,8 @@ public class GameScreen extends ScreenAdapter {
         camera.update();
         
         //MAJ du HUD
-        hudStage.act(delta);
+        //hudStage.act(delta);
+        //hudStage.draw();
     }
 
     @Override

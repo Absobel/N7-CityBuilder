@@ -72,6 +72,7 @@ public class Accueil extends ScreenAdapter{
         //camera.update();
     }
     
+
     @Override
     public void dispose() {
         batch.dispose();
