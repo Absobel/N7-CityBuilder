@@ -8,6 +8,7 @@ import java.net.http.WebSocket.Listener;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.Input.Keys;
 
@@ -25,7 +26,7 @@ public class Isometric extends Game {
 		batch = new SpriteBatch();
 		gameScreen = new GameScreen(batch, false); // faire d'abord appel à écran d'accueil.
 		//setScreen(gameScreen);
-		accueil = new Accueil(batch, true);
+		accueil = new Accueil(batch, false);
 		setScreen(accueil);
 	
 
@@ -42,23 +43,27 @@ public class Isometric extends Game {
 		gameScreen.setEstdansGame(false); // on est dans l'accueil
 	}
 
+	public void retourJeu() {
+		gameScreen.show();;
+		gameScreen.setEstdansGame(true); // on est dans le jeu
+	}
 	@Override
 	public void render() {   // Called several times per second. Updates and renders the game.
-
 		
-		super.render(); // le faire seulement ici pour pas forcer le rendu à chaque fois	
+		super.render(); // le faire seulement ici pour pas forcer le rendu à chaque fois		
+		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+            if (!gameScreen.getEstdansGame()) {
+                setScreen(gameScreen);
+                gameScreen.setEstdansGame(true);
+            }
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+            if (gameScreen.getEstdansGame()) {
+                setScreen(accueil);
+                gameScreen.setEstdansGame(false);
+            }
+        }			
 
-		
-			
-		if (!gameScreen.getEstdansGame() && accueil.getInputHandler().getBoolean()) { // si on est dans l'accueil et qu'on a pas cliqué sur le bouton
-			commencerJeu();
-			gameScreen.setBooldeInput(gameScreen.getInputHandler() ,false); // pas toujours sur gamescreen
-
-		}
-		if (gameScreen.getEstdansGame() && gameScreen.getInputHandler().getBoolean()){ // si on est dans le jeu et qu'on a pas cliqué sur le bouton
-			retourAccueil();
-			accueil.setBooldeInput(accueil.getInputHandler(), false); // pas toujours sur accueil
-		}
 	}
 	
 	@Override
