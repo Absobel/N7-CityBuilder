@@ -46,24 +46,11 @@ public class Isometric extends Game {
 	}
 
 	public void retourJeu() {
-		gameScreen.show();;
+		gameScreen.show();
 		gameScreen.setEstdansGame(true); // on est dans le jeu
 	}
 	@Override
 	public void render() {   // Called several times per second. Updates and renders the game.
-		accueil.getbutton("jouer").addListener(new ClickListener() {
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				commencerJeu();
-			}
-		});
-		accueil.getbutton("quitter").addListener(new ClickListener() {
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				Gdx.app.exit();
-			}
-		});
-
 
 		super.render(); // le faire seulement ici pour pas forcer le rendu à chaque fois		
 		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
@@ -72,7 +59,8 @@ public class Isometric extends Game {
                 gameScreen.setEstdansGame(true);
             }
         }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) && (gameScreen.getEstdansGame() == false)) {
+
             if (gameScreen.getEstdansGame()) {
                 setScreen(accueil);
                 gameScreen.setEstdansGame(false);
