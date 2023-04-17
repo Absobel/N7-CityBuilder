@@ -109,9 +109,9 @@ public class Accueil extends ScreenAdapter {
         //musique
         AssetManager assetManager = new AssetManager();
 
-        assetManager.load("Catiso - Beast - COPYRIGHT FREE MUSIC - [CEM].mp3", Music.class);
+        assetManager.load("Joueur du Grenier - Recette pour jeu pourri.mp3", Music.class);
         assetManager.finishLoading();
-        this.musiq = assetManager.get("Catiso - Beast - COPYRIGHT FREE MUSIC - [CEM].mp3", Music.class);
+        this.musiq = assetManager.get("Joueur du Grenier - Recette pour jeu pourri.mp3", Music.class);
         this.musiq.setLooping(true);
         this.musiq.play();
     }
