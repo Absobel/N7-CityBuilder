@@ -1,0 +1,5 @@
+package simcity;
+
+class CityManager{
+
+}
