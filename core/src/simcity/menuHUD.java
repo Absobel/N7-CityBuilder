@@ -12,11 +12,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-public class menuHUD extends Stage{
+public class menuHUD extends Stage {
 
     private Stage sousmenu;
     private TextButton menu;
     private Table table;
+    private Table sousmenuTable;  // Nouvelle table pour les boutons du sous-menu
     private Label titleLabel;
     private BitmapFont font;
     private Skin skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
@@ -24,74 +25,80 @@ public class menuHUD extends Stage{
     public menuHUD(Viewport viewport, SpriteBatch batch) {
         Gdx.input.setInputProcessor(this);  // Active la scène pour récupérer les événements d'entrée
 
-        // Création de la table qui contiendra les boutons
+        // Création de la table qui contiendra les boutons du menu principal
         table = new Table();
         table.setFillParent(true);
         table.bottom();
-        table.right();
+        table.left();
         this.addActor(table);
+
+        // Création de la table qui contiendra les boutons du sous-menu
+        sousmenuTable = new Table();
+        sousmenuTable.setFillParent(true);
+        sousmenuTable.left();  // Alignement des boutons au centre de l'écran
+        sousmenuTable.bottom();
+        sousmenuTable.setVisible(false);  // Les boutons ne sont pas visibles au début
+        this.addActor(sousmenuTable);
 
         // Ajout du titre
         menu = new TextButton("Menu", skin);
         menu.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                show();
+                show();  // Afficher les boutons du sous-menu
             }
         });
 
-        // Création d'une nouvelle instance de BitmapFont avec une taille de police plus petite
-        BitmapFont smallFont = new BitmapFont(Gdx.files.internal("font/font.fnt"));
-        smallFont.getData().setScale(0.5f);
+        // Ajout des boutons du sous-menu
+        TextButton stage1Button = new TextButton("batiments", skin);
+        TextButton stage2Button = new TextButton("decoration", skin);
+        TextButton backButton = new TextButton("Back", skin);
 
-        // Ajout des boutons
-        TextButton resumeButton = new TextButton("Resume", new TextButton.TextButtonStyle(skin.getDrawable("button-up"), skin.getDrawable("button-down"), skin.getDrawable("button-down"), smallFont));
-        TextButton restartButton = new TextButton("Restart", new TextButton.TextButtonStyle(skin.getDrawable("button-up"), skin.getDrawable("button-down"), skin.getDrawable("button-down"), smallFont));
-        TextButton quitButton = new TextButton("Quit", new TextButton.TextButtonStyle(skin.getDrawable("button-up"), skin.getDrawable("button-down"), skin.getDrawable("button-down"), smallFont));
-
-        // Ajout d'un listener pour chaque bouton
-        resumeButton.addListener(new ClickListener() {
+        // Ajout d'un listener pour chaque bouton du sous-menu
+        stage1Button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // Code pour reprendre le jeu
+                // Code pour commencer le stage 1
             }
         });
 
-        restartButton.addListener(new ClickListener() {
+        stage2Button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // Code pour redémarrer le jeu
+                // Code pour commencer le stage 2
             }
         });
 
-        quitButton.addListener(new ClickListener() {
+        backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // Code pour quitter le jeu
+                hide();  // Cacher les boutons du sous-menu
             }
         });
 
-        // Ajout des boutons à la table
+        // Ajout des boutons à la table du sous-menu
+        sousmenuTable.add(stage1Button).padTop(50f).row();
+        sousmenuTable.add(stage2Button).padTop(20f).row();
+        sousmenuTable.add(backButton).padTop(20f).row();
+
+        // Ajout du bouton menu à la table du menu principal
         table.add(menu).padTop(20f).row();
-        table.add(resumeButton).height(20f).padTop(50f).row();
-        table.add(restartButton).height(20f).padTop(20f).row();
-        table.add(quitButton).height(20f).padTop(20f).row();
     }
 
     public void show() {
-        Gdx.input.setInputProcessor(this);  // Active la scène pour récupérer les événements d'entrée
+        sousmenuTable.setVisible(true);  // Rendre les boutons du sous-menu visibles
+        table.setVisible(false);  // Cacher les boutons du menu principal
     }
 
     public void hide() {
-        Gdx.input.setInputProcessor(null);  // Désactive la scène pour ne plus récupérer les événements d'entrée
-    }
-
-    public void render() {
-        this.act();
-        this.draw();
+        sousmenuTable.setVisible(false);  // Cacher les boutons du sous-menu
+        table.setVisible(true); 
     }
 
     public void dispose() {
+        sousmenu.dispose();
         this.dispose();
     }
+
+
 }
