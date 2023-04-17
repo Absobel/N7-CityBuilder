@@ -23,9 +23,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
-
-import simcity.Isometric;
-
 public class Accueil extends ScreenAdapter {
 
     public static final int WIDTH = 320*4;   // 16:9 aspect ratio 
@@ -57,8 +54,6 @@ public class Accueil extends ScreenAdapter {
     
     @Override
     public void show() {
-
-        Isometric essai = new Isometric();
 
         camera = new OrthographicCamera(WIDTH, HEIGHT);
 

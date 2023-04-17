@@ -25,9 +25,8 @@ public class GameScreen extends ScreenAdapter {
 
     private SpriteBatch batch;
     private Viewport viewport;
-    private Stage hudStage;
+    private menuHUD hudStage;
     private Music musiq;
-    private menuHUD constructionMenu;
   //  private Label labell;
 
     private OrthographicCamera camera;
@@ -40,7 +39,7 @@ public class GameScreen extends ScreenAdapter {
     public GameScreen(SpriteBatch batch, boolean dedans) {
         this.batch = batch;
         this.estdansGame = dedans;
-        hudStage = new Stage(new ScreenViewport(), batch);
+        hudStage = new menuHUD(viewport, batch);
     }
 
     @Override
@@ -55,7 +54,7 @@ public class GameScreen extends ScreenAdapter {
         renderer = new IsometricRenderer();
         inputHandler = new InputHandler(camera, renderer.getGrid(), false);
         //Nouveau stage
-        multiplexer.addProcessor(hudStage);    // Ajouter le Stage de menuHUD
+        multiplexer.addProcessor((InputProcessor) hudStage);    // Ajouter le Stage de menuHUD
 
 
         //la musique
@@ -66,6 +65,8 @@ public class GameScreen extends ScreenAdapter {
         this.musiq = assetManager.get("musique_chill.mp3", Music.class);
         this.musiq.setLooping(true);
         this.musiq.play();
+
+
 
         //le menu
         Gdx.input.setInputProcessor(multiplexer);
@@ -103,9 +104,8 @@ public class GameScreen extends ScreenAdapter {
         inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame); // bool rajouté pour écran d'accueil
         camera.update();
         
-        //MAJ du HUD
-        //hudStage.act(delta);
-        //hudStage.draw();
+        hudStage.act(delta);
+        hudStage.draw();
     }
 
     @Override
