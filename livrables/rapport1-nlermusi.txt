@@ -1,7 +1,7 @@
 Tout d'abord, une musique de fond a été intégrée pour ajouter une dimension supplémentaire au jeu et améliorer l'immersion des joueurs.
 Ensuite, un écran d'accueil a été ajouté pour permettre aux joueurs de se familiariser avec le jeu avant de commencer à jouer. Il manque l'affichage des boutons.
 
-Ecran d'accueil fonctionnel avec des boutons non-fonctionnels pour l'instant. 
+Ecran d'accueil fonctionnel avec des boutons fonctionnels. 
 Le passage de l'écran d'accueil au jeu fonctionne. (espace pour accueil -> jeu, echap pour jeu -> accueil)
 De plus, une classe HUD a été créée pour faciliter la navigation des joueurs. 
 Elle contiendra les différents bâtiments du jeu et permettra aux joueurs de naviguer facilement entre eux.
