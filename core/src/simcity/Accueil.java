@@ -5,18 +5,22 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.HexFormat;
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import simcity.Isometric;
 
 public class Accueil extends ScreenAdapter {
 
@@ -48,7 +52,7 @@ public class Accueil extends ScreenAdapter {
     @Override
     public void show() {
 
-
+        Isometric essai = new Isometric();
 
         camera = new OrthographicCamera(WIDTH, HEIGHT);
 
@@ -64,15 +68,26 @@ public class Accueil extends ScreenAdapter {
 
         quitterButton = new TextButton("Quitter", skin);
         quitterButton.setPosition(700, 100);
+        quitterButton.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				Gdx.app.exit();
+			}
+		});
+
         stageboutton.addActor(quitterButton);
 
         jouerButton = new TextButton("Jouer", skin);
         jouerButton.setPosition(700, 300);
-
-
+        jouerButton.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+				essai.commencerJeu();
+			}
+		});
         stageboutton.addActor(jouerButton);
 
-        
+        Gdx.input.setInputProcessor(stageboutton);        
     }
     
     @Override
