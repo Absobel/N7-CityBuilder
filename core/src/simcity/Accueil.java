@@ -20,6 +20,8 @@ import java.util.HexFormat;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+
+
 import simcity.Isometric;
 
 public class Accueil extends ScreenAdapter {
@@ -29,7 +31,7 @@ public class Accueil extends ScreenAdapter {
 
     private SpriteBatch batch;
     private Texture menuTexture;
-    private boolean dansecranaccueil;
+    private boolean touchejouer;
     private InputHandler inputHandler;
     private OrthographicCamera camera;
     private IsometricRenderer renderer;
@@ -44,7 +46,7 @@ public class Accueil extends ScreenAdapter {
     
     public Accueil(SpriteBatch batch, Boolean dedans) {
         this.batch = batch;
-        this.dansecranaccueil = dedans;
+        this.touchejouer = false; // permet de savoir si on appuie sur la touche joueur
 
 
 
@@ -80,12 +82,12 @@ public class Accueil extends ScreenAdapter {
 
         jouerButton = new TextButton("Jouer", skin);
         jouerButton.setPosition(700, 300);
-        //jouerButton.addListener(new ClickListener() {
-			//@Override
-			//public void clicked(InputEvent event, float x, float y) {
-			//	essai.commencerJeu();
-		//	}
-		//});
+        jouerButton.addListener(new ClickListener() {
+			@Override
+			public void clicked(InputEvent event, float x, float y) {
+                touchejouer = true; //parvient pas a mettre this.touchejouer = false;
+			}
+		});
         stageboutton.addActor(jouerButton);
 
         nouvelleButton = new TextButton("Nouvelle partie", skin);
@@ -93,7 +95,7 @@ public class Accueil extends ScreenAdapter {
         nouvelleButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				Gdx.app.exit();
+				touchejouer = true;
 			}
 		});
 
@@ -116,7 +118,7 @@ public class Accueil extends ScreenAdapter {
         batch.draw(menuTexture, 0 , 0, WIDTH, HEIGHT);
         batch.end();
 
-        inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.dansecranaccueil); // bool rajouté pour écran d'accueil
+        inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.touchejouer); // bool rajouté pour écran d'accueil
         stageboutton.act();
         stageboutton.draw();
     }
@@ -145,11 +147,11 @@ public class Accueil extends ScreenAdapter {
 
 
     public boolean getEtat() { // recuperer dans les autres classes la valeure
-        return this.dansecranaccueil;
+        return touchejouer;
     }
 
     public void setEtat(boolean etat) { // pouvoir mettre en vrai ou faux directmenet modifiabme par isomteric
-            this.dansecranaccueil = etat;
+            touchejouer = etat;
 
     }
 

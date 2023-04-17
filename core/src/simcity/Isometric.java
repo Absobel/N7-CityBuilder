@@ -53,18 +53,18 @@ public class Isometric extends Game {
 	public void render() {   // Called several times per second. Updates and renders the game.
 
 		super.render(); // le faire seulement ici pour pas forcer le rendu à chaque fois		
-		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || accueil.getEtat() == true ) {
             if (!gameScreen.getEstdansGame()) {
                 setScreen(gameScreen);
                 gameScreen.setEstdansGame(true);
+				accueil.setEtat(false);
             }
         }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) ) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
 
             if (gameScreen.getEstdansGame()) {
                 setScreen(accueil);
-                gameScreen.setEstdansGame(false);
-            }
+                gameScreen.setEstdansGame(false); }
         }			
 
 	}
