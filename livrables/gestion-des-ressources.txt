@@ -1,0 +1,6 @@
+Jusqu'à présent, nous avons réussi à identifier toutes les ressources nécessaires pour mener à bien les différentes tâches, 
+y compris les ressources matérielles, les ressources humaines et les ressources financières.
+
+Nous avons également créer un moyen de stocker les différentes ressources que le joueur a à disposition.
+
+Enfin, nous avons également commencé à réfléchir aux conséquences potentielles que les ressources pourraient avoir sur le déroulement du jeu.
