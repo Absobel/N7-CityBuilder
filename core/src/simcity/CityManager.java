@@ -10,6 +10,7 @@ class CityManager{
 	private int habitat;
 	private double happiness;
 	private Gestion buildingManager;
+	private ArrayList <Sim> habitants; 
 	
 	final int INT_CREDITS = 1000;    //nbr de coins initial
 	final int LEVEL_UP = 460;       // Cte pour passer d'un niveau à l'autre
@@ -97,7 +98,26 @@ class CityManager{
 		
 	}
 	
-	public void updateHabitat() {
+	public void updateHabitat(Batiment batiment) {
 		this.habitat = this.habitat + HABITANTS;
+		for (int i = 0; i < HABITANTS; i++) {
+		    this.habitants.add(new Sim(batiment));
+		}
+	} 
+	
+	
+	public void updateHapiness() {
+		if(this.habitants.size()!=0) {
+			int globalHapiness = 0;
+			for (int i = 0; i < this.habitants.size(); i++) {
+				Sim sim = this.habitants.get(i);
+			    globalHapiness = globalHapiness + sim.happiness;
+			}
+			
+			double happy = globalHapiness/this.habitants.size();
+			this.happiness = happy;
+		}
+		
 	}
+	
 }

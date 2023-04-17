@@ -8,7 +8,7 @@ classe Sim {
 	private int happiness; 
 	
 	public Sim(Batiment buil) {
-		this.building= buil;
+		this.building = buil;
 		this.happiness = 100;
 	}
 	
