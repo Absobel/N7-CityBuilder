@@ -1,6 +1,8 @@
 package simcity;
 
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -40,6 +42,7 @@ public class Accueil extends ScreenAdapter {
     private TextButton jouerButton;
     private TextButton nouvelleButton;
     private Stage stageboutton;
+    private Music musiq;
     
 
     private Skin skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
@@ -101,7 +104,16 @@ public class Accueil extends ScreenAdapter {
 
         stageboutton.addActor(nouvelleButton);
 
-        Gdx.input.setInputProcessor(stageboutton);        
+        Gdx.input.setInputProcessor(stageboutton);   
+        
+        //musique
+        AssetManager assetManager = new AssetManager();
+
+        assetManager.load("Catiso - Beast - COPYRIGHT FREE MUSIC - [CEM].mp3", Music.class);
+        assetManager.finishLoading();
+        this.musiq = assetManager.get("Catiso - Beast - COPYRIGHT FREE MUSIC - [CEM].mp3", Music.class);
+        this.musiq.setLooping(true);
+        this.musiq.play();
     }
     
     @Override
@@ -142,7 +154,7 @@ public class Accueil extends ScreenAdapter {
     
     @Override
     public void hide() {
-  
+        musiq.stop();
     }
 
 

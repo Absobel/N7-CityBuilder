@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -38,10 +40,12 @@ public class GameScreen extends ScreenAdapter {
     public GameScreen(SpriteBatch batch, boolean dedans) {
         this.batch = batch;
         this.estdansGame = dedans;
+        hudStage = new Stage(new ScreenViewport(), batch);
     }
 
     @Override
     public void show() {    // Called when this screen becomes the current screen for a Game.
+        InputMultiplexer multiplexer = new InputMultiplexer(); // gerer differentes entrees
         camera = new OrthographicCamera(WIDTH, HEIGHT);
         camera.position.set(WIDTH/2, HEIGHT/2, 0);
         camera.zoom = 4f;
@@ -51,7 +55,8 @@ public class GameScreen extends ScreenAdapter {
         renderer = new IsometricRenderer();
         inputHandler = new InputHandler(camera, renderer.getGrid(), false);
         //Nouveau stage
-       // hudStage = new Stage(new ScreenViewport(), batch);
+        multiplexer.addProcessor(hudStage);    // Ajouter le Stage de menuHUD
+
 
         //la musique
         AssetManager assetManager = new AssetManager();
@@ -62,8 +67,9 @@ public class GameScreen extends ScreenAdapter {
         this.musiq.setLooping(true);
         this.musiq.play();
 
-        //constructionMenu = new ConstructionMenu(skin);
-        //hudStage.addActor(constructionMenu);
+        //le menu
+        Gdx.input.setInputProcessor(multiplexer);
+
     }
 
     @Override
