@@ -66,6 +66,9 @@ public class InputHandler {
         // Camera zoom
         if (Gdx.input.isKeyPressed(Keys.Q)) {  // Zoom in
             camera.zoom -= CAMERA_ZOOM_SPEED;               //La vraie touche c'est A parce que QWERTY
+            if (camera.zoom < 0.1f) {
+                camera.zoom = 0.1f;
+            }
         }
         if (Gdx.input.isKeyPressed(Keys.E)) {  // Zoom out
             camera.zoom += CAMERA_ZOOM_SPEED;
