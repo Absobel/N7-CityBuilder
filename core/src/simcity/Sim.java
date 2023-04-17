@@ -1,0 +1,5 @@
+package simcity;
+
+classe Sim {
+  
+}
