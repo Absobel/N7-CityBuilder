@@ -36,6 +36,7 @@ public class Accueil extends ScreenAdapter {
     private Viewport viewport;
     private TextButton quitterButton;
     private TextButton jouerButton;
+    private TextButton nouvelleButton;
     private Stage stageboutton;
     
 
@@ -79,13 +80,24 @@ public class Accueil extends ScreenAdapter {
 
         jouerButton = new TextButton("Jouer", skin);
         jouerButton.setPosition(700, 300);
-        jouerButton.addListener(new ClickListener() {
+        //jouerButton.addListener(new ClickListener() {
+			//@Override
+			//public void clicked(InputEvent event, float x, float y) {
+			//	essai.commencerJeu();
+		//	}
+		//});
+        stageboutton.addActor(jouerButton);
+
+        nouvelleButton = new TextButton("Nouvelle partie", skin);
+        nouvelleButton.setPosition(700, 200);
+        nouvelleButton.addListener(new ClickListener() {
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				essai.commencerJeu();
+				Gdx.app.exit();
 			}
 		});
-        stageboutton.addActor(jouerButton);
+
+        stageboutton.addActor(nouvelleButton);
 
         Gdx.input.setInputProcessor(stageboutton);        
     }

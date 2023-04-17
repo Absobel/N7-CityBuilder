@@ -59,7 +59,7 @@ public class Isometric extends Game {
                 gameScreen.setEstdansGame(true);
             }
         }
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) && (gameScreen.getEstdansGame() == false)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) ) {
 
             if (gameScreen.getEstdansGame()) {
                 setScreen(accueil);
