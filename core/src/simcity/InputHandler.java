@@ -76,7 +76,7 @@ public class InputHandler {
 
         // place tiles
         // à terme faudra changer pour que l'ont place les tuiles une par une au lieu de pouvoir laisser appyer avec la souris
-        if (Gdx.input.isTouched()) {
+        if (Gdx.input.isTouched() || Gdx.input.isKeyJustPressed(Keys.R)) {
             // Coordonnées de la souris sur l'écran
             int x = Gdx.input.getX();
             int y = Gdx.input.getY();
@@ -97,9 +97,14 @@ public class InputHandler {
             } else {
                 grid.setTile(null, col, row, 1);
             }
+
+            // Pour tester le placement des routes
+            if (Gdx.input.isKeyPressed(Keys.R)) {
+                grid.setTile(new Tile(Textures.road), col, row, 1);
+            }
         }
 
-    }
+        }
 
     }
 

@@ -24,6 +24,7 @@ public class Textures {
     public static List<TextureRegion> tonneaux = new ArrayList<TextureRegion>();
     public static List<TextureRegion> a_suppr = new ArrayList<TextureRegion>();
     public static List<Texture> sky = new ArrayList<Texture>();
+    public static TextureRegion road;
 
     public static void load() {
         // Textures
@@ -51,6 +52,9 @@ public class Textures {
         for (int i = 0; i < 24; i++) {
             a_suppr.add(new TextureRegion(spriteShTextureASuppr, i%6 * TILE_SIZE_CUBE, ((int) i/6 )* TILE_SIZE_CUBE, TILE_SIZE_CUBE, TILE_SIZE_CUBE));
         }
+
+        Texture spriteRoad = new Texture(Gdx.files.internal("IsometricTilesEtAutre/256x256 route.png"));
+        road = new TextureRegion(spriteRoad);
     }
 
     public static void dispose() {
@@ -63,5 +67,6 @@ public class Textures {
         for (TextureRegion water : waters) {
             water.getTexture().dispose();
         }
+        road.getTexture().dispose();
     }
 }
