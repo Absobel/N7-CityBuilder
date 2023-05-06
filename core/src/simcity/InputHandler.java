@@ -21,13 +21,13 @@ public class InputHandler {
     private OrthographicCamera camera;
     private Grid grid;
     private Boolean modifie;
-
+    private Route route;
 
     public InputHandler(OrthographicCamera camera, Grid grid, Boolean saispas) {
         this.camera = camera;
         this.grid = grid;
         this.modifie = saispas; //trouver un moyen de passer de accueil à jeu
-
+        this.route = new Route();
 
     }
 
@@ -92,15 +92,22 @@ public class InputHandler {
 
             // Pour l'instant c'est juste pour tester le placement de tuiles, à termes il faudra faire un système de sélection de tuiles avec un menu et tout
             if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-                Random rand = new java.util.Random();
-                grid.setTile(new Tile(Textures.waters.get(rand.nextInt(Textures.waters.size()))), col, row, 1);
+                if (route.isConnected(col, row)) {
+                    Random rand = new java.util.Random();
+                    grid.setTile(new Tile(Textures.waters.get(rand.nextInt(Textures.waters.size()))), col, row, 1);
+                } else {
+                    System.out.println("Le batiment doit etre connecte a la route principale.");
+                }
+
+            } else if (Gdx.input.isKeyPressed(Keys.R)) { // Pour tester le placement des routes
+                if (route.isConnected(col, row)) {
+                    grid.setTile(new Tile(Textures.road), col, row, 1);
+                    route.addNoeud(new Vector2(col, row));
+                } else {
+                    System.out.println("La route doit etre connecte a la route principale.");
+                }
             } else {
                 grid.setTile(null, col, row, 1);
-            }
-
-            // Pour tester le placement des routes
-            if (Gdx.input.isKeyPressed(Keys.R)) {
-                grid.setTile(new Tile(Textures.road), col, row, 1);
             }
         }
 
