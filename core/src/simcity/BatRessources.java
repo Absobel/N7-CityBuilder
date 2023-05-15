@@ -21,7 +21,9 @@ public class BatRessources extends Batiment { // moyen que ce soit la classe bat
         this.ressources.put(RessourceType.ARGENT, argent);
     }
 
-
+    public Map<RessourceType, Double> getRessources() {
+        return ressources;
+    }
 
 //    public void produireDansTemps(float temps, float intervalle, gestionResource maitresupreme ) { //reussire à recup le temps en cours
 //        int produit = this.resourceProductionRate;
