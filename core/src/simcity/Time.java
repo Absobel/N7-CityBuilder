@@ -18,6 +18,8 @@ public class Time {
     private BitmapFont font;
     private Skin skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
 
+    private int nb_jour = (int) (secondes_init + (this.elapsed_time - this.debut) / 60) / 24;
+
     public Time(float delta) {
         this.debut = delta;
     }
@@ -42,12 +44,16 @@ public class Time {
         return text;
     }
 
-    public void afficheTime(SpriteBatch batch) { // en cours
+    // public void afficheTime(SpriteBatch batch) { // en cours
 
-        this.font = new BitmapFont();
+    // this.font = new BitmapFont();
 
-        CharSequence text = "Mon texte";
-        font.draw(batch, text, 0, 0);
+    // CharSequence text = "Mon texte";
+    // font.draw(batch, text, 0, 0);
 
+    // }
+
+    public int getJour() {
+        return nb_jour;
     }
 }

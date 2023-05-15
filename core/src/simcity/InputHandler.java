@@ -107,8 +107,17 @@ public class InputHandler {
                     System.out.println("La route doit etre connecte a la route principale.");
                 }
             } else {
-                grid.setTile(null, col, row, 1);
-                route.delNoeud(new Vector2(col, row));
+                if (route.contientNoeud(new Vector2(col, row))) {
+                    if (route.taille() > 1) {
+                        route.delNoeud(new Vector2(col, row));
+                        grid.setTile(null, col, row, 1);
+                    } else {
+                        System.out.println("Ne supprime pas ta dernière route!");
+                    }
+                    
+                } else {
+                    grid.setTile(null, col, row, 1);
+                }
             }
         }
 
