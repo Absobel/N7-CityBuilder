@@ -29,8 +29,14 @@ public class Gestion {
     }
 
     public void miseAJour() {
-        for (Batiment batiments : this.batimentsConstruits) {
-
+        for (RessourceType type : RessourceType.values()) {
+            finances.put(type, 0.0);
+        }
+        for (BatRessources batiments : this.batimentsConstruits) {
+            for (RessourceType ressource : batiments.getRessources().keySet()) {
+                Double count = finances.get(ressource);
+                finances.put(ressource, count + batiments.getRessources().get(ressource));
+            }
         }
     }
 
