@@ -108,6 +108,7 @@ public class InputHandler {
                 }
             } else {
                 grid.setTile(null, col, row, 1);
+                route.delNoeud(new Vector2(col, row));
             }
         }
 

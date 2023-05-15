@@ -20,6 +20,16 @@ public class Route {
     }
 
     /**
+     * 
+     * @param node le noeud à retirer
+     */
+    public void delNoeud(Vector2 noeud) {
+        if (noeuds.contains(noeud)) {
+            noeuds.remove(noeud);
+        }
+    }
+
+    /**
      * Vérifie si un noeud est relié à la route principale
      * @param col la colonne où on veut placer le batiment
      * @param row la ligne où on veut placer le batiment
