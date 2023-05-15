@@ -58,10 +58,10 @@ public class InputHandler {
             camera.translate(actualCameraSpeed, 0);
         }
 
-        if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {  // aller dans le menu pour pouvoir retourner en arrière si jamais 
-            this.modifie = true;
-            dansacc = false;
-        }
+        //if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {  // aller dans le menu pour pouvoir retourner en arrière si jamais 
+        //    this.modifie = true;
+        //    dansacc = false;
+        //}
         
         // Camera zoom
         if (Gdx.input.isKeyPressed(Keys.Q)) {  // Zoom in
