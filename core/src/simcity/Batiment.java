@@ -10,13 +10,11 @@ public class Batiment { //batiment le plus classique va faire heriter les autres
     private float y;
     private float width;
     private float height;
-    private ResourceType resourceType;
-    private int resourceProductionRate;
+    private Double prix;
 
 
-    public Batiment(Texture texture, float x, float y, float width, float height, ResourceType typeresource, int production) {
-        this.resourceType = typeresource;
-        this.resourceProductionRate = production;
+    public Batiment(Texture texture, float x, float y, float width, float height, Double prix) {
+        this.prix = prix;
         this.texture = texture;
         this.x = x;
         this.y = y;
@@ -38,13 +36,4 @@ public class Batiment { //batiment le plus classique va faire heriter les autres
         this.height = height;
     }
 
-    private enum ResourceType {
-        EAU,
-        ELECTRICITE,
-        BONHEUR,
-        ARGENT,
-        HABITANT
-        
-        // Ajoutez d'autres types de ressources en fonction de votre jeu
-    }
-    }
+}
