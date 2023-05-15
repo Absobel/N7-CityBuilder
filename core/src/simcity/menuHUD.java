@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class menuHUD extends Stage {
 
+    //private Boolean amodifier = false;
     private Stage sousmenu;
     private TextButton menu;
     private Table table;
@@ -54,7 +55,7 @@ public class menuHUD extends Stage {
         TextButton stage1Button = new TextButton("batiments", skin);
         TextButton stage2Button = new TextButton("decoration", skin);
         TextButton stage3Button = new TextButton("sauvegarde", skin);
-        TextButton stage4Button = new TextButton("quitter", skin);
+        TextButton stage4Button = new TextButton("accueil", skin);
 
         TextButton backButton = new TextButton("Back", skin);
 
@@ -83,14 +84,12 @@ public class menuHUD extends Stage {
         stage4Button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                InputEvent escape = new InputEvent();
-                escape.setType(InputEvent.Type.keyDown);
-                escape.setKeyCode(Input.Keys.ESCAPE);
-                fire(escape);  // Simuler l'appui sur la touche ECHAP (pour quitter le jeu)
-
-
+                Isometric isometric = (Isometric) Gdx.app.getApplicationListener(); // ca marche j'ai peur que si on ajout un mute qu'on le perde a chaque retour
+                isometric.retourAccueil();
+                
             }
         });
+
         backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -124,5 +123,6 @@ public class menuHUD extends Stage {
         this.dispose();
     }
 
+    
 
 }

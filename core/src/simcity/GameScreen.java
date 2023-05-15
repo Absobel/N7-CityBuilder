@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
@@ -107,7 +106,6 @@ public class GameScreen extends ScreenAdapter {
         
         hudStage.act(delta);
         hudStage.draw();
-        Gdx.input.getInputProcessor().keyUp(Input.Keys.ESCAPE); // gérer l'appui virtuel du bouton retour
     }
 
     @Override
