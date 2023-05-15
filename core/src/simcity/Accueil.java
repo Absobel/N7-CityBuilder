@@ -16,8 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
-import java.util.HexFormat;
-
+//import java.util.HexFormat;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -25,8 +24,8 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 
 public class Accueil extends ScreenAdapter {
 
-    public static final int WIDTH = 320*4;   // 16:9 aspect ratio 
-    public static final int HEIGHT = 180*4;
+    public static final int WIDTH = 320 * 4; // 16:9 aspect ratio
+    public static final int HEIGHT = 180 * 4;
 
     private SpriteBatch batch;
     private Texture menuTexture;
@@ -40,24 +39,20 @@ public class Accueil extends ScreenAdapter {
     private TextButton nouvelleButton;
     private Stage stageboutton;
     private Music musiq;
-    
 
     private Skin skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
-    
+
     public Accueil(SpriteBatch batch, Boolean dedans) {
         this.batch = batch;
         this.touchejouer = false; // permet de savoir si on appuie sur la touche joueur
 
-
-
     }
-    
+
     @Override
     public void show() {
 
         camera = new OrthographicCamera(WIDTH, HEIGHT);
 
- 
         camera.zoom = 1f;
 
         viewport = new FitViewport(WIDTH, HEIGHT, camera);
@@ -70,38 +65,38 @@ public class Accueil extends ScreenAdapter {
         quitterButton = new TextButton("Quitter", skin);
         quitterButton.setPosition(700, 100);
         quitterButton.addListener(new ClickListener() {
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				Gdx.app.exit();
-			}
-		});
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.exit();
+            }
+        });
 
         stageboutton.addActor(quitterButton);
 
         jouerButton = new TextButton("Jouer", skin);
         jouerButton.setPosition(700, 300);
         jouerButton.addListener(new ClickListener() {
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-                touchejouer = true; //parvient pas a mettre this.touchejouer = false;
-			}
-		});
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                touchejouer = true; // parvient pas a mettre this.touchejouer = false;
+            }
+        });
         stageboutton.addActor(jouerButton);
 
         nouvelleButton = new TextButton("Nouvelle partie", skin);
         nouvelleButton.setPosition(700, 200);
         nouvelleButton.addListener(new ClickListener() {
-			@Override
-			public void clicked(InputEvent event, float x, float y) {
-				touchejouer = true;
-			}
-		});
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                touchejouer = true;
+            }
+        });
 
         stageboutton.addActor(nouvelleButton);
 
-        Gdx.input.setInputProcessor(stageboutton);   
-        
-        //musique
+        Gdx.input.setInputProcessor(stageboutton);
+
+        // musique
         AssetManager assetManager = new AssetManager();
 
         assetManager.load("Joueur du Grenier - Recette pour jeu pourri.mp3", Music.class);
@@ -110,7 +105,7 @@ public class Accueil extends ScreenAdapter {
         this.musiq.setLooping(true);
         this.musiq.play();
     }
-    
+
     @Override
     public void render(float delta) {
 
@@ -118,47 +113,45 @@ public class Accueil extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         batch.setProjectionMatrix(viewport.getCamera().combined); // utiliser la deuxième caméra pour dessiner l'image
 
-
         batch.begin();
-        
 
-        batch.draw(menuTexture, 0 , 0, WIDTH, HEIGHT);
+        batch.draw(menuTexture, 0, 0, WIDTH, HEIGHT);
         batch.end();
 
         inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.touchejouer); // bool rajouté pour écran d'accueil
         stageboutton.act();
         stageboutton.draw();
     }
-    
 
     @Override
     public void dispose() {
         batch.dispose();
         menuTexture.dispose();
     }
-    
+
     @Override
-    public void resize(int width, int height) {    // Called when the Application is resized.
+    public void resize(int width, int height) { // Called when the Application is resized.
     }
-    
+
     @Override
-    public void pause() {}
-    
+    public void pause() {
+    }
+
     @Override
-    public void resume() {}
-    
+    public void resume() {
+    }
+
     @Override
     public void hide() {
         musiq.stop();
     }
-
 
     public boolean getEtat() { // recuperer dans les autres classes la valeure
         return touchejouer;
     }
 
     public void setEtat(boolean etat) { // pouvoir mettre en vrai ou faux directmenet modifiabme par isomteric
-            touchejouer = etat;
+        touchejouer = etat;
 
     }
 
@@ -166,23 +159,18 @@ public class Accueil extends ScreenAdapter {
         return inputHandler;
     }
 
-    public void setBooldeInput(InputHandler inputHandler ,boolean bool) {
+    public void setBooldeInput(InputHandler inputHandler, boolean bool) {
         inputHandler.setBoolean(bool);
     }
 
     public TextButton getbutton(String nom) {
         if (nom == "quitter") {
             return quitterButton;
-        }
-        else if (nom == "jouer") {
+        } else if (nom == "jouer") {
             return jouerButton;
-        }
-        else {
+        } else {
             return null;
         }
     }
 
-
-    
 }
-    

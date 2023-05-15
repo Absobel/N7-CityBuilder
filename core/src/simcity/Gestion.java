@@ -8,6 +8,7 @@ import simcity.Ressource.RessourceType;
 
 public class Gestion {
 
+    private Double monnaie;
     private Map<RessourceType, Double> finances;
     private List<BatRessources> batimentsConstruits;
 
@@ -50,6 +51,8 @@ public class Gestion {
         miseAJour();
     }
 
-
+    public void impots() {
+        this.monnaie = this.monnaie + finances.get(RessourceType.ARGENT);
+    }
 }
 
