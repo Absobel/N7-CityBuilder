@@ -86,7 +86,7 @@ public class menuHUD extends Stage {
                 InputEvent escape = new InputEvent();
                 escape.setType(InputEvent.Type.keyDown);
                 escape.setKeyCode(Input.Keys.ESCAPE);
-                fire(escape);  // Simuler l'appui sur la touche ECHAP (pour quitter le jeu)
+                sousmenu.getRoot().fire(escape);  // Simuler l'appui sur la touche ECHAP (pour quitter le jeu)
 
 
             }

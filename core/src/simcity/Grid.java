@@ -2,11 +2,14 @@ package simcity;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonValue;
+import com.badlogic.gdx.utils.Json.Serializable;
 
 /**
  * Grille isométrique, là où sont stockés les tuiles (batiments, terrain, etc)
  */
-public class Grid {
+public class Grid implements Serializable {
     private Tile[][][] tiles;
     private int nbCols;
     private int nbRows;
@@ -76,5 +79,22 @@ public class Grid {
         int col = (int) ((coordAbs.x+2*coordAbs.y)/Textures.TILE_SIZE_CUBE - 1.5f);   // 1.5f et 0.5f valeurs empiriques d'un offset qui vient de je ne sais où
         int row = (int) ((2*coordAbs.y-coordAbs.x)/Textures.TILE_SIZE_CUBE - 0.5f);
         return new Vector2(col, row);
+    }
+
+
+    @Override
+    public void write(Json json) {
+        json.writeValue("nbCols", nbCols);
+        json.writeValue("nbRows", nbRows);
+        json.writeValue("nbLayers", nbLayers);
+        json.writeValue("tiles", tiles);
+    }
+
+    @Override
+    public void read(Json json, JsonValue jsonData) {
+        nbCols = jsonData.getInt("nbCols");
+        nbRows = jsonData.getInt("nbRows");
+        nbLayers = jsonData.getInt("nbLayers");
+        tiles = json.readValue(Tile[][][].class, jsonData.get("tiles"));
     }
 }
