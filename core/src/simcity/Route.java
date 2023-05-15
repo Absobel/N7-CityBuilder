@@ -20,6 +20,16 @@ public class Route {
     }
 
     /**
+     * 
+     * @param node le noeud à retirer
+     */
+    public void delNoeud(Vector2 noeud) {
+        if (noeuds.contains(noeud)) {
+            noeuds.remove(noeud);
+        }
+    }
+
+    /**
      * Vérifie si un noeud est relié à la route principale
      * @param col la colonne où on veut placer le batiment
      * @param row la ligne où on veut placer le batiment
@@ -49,9 +59,13 @@ public class Route {
 
         int[][] directions = {
             { 0, 1 },   // Nord
+            { 1, 1 },   // Nord-Est
             { 1, 0 },   // Est
+            { 1, -1 },  // Sud-Est
             { 0, -1 },  // Sud
-            { -1, 0 }   // Ouest
+            { -1, -1 }, // Sud-Ouest
+            { -1, 0 },  // Ouest
+            { -1, 1 }   // Nord-Est
         };
 
         for (int[] direction : directions) {
