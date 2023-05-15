@@ -20,13 +20,22 @@ public class Route {
     }
 
     /**
-     * 
-     * @param node le noeud à retirer
+     * Enlève un noeud à la route
+     * @param noeud le noeud à retirer
      */
     public void delNoeud(Vector2 noeud) {
-        if (noeuds.contains(noeud)) {
-            noeuds.remove(noeud);
-        }
+        noeuds.remove(noeud);
+    }
+    
+    /**
+     * @return la taille de la route
+     */
+    public int taille() {
+        return noeuds.size();
+    }
+
+    public Boolean contientNoeud(Vector2 noeud) {
+        return noeuds.contains(noeud);
     }
 
     /**
