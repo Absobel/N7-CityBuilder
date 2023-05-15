@@ -1,3 +1,8 @@
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
+import java.io.IOException;
+
 package simcity;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -11,5 +16,19 @@ public class Batiment extends Tile { //batiment le plus classique va faire herit
     public Batiment(TextureRegion texture, Double prix) {
         super(texture);
         this.prix = prix;
+    }
+
+    public Double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(Double Prix) {
+        this.prix = prix;
+    }
+
+    public void saveToJson(String filePath) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        File file = new File(filePath);
+        objectMapper.writeValue(file, this);
     }
 }
