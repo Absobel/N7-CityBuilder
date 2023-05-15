@@ -50,10 +50,11 @@ public class menuHUD extends Stage {
          menubat.bottom();
          menubat.setVisible(false);  // Les boutons ne sont pas visibles au début
          menubat.setName("menubat");
-         sousmenuTable.addActor(menubat);
+         this.addActor(menubat);
 
         // Ajout du titre
         menu = new TextButton("Menu", skin);
+        menu.getLabel().setFontScale(0.5f);
         menu.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -63,11 +64,21 @@ public class menuHUD extends Stage {
 
         // Ajout des boutons du sous-menu
         TextButton stage1Button = new TextButton("batiments", skin);
+        stage1Button.getLabel().setFontScale(0.5f);
+        
         TextButton stage2Button = new TextButton("decoration", skin);
+
+        stage2Button.getLabel().setFontScale(0.5f);
         TextButton stage3Button = new TextButton("sauvegarde", skin);
+
+        stage3Button.getLabel().setFontScale(0.5f);
         TextButton stage4Button = new TextButton("accueil", skin);
 
+        stage4Button.getLabel().setFontScale(0.5f);
+
         TextButton backButton = new TextButton("Back", skin);
+
+        backButton.getLabel().setFontScale(0.5f);
 
         // Ajout d'un listener pour chaque bouton du sous-menu
         stage1Button.addListener(new ClickListener() {
@@ -110,19 +121,22 @@ public class menuHUD extends Stage {
 
 
         // Ajout des boutons à la table du sous-menu
-        sousmenuTable.add(stage1Button).padTop(50f).row();
-        sousmenuTable.add(stage2Button).padTop(20f).row();
-        sousmenuTable.add(stage3Button).padTop(20f).row();
-        sousmenuTable.add(stage4Button).padTop(20f).row();
-        sousmenuTable.add(backButton).padTop(20f).row();
+        sousmenuTable.add(stage1Button).width(stage1Button.getWidth() * 0.5f).height(stage1Button.getHeight()).padTop(20f).row();
+        sousmenuTable.add(stage2Button).width(stage1Button.getWidth() * 0.5f).height(stage1Button.getHeight()).padTop(20f).row();
+        sousmenuTable.add(stage3Button).width(stage1Button.getWidth() * 0.5f).height(stage1Button.getHeight()).padTop(20f).row();
+        sousmenuTable.add(stage4Button).width(stage1Button.getWidth() * 0.5f).height(stage1Button.getHeight()).padTop(20f).row();
+        sousmenuTable.add(backButton).width(stage1Button.getWidth() * 0.5f).height(stage1Button.getHeight()).padTop(20f).row();
         
 
         // Ajout des boutons du sous-menu
         TextButton servpub = new TextButton("service pub", skin);
+        servpub.getLabel().setFontScale(0.5f);
         TextButton habitations = new TextButton("habitations", skin);
+        habitations.getLabel().setFontScale(0.5f);
         TextButton autres = new TextButton("autres", skin);
-
+        autres.getLabel().setFontScale(0.5f);
         TextButton retour = new TextButton("retour", skin);
+        retour.getLabel().setFontScale(0.5f);
 
         servpub.addListener(new ClickListener() {
             @Override
@@ -162,14 +176,14 @@ public class menuHUD extends Stage {
 
 
         // Ajout des boutons à la table du sous-menubat
-        menubat.add(servpub).padTop(50f).row();
-        menubat.add(habitations).padTop(20f).row();
-        menubat.add(autres).padTop(20f).row();
+        menubat.add(servpub).width(stage1Button.getWidth() * 0.5f).height(stage1Button.getHeight()).padTop(20f).row();
+        menubat.add(habitations).width(stage1Button.getWidth() * 0.5f).height(stage1Button.getHeight()).padTop(20f).row();
+        menubat.add(autres).width(stage1Button.getWidth() * 0.5f).height(stage1Button.getHeight()).padTop(20f).row();
 
-        menubat.add(retour).padTop(20f).row();
+        menubat.add(retour).width(stage1Button.getWidth() * 0.5f).height(stage1Button.getHeight()).padTop(20f).row();
 
         // Ajout du bouton menu à la table du menu principal
-        table.add(menu).padTop(20f).row();
+        table.add(menu).width(stage1Button.getWidth() * 0.5f).height(stage1Button.getHeight()).padTop(20f).row();
     
     }
 
@@ -191,6 +205,7 @@ public class menuHUD extends Stage {
         System.out.println("showbat");
         menubat.setVisible(true);
         System.out.println("showbat2" + menubat);
+        Gdx.input.setInputProcessor(this);
     }
 
     public void hidebat() {

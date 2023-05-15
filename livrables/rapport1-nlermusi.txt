@@ -1,11 +1,11 @@
-Tout d'abord, une musique de fond a été intégrée pour ajouter une dimension supplémentaire au jeu et améliorer l'immersion des joueurs.
-Ensuite, un écran d'accueil a été ajouté pour permettre aux joueurs de se familiariser avec le jeu avant de commencer à jouer. Il manque l'affichage des boutons.
+Pour améliorer encore davantage l'expérience utilisateur, plusieurs améliorations ont été apportées. Tout d'abord, une deuxième musique a été ajoutée à l'écran d'accueil, offrant ainsi une sélection plus variée pour accompagner les utilisateurs pendant leur attente. Cette nouvelle piste musicale contribue à créer une ambiance agréable et personnalisée.
 
-Ecran d'accueil fonctionnel avec des boutons fonctionnels. 
-Le passage de l'écran d'accueil au jeu fonctionne. (espace pour accueil -> jeu, echap pour jeu -> accueil)
-De plus, une classe HUD a été créée pour faciliter la navigation des joueurs.
+Ensuite, afin de faciliter la navigation, un sous-menu a été créé dans le bouton "Bâtiment". Ce sous-menu permet aux utilisateurs d'accéder rapidement à des fonctionnalités spécifiques liées aux bâtiments, offrant ainsi une expérience plus intuitive et pratique.
 
-Bouton menu sur gamescreen fonctionnel accueillant un sous-menu.
-Elle contiendra les différents bâtiments du jeu et permettra aux joueurs de naviguer facilement entre eux.
-Ajout des méthodes set et get pour la majorité des classes.
+Une attention particulière a également été portée à l'aspect visuel de l'application. Les dimensions des boutons ont été soigneusement modifiées pour optimiser leur lisibilité et leur accessibilité. Les utilisateurs peuvent maintenant interagir avec les boutons de manière plus fluide et réactive, ce qui améliore la convivialité globale de l'interface.
 
+En outre, une nouvelle fonctionnalité a été ajoutée pour permettre aux utilisateurs de revenir facilement à l'écran d'accueil à partir du bouton "Accueil". Cela simplifie la navigation entre les différentes sections de l'application et offre un moyen rapide de retrouver l'endroit où l'utilisateur a commencé.
+
+Enfin, pour renforcer l'aspect visuel de l'application, une nouvelle classe a été développée spécifiquement pour l'affichage des images des bâtiments. Cette fonctionnalité permet aux utilisateurs de visualiser les différents types de bâtiments de manière plus immersive et attrayante. Les images ajoutent une dimension visuelle supplémentaire, permettant aux utilisateurs de mieux comprendre et d'apprécier les différentes caractéristiques des bâtiments.
+
+Grâce à toutes ces améliorations, l'application offre désormais une expérience utilisateur améliorée, combinant une sélection musicale plus diversifiée, une navigation intuitive, des boutons optimisés, une fonction de retour à l'écran d'accueil et des images des bâtiments pour une expérience visuelle immersive.
