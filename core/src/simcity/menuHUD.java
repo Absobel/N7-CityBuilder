@@ -1,6 +1,7 @@
 package simcity;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -52,6 +53,9 @@ public class menuHUD extends Stage {
         // Ajout des boutons du sous-menu
         TextButton stage1Button = new TextButton("batiments", skin);
         TextButton stage2Button = new TextButton("decoration", skin);
+        TextButton stage3Button = new TextButton("sauvegarde", skin);
+        TextButton stage4Button = new TextButton("quitter", skin);
+
         TextButton backButton = new TextButton("Back", skin);
 
         // Ajout d'un listener pour chaque bouton du sous-menu
@@ -69,6 +73,24 @@ public class menuHUD extends Stage {
             }
         });
 
+        stage3Button.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("Sauvegarde");
+            }
+        });
+
+        stage4Button.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                InputEvent escape = new InputEvent();
+                escape.setType(InputEvent.Type.keyDown);
+                escape.setKeyCode(Input.Keys.ESCAPE);
+                fire(escape);  // Simuler l'appui sur la touche ECHAP (pour quitter le jeu)
+
+
+            }
+        });
         backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -79,6 +101,8 @@ public class menuHUD extends Stage {
         // Ajout des boutons à la table du sous-menu
         sousmenuTable.add(stage1Button).padTop(50f).row();
         sousmenuTable.add(stage2Button).padTop(20f).row();
+        sousmenuTable.add(stage3Button).padTop(20f).row();
+        sousmenuTable.add(stage4Button).padTop(20f).row();
         sousmenuTable.add(backButton).padTop(20f).row();
 
         // Ajout du bouton menu à la table du menu principal
