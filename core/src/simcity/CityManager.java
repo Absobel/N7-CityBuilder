@@ -1,7 +1,10 @@
+
 package simcity;
 /* Gérer le déroulement du jeu et mettre à jour son score selon ses succès
  * 
  */
+
+ /* 
 class CityManager{
 	
 	private int level;
@@ -121,3 +124,4 @@ class CityManager{
 	}
 	
 }
+*/
