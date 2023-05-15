@@ -32,20 +32,18 @@ public class Textures {
             sky.add(new Texture(Gdx.files.internal(String.format("Sky/Clouds 1/%d.png",i))));
         }
 
-        Texture spriteShTextureCubes = new Texture(Gdx.files.internal("IsometricTilesEtAutre/256x256 Cubes.png"));
         for (int i = 0; i < 10; i++) {
-            grasses.add(new TextureRegion(spriteShTextureCubes, i * TILE_SIZE_CUBE, 0 * TILE_SIZE_CUBE, TILE_SIZE_CUBE, TILE_SIZE_CUBE));
+            grasses.add(texture256x256("IsometricTilesEtAutre/256x256 Cubes.png", i, 0));
         }
         for (int i = 0; i < 10; i++) {      // à changer, toutes les couleurs ne fonctionnent pas m'enfin bon
-            waters.add(new TextureRegion(spriteShTextureCubes, i * TILE_SIZE_CUBE, 2 * TILE_SIZE_CUBE, TILE_SIZE_CUBE, TILE_SIZE_CUBE));
+            waters.add(texture256x256("IsometricTilesEtAutre/256x256 Cubes.png", i, 2));
         }
 
         Texture spriteShTextureFloor = new Texture(Gdx.files.internal("IsometricTilesEtAutre/256x152 Floorings.png"));
         chemin_bois_1 = new TextureRegion(spriteShTextureFloor, 0 * TILE_SIZE_FLOOR_X, 0 * TILE_SIZE_FLOOR_Y, TILE_SIZE_FLOOR_X, TILE_SIZE_FLOOR_Y);
 
-        Texture spriteShTextureTonneaux = new Texture(Gdx.files.internal("IsometricTilesEtAutre/256x256 Objects.png"));
         for (int i = 0; i < 2; i++) {
-            tonneaux.add(new TextureRegion(spriteShTextureTonneaux, i+6 * TILE_SIZE_CUBE, 0 * TILE_SIZE_CUBE, TILE_SIZE_CUBE, TILE_SIZE_CUBE));
+            tonneaux.add(texture256x256("IsometricTilesEtAutre/256x256 Objects.png", i+6, 0));
         }
 
         Texture spriteShTextureASuppr = new Texture(Gdx.files.internal("IsometricTilesEtAutre/256x512 Trees.png"));
@@ -68,5 +66,12 @@ public class Textures {
             water.getTexture().dispose();
         }
         road.getTexture().dispose();
+    }
+
+
+
+
+    public static TextureRegion texture256x256(String path, int x, int y) {
+        return new TextureRegion(new Texture(Gdx.files.internal(path)), x * TILE_SIZE_CUBE, y * TILE_SIZE_CUBE, TILE_SIZE_CUBE, TILE_SIZE_CUBE);
     }
 }

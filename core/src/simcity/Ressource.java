@@ -2,7 +2,7 @@ package simcity;
 
 public class Ressource {
 
-    public enum ResourceType {
+    public enum RessourceType {
         EAU,
         ELECTRICITE,
         BONHEUR,

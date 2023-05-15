@@ -4,40 +4,46 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import simcity.Ressource.RessourceType;
 
 public class Gestion {
 
-    private Map<Ressource.ResourceType, Double> ressources;
-    private List<Batiment> batiments;
+    private Map<RessourceType, Double> finances;
+    private List<BatRessources> batimentsConstruits;
 
     public Gestion() {
-        this.ressources = new HashMap<>();
-        for (Ressource.ResourceType type : Ressource.ResourceType.values()) {
-            ressources.put(type, 0.0);
+        this.finances = new HashMap<>();
+        for (RessourceType type : RessourceType.values()) {
+            finances.put(type, 0.0);
         }
-        this.batiments = new ArrayList<>();
+        this.batimentsConstruits = new ArrayList<>();
     }
 
-    public void ajouterRessource(Ressource.ResourceType type, double quantite) {
-        double nouvelleQuantite = ressources.get(type) + quantite;
-        ressources.put(type, nouvelleQuantite);
+    public void ajouterRessource(RessourceType type, double quantite) {
+        double nouvelleQuantite = finances.get(type) + quantite;
+        finances.put(type, nouvelleQuantite);
     }
 
-    public double getQuantite(Ressource.ResourceType type) {
-        return ressources.get(type);
+    public double getQuantite(RessourceType type) {
+        return finances.get(type);
     }
 
-    public void ajouterBatiment(Batiment batiment) {
-        batiments.add(batiment);
+    public void miseAJour() {
+        for (Batiment batiments : this.batimentsConstruits) {
+
+        }
     }
 
-    public void retirerBatiment(Batiment batiment) {
-        batiments.remove(batiment);
+    public void ajouterBatiment(BatRessources batiment) {
+        batimentsConstruits.add(batiment);
+        miseAJour();
     }
 
-    public List<Batiment> getBatiments() {
-        return batiments;
+    public void retirerBatiment(BatRessources batiment) {
+        batimentsConstruits.remove(batiment);
+        miseAJour();
     }
+
 
 }
 
