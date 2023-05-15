@@ -49,9 +49,13 @@ public class Route {
 
         int[][] directions = {
             { 0, 1 },   // Nord
+            { 1, 1 },   // Nord-Est
             { 1, 0 },   // Est
+            { 1, -1 },  // Sud-Est
             { 0, -1 },  // Sud
-            { -1, 0 }   // Ouest
+            { -1, -1 }, // Sud-Ouest
+            { -1, 0 },  // Ouest
+            { -1, 1 }   // Nord-Est
         };
 
         for (int[] direction : directions) {
