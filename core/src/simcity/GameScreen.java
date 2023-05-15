@@ -29,7 +29,7 @@ public class GameScreen extends ScreenAdapter {
     private menuHUD hudStage;
     private Music musiq;
     // private Label labell;
-
+    
     private OrthographicCamera camera;
     private IsometricRenderer renderer;
     private InputHandler inputHandler;
@@ -39,11 +39,14 @@ public class GameScreen extends ScreenAdapter {
 
     private Time timer;
     private CycleJN cycleJN;
+    
+    //private CityManager manager;
 
     public GameScreen(SpriteBatch batch, boolean dedans) {
         this.batch = batch;
         this.estdansGame = dedans;
         hudStage = new menuHUD(viewport, batch);
+        
     }
 
     @Override
@@ -116,6 +119,13 @@ public class GameScreen extends ScreenAdapter {
 
         hudStage.act(delta);
         hudStage.draw();
+        
+        /*affichagescore
+         affichageScore aff = new affichageScore(manager);
+         aff.updateGame();
+         aff.afficher(batch,font);
+         */
+        
     }
 
     @Override
