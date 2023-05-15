@@ -8,6 +8,7 @@ import simcity.Ressource.RessourceType;
 
 public class Gestion {
 
+    private Double monnaie;
     private Map<RessourceType, Double> finances;
     private List<BatRessources> batimentsConstruits;
 
@@ -29,8 +30,14 @@ public class Gestion {
     }
 
     public void miseAJour() {
-        for (Batiment batiments : this.batimentsConstruits) {
-
+        for (RessourceType type : RessourceType.values()) {
+            finances.put(type, 0.0);
+        }
+        for (BatRessources batiments : this.batimentsConstruits) {
+            for (RessourceType ressource : batiments.getRessources().keySet()) {
+                Double count = finances.get(ressource);
+                finances.put(ressource, count + batiments.getRessources().get(ressource));
+            }
         }
     }
 
@@ -44,6 +51,8 @@ public class Gestion {
         miseAJour();
     }
 
-
+    public void impots() {
+        this.monnaie = this.monnaie + finances.get(RessourceType.ARGENT);
+    }
 }
 
