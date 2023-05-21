@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Batiment extends Tile { //batiment le plus classique va faire heriter les autres
     
     private Double prix;
+    private String type;
 
     public Batiment(TextureRegion texture, Double prix) {
         super(texture);
@@ -32,4 +33,8 @@ public class Batiment extends Tile { //batiment le plus classique va faire herit
     //     File file = new File(filePath);
     //     objectMapper.writeValue(file, this);
     // }
+
+    public String gettype() {
+        return this.type;
+    }
 }

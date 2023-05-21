@@ -128,7 +128,7 @@ public class menuHUD extends Stage {
         sousmenuTable.add(backButton).width(stage1Button.getWidth() * 0.5f).height(stage1Button.getHeight()).padTop(20f).row();
         
 
-        // Ajout des boutons du sous-menu
+        // Ajout des boutons du sous-menu bat
         TextButton servpub = new TextButton("service pub", skin);
         servpub.getLabel().setFontScale(0.5f);
         TextButton habitations = new TextButton("habitations", skin);
