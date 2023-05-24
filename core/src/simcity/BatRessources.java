@@ -12,13 +12,14 @@ public class BatRessources extends Batiment { // moyen que ce soit la classe bat
 
     private Map<RessourceType, Double> ressources;
 
-    public BatRessources(TextureRegion texture, Double prix, Double eau, Double electricite, double Bonheur, double argent) {
+    public BatRessources(TextureRegion texture, Double prix, Double eau, Double electricite, double Bonheur, double argent, int habitants) {
         super(texture, prix);
         this.ressources = new HashMap<>();
         this.ressources.put(RessourceType.EAU, eau);
         this.ressources.put(RessourceType.ELECTRICITE, electricite);
         this.ressources.put(RessourceType.BONHEUR, Bonheur);
         this.ressources.put(RessourceType.ARGENT, argent);
+        this.ressources.put(RessourceType.HABITANTS, habitants);
     }
 
     public Map<RessourceType, Double> getRessources() {
