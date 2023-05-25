@@ -11,6 +11,7 @@ import java.util.HashMap;
 public class BatRessources extends Batiment { // moyen que ce soit la classe batiment directement 
 
     private Map<RessourceType, Double> ressources;
+    private TextureRegion texture;
 
     public BatRessources(TextureRegion texture, double i, double j, double k, double Bonheur, double argent, double habitants) {
         super(texture, i);
@@ -24,5 +25,9 @@ public class BatRessources extends Batiment { // moyen que ce soit la classe bat
 
     public Map<RessourceType, Double> getRessources() {
         return ressources;
+    }
+
+    public TextureRegion getTexture() {
+        return this.texture;
     }
 }

@@ -118,7 +118,7 @@ public class Accueil extends ScreenAdapter {
         batch.draw(menuTexture, 0, 0, WIDTH, HEIGHT);
         batch.end();
 
-        inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.touchejouer); // bool rajouté pour écran d'accueil
+        inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.touchejouer, Textures.deco.get(0)); // bool rajouté pour écran d'accueil
         stageboutton.act();
         stageboutton.draw();
     }

@@ -93,6 +93,12 @@ public class Textures {
         for (TextureRegion water : waters) {
             water.getTexture().dispose();
         }
+        for (TextureRegion publics : publics) {
+            publics.getTexture().dispose();
+        }
+        for (TextureRegion habitats : habitats) {
+            habitats.getTexture().dispose();
+        }
         road.getTexture().dispose();
     }
 
