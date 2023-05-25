@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
 import simcity.Ressource.RessourceType;
 
 public class Gestion {
@@ -11,6 +14,7 @@ public class Gestion {
     private Double monnaie;
     private Map<RessourceType, Double> finances;
     private List<BatRessources> batimentsConstruits;
+    private TextureRegion texture;
 
     public Gestion() {
         this.finances = new HashMap<>();
@@ -91,9 +95,10 @@ public class Gestion {
     }
 
     public BatRessources centrale() {
-        BatRessources batiment = new BatRessources(texture, 200, 0, 50, -5, 0, -5);
-        this.payer(batiment.getPrix);
+        BatRessources batiment = new BatRessources(texture, (double) 200, (double)0, (double) 50, -5, 0, -5);
+        this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
+        return batiment;
     }
 
     public Boolean pompeEauAchetable() {
@@ -102,8 +107,9 @@ public class Gestion {
 
     public BatRessources pompeEau() {
         BatRessources batiment = new BatRessources(texture, 200, 50, 0, -5, 0, -5);
-        this.payer(batiment.getPrix);
+        this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
+        return batiment;
     }
 
     public Boolean ecoleAchetable() {
@@ -112,8 +118,9 @@ public class Gestion {
 
     public BatRessources ecole() {
         BatRessources batiment = new BatRessources(texture, 300, 0, 0, 50, -10, 10);
-        this.payer(batiment.getPrix);
+        this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
+        return batiment;
     }
 
     public Boolean maisonAchetable() {
@@ -122,8 +129,9 @@ public class Gestion {
 
     public BatRessources maison() {
         BatRessources batiment = new BatRessources(texture, 300, 0, 0, 0, 20, 10);
-        this.payer(batiment.getPrix);
+        this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
+        return batiment;
     }
 
     public Boolean immeubleAchetable() {
@@ -132,8 +140,9 @@ public class Gestion {
 
     public BatRessources immeuble() {
         BatRessources batiment = new BatRessources(texture, 1000, -15, -15, 0, 100, 100);
-        this.payer(batiment.getPrix);
+        this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
+        return batiment;
     }
 }
 
