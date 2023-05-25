@@ -2,7 +2,6 @@ package simcity;
 
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -26,6 +25,7 @@ public class Accueil extends ScreenAdapter {
 
     public static final int WIDTH = 320 * 4; // 16:9 aspect ratio
     public static final int HEIGHT = 180 * 4;
+    public static final Musique MUSIQUE = new Musique();
 
     private SpriteBatch batch;
     private Texture menuTexture;
@@ -37,9 +37,9 @@ public class Accueil extends ScreenAdapter {
     private TextButton quitterButton;
     private TextButton jouerButton;
     private TextButton nouvelleButton;
+    private TextButton musiqueButton;
     private Stage stageboutton;
-    private Music musiq;
-
+    
     private Skin skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
 
     public Accueil(SpriteBatch batch, Boolean dedans) {
@@ -50,6 +50,9 @@ public class Accueil extends ScreenAdapter {
 
     @Override
     public void show() {
+        // musique
+        //this.musique = new Musique(false);
+        MUSIQUE.jouer();
 
         camera = new OrthographicCamera(WIDTH, HEIGHT);
 
@@ -79,6 +82,7 @@ public class Accueil extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 touchejouer = true; // parvient pas a mettre this.touchejouer = false;
+                Accueil.MUSIQUE.changerMusique();
             }
         });
         stageboutton.addActor(jouerButton);
@@ -89,21 +93,26 @@ public class Accueil extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 touchejouer = true;
+                Accueil.MUSIQUE.changerMusique();
             }
         });
 
         stageboutton.addActor(nouvelleButton);
 
+        musiqueButton = new TextButton(MUSIQUE.toString(), skin);
+        musiqueButton.getLabel().setFontScale(0.5f);
+        musiqueButton.setPosition(0, 0);
+        musiqueButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                MUSIQUE.changerEtat();
+                musiqueButton.setText(MUSIQUE.toString());
+            }
+        });
+        musiqueButton.setSize(musiqueButton.getWidth() * 0.5f, musiqueButton.getHeight());
+        stageboutton.addActor(musiqueButton);
+
         Gdx.input.setInputProcessor(stageboutton);
-
-        // musique
-        AssetManager assetManager = new AssetManager();
-
-        assetManager.load("Joueur du Grenier - Recette pour jeu pourri.mp3", Music.class);
-        assetManager.finishLoading();
-        this.musiq = assetManager.get("Joueur du Grenier - Recette pour jeu pourri.mp3", Music.class);
-        this.musiq.setLooping(true);
-        this.musiq.play();
     }
 
     @Override
@@ -143,7 +152,6 @@ public class Accueil extends ScreenAdapter {
 
     @Override
     public void hide() {
-        musiq.stop();
     }
 
     public boolean getEtat() { // recuperer dans les autres classes la valeure

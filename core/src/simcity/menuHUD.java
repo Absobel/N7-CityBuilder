@@ -1,5 +1,7 @@
 package simcity;
 
+import javax.management.monitor.GaugeMonitor;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -26,6 +28,7 @@ public class menuHUD extends Stage {
     private Skin skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
     private Table menubat; 
     private Table service;
+    private Musique musique;
 
     public menuHUD(final Viewport viewport, final SpriteBatch batch) {
         Gdx.input.setInputProcessor(this);  // Active la scène pour récupérer les événements d'entrée
@@ -84,9 +87,12 @@ public class menuHUD extends Stage {
 
         sauvegarde.getLabel().setFontScale(0.5f);
         TextButton accueil = new TextButton("accueil", skin);
-
+        
         accueil.getLabel().setFontScale(0.5f);
 
+        TextButton musiqueButton = new TextButton(Accueil.MUSIQUE.toString(), skin);
+        musiqueButton.getLabel().setFontScale(0.5f);
+        
         TextButton backButton = new TextButton("Back", skin);
 
         backButton.getLabel().setFontScale(0.5f);
@@ -115,6 +121,14 @@ public class menuHUD extends Stage {
             }
         });
 
+        musiqueButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Accueil.MUSIQUE.changerEtat();
+                //musiqueButton.setText(musique.toString());
+            }
+        });
+
         accueil.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -137,6 +151,7 @@ public class menuHUD extends Stage {
         sousmenuTable.add(batimentsButton).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
         sousmenuTable.add(decora).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
         sousmenuTable.add(sauvegarde).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
+        sousmenuTable.add(musiqueButton).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
         sousmenuTable.add(accueil).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
         sousmenuTable.add(backButton).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
         

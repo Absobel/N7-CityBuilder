@@ -42,6 +42,7 @@ public class Isometric extends Game {
 
 	public void retourAccueil() {
 		setScreen(accueil);
+		Accueil.MUSIQUE.changerMusique();
 		gameScreen.setEstdansGame(false); // on est dans l'accueil
 	}
 
