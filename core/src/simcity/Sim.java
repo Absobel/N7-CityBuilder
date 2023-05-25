@@ -5,7 +5,7 @@ package simcity;
 public class Sim {
 
 	private Batiment building;
-	private int happiness; 
+	protected int happiness; 
 	
 	public Sim(Batiment buil) {
 		this.building = buil;

@@ -1,10 +1,10 @@
 
 package simcity;
+import java.util.ArrayList;
 /* Gérer le déroulement du jeu et mettre à jour son score selon ses succès
  * 
  */
-/*
- 
+
 class CityManager{
 	
 	protected int level;
@@ -13,7 +13,7 @@ class CityManager{
 	protected int habitat;
 	protected double happiness;
 	private Gestion buildingManager;
-	private ArrayList <Sim> habitants; 
+	private ArrayList<Sim> habitants; 
 	
 	final int INT_CREDITS = 1000;    //nbr de coins initial
 	final int LEVEL_UP = 460;       // Cte pour passer d'un niveau à l'autre
@@ -36,32 +36,32 @@ class CityManager{
 		return this.score;
 	}
 	
-	public double calculatePrice(Batiment batiment) {
-		ResourceType type = batiment.getresourceType();
+	public double calculatePrice(String type) {
+		
 		double price=0;
-		switch type{
-		case EAU:
+		switch (type) {
+		case "EAU":
 			price =20;
 			break;
-		case ELECTRICITE:
+		case "ELECTRICITE":
 			price =20;
 			break;
-		case BONHEUR:
+		case "BONHEUR":
 			price =40;
 			break;
-		case ARGENT:
+		case "ARGENT":
 			price =30;
 			break;
-		case HABITANT:
+		case "HABITANT":
 			price =20;
 			break;
 		
-		}
+	}
 		return price;
 	}
 	
-	public void updateCredits(Batiment batiment) {
-		double price=calculatePrice(batiment);
+	public void updateCredits(String type) {
+		double price=calculatePrice(type);
 		this.credits = this.credits-price;
 	}
 	
@@ -71,32 +71,32 @@ class CityManager{
 		}
 	}
 	
-	public double calculateScore(Batiment batiment) {
-		ResourceType type = batiment.getresourceType();
-		double score=0;
-		switch type{
-		case EAU:
+	public int calculateScore(String type) {
+		
+		int score=0;
+		switch (type) {
+		case "EAU":
 			score =50;
 			break;
-		case ELECTRICITE:
+		case "ELECTRICITE":
 			score =50;
 			break;
-		case BONHEUR:
+		case "BONHEUR":
 			score =120;
 			break;
-		case ARGENT:
+		case "ARGENT":
 			score =100;
 			break;
-		case HABITANT:
+		case "HABITANT":
 			score =200;
 			break;
 		
 		}
-		return price;
+		return score;
 	} 
 	
-	public void updateScore(batiment) {
-		int scorePlus = calculateScore(batiment);
+	public void updateScore(String type) {
+		int scorePlus = calculateScore(type);
 		this.score = this.score + scorePlus;
 		
 	}
@@ -124,4 +124,4 @@ class CityManager{
 	}
 	
 }
-*/
+
