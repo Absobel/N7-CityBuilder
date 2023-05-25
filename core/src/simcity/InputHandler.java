@@ -58,10 +58,6 @@ public class InputHandler {
             camera.translate(actualCameraSpeed, 0);
         }
 
-        //if (Gdx.input.isKeyPressed(Keys.ESCAPE)) {  // aller dans le menu pour pouvoir retourner en arrière si jamais 
-        //    this.modifie = true;
-        //    dansacc = false;
-        //}
         
         // Camera zoom
         if (Gdx.input.isKeyPressed(Keys.Q)) {  // Zoom in
@@ -90,11 +86,23 @@ public class InputHandler {
             int row = (int) iso.y;
 
 
-            // Pour l'instant c'est juste pour tester le placement de tuiles, à termes il faudra faire un système de sélection de tuiles avec un menu et tout
+
             if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-                if (route.isConnected(col, row)) {
+                if (route.isConnected(col, row)) { // tiles en fontion du type du batiment choisi
+                    // Pour l'instant c'est juste pour tester le placement de tuiles, à termes il faudra faire un système de sélection de tuiles avec un menu et tout
+             //switch (){
+                    //    case "service publique":
+                     //   grid.setTile(new Tile(Textures.publics.get(rand.nextInt(Textures.publics.size()))), col, row, 1);
+                      //      
+                     //   case "habitat":
+                     //   grid.setTile(new Tile(Textures.habitats.get(rand.nextInt(Textures.habitats.size()))), col, row, 1);
+                     //       
+                     //   case "decoration":
+                     //   grid.setTile(new Tile(Textures.deco.get(rand.nextInt(Textures.deco.size()))), col, row, 1);
+                     //       
+                    //}
                     Random rand = new java.util.Random();
-                    grid.setTile(new Tile(Textures.waters.get(rand.nextInt(Textures.waters.size()))), col, row, 1);
+                    grid.setTile(new Tile(Textures.deco.get(rand.nextInt(Textures.deco.size()))), col, row, 1);
                 } else {
                     System.out.println("Le batiment doit etre connecte a la route principale.");
                 }

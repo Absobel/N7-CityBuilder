@@ -27,6 +27,9 @@ public class Textures {
     public static List<List<Texture>> sky = new ArrayList<List<Texture>>();
     public static TextureRegion road;
 
+    public static List<TextureRegion> deco = new ArrayList<TextureRegion>();
+    public static List<TextureRegion> habitats = new ArrayList<TextureRegion>();
+    public static List<TextureRegion> publics = new ArrayList<TextureRegion>();
     public static void load() {
         // Textures
         // Liste de toutes les combinaisons de ciels dans l'ordre d'apparition
@@ -45,6 +48,19 @@ public class Textures {
         }
         for (int i = 0; i < 10; i++) { // à changer, toutes les couleurs ne fonctionnent pas m'enfin bon
             waters.add(texture256x256("IsometricTilesEtAutre/256x256 Cubes.png", i, 2));
+        }
+
+        for (int i = 4; i < 9; i++) {
+            deco.add(texture256x256("IsometricTilesEtAutre/256x256 Cubes.png", i, 3));
+        }
+        for (int i = 0; i < 4; i++) { // à changer, toutes les couleurs ne fonctionnent pas m'enfin bon
+            habitats.add(texture256x256("IsometricTilesEtAutre/256x256 Cubes.png", i, 3));
+        }
+        habitats.add(texture256x256("IsometricTilesEtAutre/256x256 Cubes.png", 8, 3));
+        habitats.add(texture256x256("IsometricTilesEtAutre/256x256 Cubes.png", 9, 3));
+
+        for (int i = 0; i < 10; i++) { // à changer, toutes les couleurs ne fonctionnent pas m'enfin bon
+            publics.add(texture256x256("IsometricTilesEtAutre/256x256 Cubes.png", i, 5));
         }
 
         Texture spriteShTextureFloor = new Texture(Gdx.files.internal("IsometricTilesEtAutre/256x152 Floorings.png"));

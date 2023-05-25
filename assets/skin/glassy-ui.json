@@ -55,8 +55,8 @@
     }
     com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
         default: {
-            up: button
-            down: button-down
+            up: button-small
+            down: button-small-down
         }
         small: {
             up: button-small

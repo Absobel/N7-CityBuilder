@@ -7,6 +7,7 @@ public class Ressource {
         ELECTRICITE,
         BONHEUR,
         ARGENT,
+        HABITANTS,
         
         // Ajoutez d'autres types de ressources en fonction de votre jeu
     } 
