@@ -28,11 +28,13 @@ public class menuHUD extends Stage {
     private Skin skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
     private Table menubat; 
     private Table service;
-    private Musique musique;
+    private BatRessources batRessources;
 
-    public menuHUD(final Viewport viewport, final SpriteBatch batch) {
+
+    public menuHUD(final Viewport viewport, final SpriteBatch batch, final Gestion gestion) {
+
         Gdx.input.setInputProcessor(this);  // Active la scène pour récupérer les événements d'entrée
-
+    
         // Création de la table qui contiendra les boutons du menu principal
         table = new Table();
         table.setFillParent(true);
@@ -89,7 +91,6 @@ public class menuHUD extends Stage {
         TextButton accueil = new TextButton("accueil", skin);
         
         accueil.getLabel().setFontScale(0.5f);
-
         TextButton musiqueButton = new TextButton(Accueil.MUSIQUE.toString(), skin);
         musiqueButton.getLabel().setFontScale(0.5f);
         
@@ -219,9 +220,14 @@ public class menuHUD extends Stage {
         
                 // en fonction ajoutue un string ou classe batiment pour relier puis utilsier le switch de Input handler pour la couleur
                 elec.addListener(new ClickListener() { 
+                
+
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
-                        System.out.println("service pub");
+                        if ( gestion.getgest().centraleAchetable()){
+                            setBatRessources( gestion.getgest().centrale());
+
+                        }
                     }
                 });
         
@@ -257,7 +263,7 @@ public class menuHUD extends Stage {
 
         // Ajout du bouton menu à la table du menu principal
         table.add(menu).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
-    
+            
     }
 
     
@@ -306,6 +312,12 @@ public class menuHUD extends Stage {
         this.dispose();
     }
 
-    
+    public BatRessources getBatRessources() {
+        return batRessources;
+    }
+
+    public void setBatRessources(BatRessources batRessourcess) {
+        batRessources = batRessourcess;
+    }
 
 }

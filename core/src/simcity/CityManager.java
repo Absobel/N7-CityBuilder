@@ -3,15 +3,15 @@ package simcity;
 /* Gérer le déroulement du jeu et mettre à jour son score selon ses succès
  * 
  */
-
- /* 
+/*
+ 
 class CityManager{
 	
-	private int level;
-	private int score;
-	private double credits;
-	private int habitat;
-	private double happiness;
+	protected int level;
+	protected int score;
+	protected double credits;
+	protected int habitat;
+	protected double happiness;
 	private Gestion buildingManager;
 	private ArrayList <Sim> habitants; 
 	

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.Gdx;
@@ -28,21 +29,28 @@ public class GameScreen extends ScreenAdapter {
     private Viewport viewport;
     private menuHUD hudStage;
     // private Label labell;
-
+    
     private OrthographicCamera camera;
     private IsometricRenderer renderer;
     private InputHandler inputHandler;
     private Boolean estdansGame;
+    private Gestion gestion = new Gestion(1000);
 
     private java.util.List<Texture> skyCourant;
 
     private Time timer;
     private CycleJN cycleJN;
 
+    
+    //private CityManager manager;
+
     public GameScreen(SpriteBatch batch, boolean dedans) {
         this.batch = batch;
         this.estdansGame = dedans;
-        hudStage = new menuHUD(viewport, batch);
+        
+        //Gestion gestion = new Gestion();
+        hudStage = new menuHUD(viewport, batch, gestion);
+        
     }
 
     @Override
@@ -102,11 +110,24 @@ public class GameScreen extends ScreenAdapter {
         renderer.draw(batch);
         batch.end();
 
-        inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame); // bool rajouté pour écran d'accueil
+        TextureRegion texture = Textures.publics.get(0);
+        if (hudStage.getBatRessources() != null) {
+             texture = hudStage.getBatRessources().getTexture();
+            
+        }
+
+        inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame, texture); // bool rajouté pour écran d'accueil
         camera.update();
 
         hudStage.act(delta);
         hudStage.draw();
+        
+        /*affichagescore
+         affichageScore aff = new affichageScore(manager);
+         aff.updateGame();
+         aff.afficher(batch,font);
+         */
+        
     }
 
     @Override
