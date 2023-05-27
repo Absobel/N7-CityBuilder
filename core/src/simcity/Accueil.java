@@ -45,15 +45,10 @@ public class Accueil extends ScreenAdapter {
     public Accueil(SpriteBatch batch, Boolean dedans) {
         this.batch = batch;
         this.touchejouer = false; // permet de savoir si on appuie sur la touche joueur
-
     }
 
     @Override
     public void show() {
-        // musique
-        //this.musique = new Musique(false);
-        MUSIQUE.jouer();
-
         camera = new OrthographicCamera(WIDTH, HEIGHT);
 
         camera.zoom = 1f;
@@ -62,6 +57,7 @@ public class Accueil extends ScreenAdapter {
 
         renderer = new IsometricRenderer();
         menuTexture = new Texture(Gdx.files.internal("image-18-1024x585.png"));
+        MUSIQUE.jouer();
         inputHandler = new InputHandler(camera, renderer.getGrid(), true);
         stageboutton = new Stage(viewport, batch);
 

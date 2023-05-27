@@ -8,7 +8,7 @@ public class Musique {
     private AssetManager assetManager; 
     private String pathAcceil = "Joueur du Grenier - Recette pour jeu pourri.mp3";
     private String pathJeu = "musique_chill.mp3";
-    private Boolean musiqueAcceuil;
+    private Boolean musiqueAcceuil; //Donne l'information de si c'est la musique d'acceuil ou non
 
     public Musique() {
         this.assetManager = new AssetManager();
@@ -41,6 +41,7 @@ public class Musique {
     }
 
     public void changerEtat() {
+        // Changer l'état de la musique
         if (this.musique.isPlaying()) {
             this.musique.stop();
         } else {
@@ -48,20 +49,28 @@ public class Musique {
         }
     }
 
+    public Boolean getEtat() {
+        // Renvoie true si la musique est en train d'être jouée
+        return this.musique.isPlaying();
+    }
+
     public void changerMusique() {
+        // Changer de musique
+        Boolean isPlaying = false; //Pour conserver l'état de la musique quand on change de musique
         if (this.musique.isPlaying()) {
+            isPlaying = true;
             this.musique.stop();
         }
         if (this.musiqueAcceuil) {
             this.musique = assetManager.get(this.pathJeu,Music.class);
-            System.out.println("proutAcceuil");
         } else {
             this.musique = assetManager.get(this.pathAcceil,Music.class);
-            System.out.println("proutJeu");
         }
         this.musiqueAcceuil = !this.musiqueAcceuil;
-        this.musique.setLooping(true);
-        this.musique.play();
+        if (isPlaying) {
+            this.musique.setLooping(true);
+            this.musique.play();
+        }
     }
 
     public String toString() {
