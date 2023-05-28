@@ -10,23 +10,25 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class Batiment extends Tile { //batiment le plus classique va faire heriter les autres
-    
-    private int prix;
-    private String type;
+public class Batiment { //batiment le plus classique va faire heriter les autres
+    // extends tile
+    private double prix;
+    private TextureRegion texture;
 
-    public Batiment(TextureRegion texture, int prix) {
-        super(texture);
+    public Batiment(TextureRegion texture, double prix ) {
+        this.texture = texture;
         this.prix = prix;
     }
 
-    public int getPrix() {
-        return prix;
+    public double getPrix() {
+        return this.prix;
     }
 
-    public void setPrix(int Prix) {
+    public void setPrix(double Prix) {
         this.prix = prix;
     }
+
+
 
     // public void saveToJson(String filePath) throws IOException {
     //     ObjectMapper objectMapper = new ObjectMapper();
@@ -34,7 +36,4 @@ public class Batiment extends Tile { //batiment le plus classique va faire herit
     //     objectMapper.writeValue(file, this);
     // }
 
-    public String gettype() {
-        return this.type;
-    }
 }

@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
@@ -22,18 +23,23 @@ public class InputHandler {
     private Grid grid;
     private Boolean modifie;
     private Route route;
+    private TextureRegion texture;
 
     public InputHandler(OrthographicCamera camera, Grid grid, Boolean saispas) {
         this.camera = camera;
         this.grid = grid;
         this.modifie = saispas; //trouver un moyen de passer de accueil à jeu
         this.route = new Route();
+        this.texture = Textures.publics.get(0);
 
     }
 
+    public void setTexture(TextureRegion texture) {
+        this.texture = texture;
+    }
 
 
-    public void handleInput(float delta, boolean dansacc) {
+    public void handleInput(float delta, boolean dansacc, TextureRegion texture) {
 
         if (!dansacc) {
             if (Gdx.input.isKeyJustPressed(Keys.SPACE)) {
@@ -89,21 +95,15 @@ public class InputHandler {
 
             if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
                 if (route.isConnected(col, row)) { // tiles en fontion du type du batiment choisi
-                    // Pour l'instant c'est juste pour tester le placement de tuiles, à termes il faudra faire un système de sélection de tuiles avec un menu et tout
-             //switch (){
-                    //    case "service publique":
-                     //   grid.setTile(new Tile(Textures.publics.get(rand.nextInt(Textures.publics.size()))), col, row, 1);
-                      //      
-                     //   case "habitat":
-                     //   grid.setTile(new Tile(Textures.habitats.get(rand.nextInt(Textures.habitats.size()))), col, row, 1);
-                     //       
-                     //   case "decoration":
-                     //   grid.setTile(new Tile(Textures.deco.get(rand.nextInt(Textures.deco.size()))), col, row, 1);
-                     //       
-                    //}
-                    Random rand = new java.util.Random();
-                    grid.setTile(new Tile(Textures.deco.get(rand.nextInt(Textures.deco.size()))), col, row, 1);
+                    
+                    if (texture != Textures.publics.get(0)){
+                        grid.setTile(new Tile(texture), col, row, 1);
+                    } else {
+                        System.out.println("Veuillez choisir un batiment.");
+                    }
+                    
                 } else {
+
                     System.out.println("Le batiment doit etre connecte a la route principale.");
                 }
 

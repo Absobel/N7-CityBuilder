@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.badlogic.gdx.Gdx;
@@ -27,25 +28,28 @@ public class GameScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private Viewport viewport;
     private menuHUD hudStage;
-    private Music musiq;
     // private Label labell;
     
     private OrthographicCamera camera;
     private IsometricRenderer renderer;
     private InputHandler inputHandler;
     private Boolean estdansGame;
+    private Gestion gestion = new Gestion(1000);
 
     private java.util.List<Texture> skyCourant;
 
     private Time timer;
     private CycleJN cycleJN;
+
     
     //private CityManager manager;
 
     public GameScreen(SpriteBatch batch, boolean dedans) {
         this.batch = batch;
         this.estdansGame = dedans;
-        hudStage = new menuHUD(viewport, batch);
+        
+        //Gestion gestion = new Gestion();
+        hudStage = new menuHUD(viewport, batch, gestion);
         
     }
 
@@ -64,14 +68,8 @@ public class GameScreen extends ScreenAdapter {
         multiplexer.addProcessor((InputProcessor) hudStage); // Ajouter le Stage de menuHUD
 
         // la musique
-        AssetManager assetManager = new AssetManager();
-
-        assetManager.load("musique_chill.mp3", Music.class);
-        assetManager.finishLoading();
-        this.musiq = assetManager.get("musique_chill.mp3", Music.class);
-        this.musiq.setLooping(true);
-        this.musiq.play();
-
+        //Accueil.MUSIQUE.changerMusique();
+        
         // le menu
         Gdx.input.setInputProcessor(multiplexer);
 
@@ -89,8 +87,6 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void hide() { // Called when this screen is no longer the current screen for a Game.
-        musiq.stop();
-
     }
 
     @Override
@@ -114,7 +110,13 @@ public class GameScreen extends ScreenAdapter {
         renderer.draw(batch);
         batch.end();
 
-        inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame); // bool rajouté pour écran d'accueil
+        TextureRegion texture = Textures.publics.get(0);
+        if (hudStage.getBatRessources() != null) {
+             texture = hudStage.getBatRessources().getTexture();
+            
+        }
+
+        inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame, texture); // bool rajouté pour écran d'accueil
         camera.update();
 
         hudStage.act(delta);
@@ -131,7 +133,6 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void dispose() { // Called when this screen should release all resources.
         renderer.dispose();
-        musiq.dispose();
         // hudStage.dispose();
     }
 

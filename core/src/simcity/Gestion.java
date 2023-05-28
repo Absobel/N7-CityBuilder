@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
 import simcity.Ressource.RessourceType;
 
 public class Gestion {
@@ -11,13 +14,16 @@ public class Gestion {
     private Double monnaie;
     private Map<RessourceType, Double> finances;
     private List<BatRessources> batimentsConstruits;
+    private Textures texture;
 
-    public Gestion() {
+    public Gestion(double monnaie) {
+        this.monnaie = monnaie;
         this.finances = new HashMap<>();
         for (RessourceType type : RessourceType.values()) {
             finances.put(type, 0.0);
         }
-        this.batimentsConstruits = new ArrayList<>();
+        this.batimentsConstruits = new ArrayList<BatRessources>();
+        //this.batimentsConstruits.add(new BatRessources(new TextureRegion(Textures.publics.get(0)), (double) 0, (double) 0,(double) 0,(double) 0,(double) 0,(double) 0));
     }
 
     public void ajouterRessource(RessourceType type, double quantite) {
@@ -91,9 +97,10 @@ public class Gestion {
     }
 
     public BatRessources centrale() {
-        BatRessources batiment = new BatRessources(texture, 200, 0, 50, -5, 0, -5);
-        this.payer(batiment.getPrix);
+        BatRessources batiment = new BatRessources(Textures.publics.get(3), (double) 200, (double)0, (double) 50, -5, 0, -5);
+        this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
+        return batiment;
     }
 
     public Boolean pompeEauAchetable() {
@@ -101,9 +108,10 @@ public class Gestion {
     }
 
     public BatRessources pompeEau() {
-        BatRessources batiment = new BatRessources(texture, 200, 50, 0, -5, 0, -5);
-        this.payer(batiment.getPrix);
+        BatRessources batiment = new BatRessources(Textures.publics.get(4), 200, 50, 0, -5, 0, -5);
+        this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
+        return batiment;
     }
 
     public Boolean ecoleAchetable() {
@@ -111,9 +119,10 @@ public class Gestion {
     }
 
     public BatRessources ecole() {
-        BatRessources batiment = new BatRessources(texture, 300, 0, 0, 50, -10, 10);
-        this.payer(batiment.getPrix);
+        BatRessources batiment = new BatRessources(Textures.publics.get(7), 300, 0, 0, 50, -10, 10);
+        this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
+        return batiment;
     }
 
     public Boolean maisonAchetable() {
@@ -121,9 +130,10 @@ public class Gestion {
     }
 
     public BatRessources maison() {
-        BatRessources batiment = new BatRessources(texture, 300, 0, 0, 0, 20, 10);
-        this.payer(batiment.getPrix);
+        BatRessources batiment = new BatRessources(Textures.habitats.get(0), 300, 0, 0, 0, 20, 10);
+        this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
+        return batiment;
     }
 
     public Boolean immeubleAchetable() {
@@ -131,9 +141,16 @@ public class Gestion {
     }
 
     public BatRessources immeuble() {
-        BatRessources batiment = new BatRessources(texture, 1000, -15, -15, 0, 100, 100);
-        this.payer(batiment.getPrix);
+        BatRessources batiment = new BatRessources(Textures.habitats.get(1), 1000, -15, -15, 0, 100, 100);
+        this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
+        return batiment;
     }
+
+    public Gestion getgest() {
+        return this;
+    }
+
+
 }
 
