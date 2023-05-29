@@ -33,7 +33,7 @@ public class GameScreen extends ScreenAdapter {
     private OrthographicCamera camera;
     private IsometricRenderer renderer;
     private InputHandler inputHandler;
-    private Boolean estdansGame;
+    private Boolean estdansGame, paye;
     private Gestion gestion;
 
     private java.util.List<Texture> skyCourant;
@@ -45,6 +45,7 @@ public class GameScreen extends ScreenAdapter {
     public GameScreen(SpriteBatch batch, boolean dedans) {
         this.batch = batch;
         this.estdansGame = dedans;
+        this.paye = true;
         
         this.gestion = new Gestion(1000, 10, 10, 50, 0, 0);
         hudStage = new menuHUD(viewport, batch, this.gestion);
@@ -107,6 +108,14 @@ public class GameScreen extends ScreenAdapter {
         // temps
         timer.updateTime(Gdx.graphics.getDeltaTime());
         renderer.draw(batch);
+
+        //gagner de l'argent en fonction du temps
+        if ((timer.getJour() % 30 == 0) && (payé == false)) {
+            paye = true;
+            gestion.impots();
+        } else if (timer.getJour() % 30 != 0) {
+            paye = false;
+        }
 
         
         
