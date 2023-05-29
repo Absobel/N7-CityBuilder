@@ -90,9 +90,10 @@ public class menuHUD extends Stage {
         this.decoraButton = creerButon("decoration", 0.5f, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                TextureRegion Textures;
-                //Batiment bat = new Batiment(Textures, null); 
-                //showdeco();
+                if (gestion.getgest().dkoAchetable()){
+                    setBatRessources( gestion.getgest().dko());
+                }
+                
             }
         });
 

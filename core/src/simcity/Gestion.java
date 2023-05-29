@@ -154,6 +154,17 @@ public class Gestion {
         return batiment;
     }
 
+    public Boolean dkoAchetable() {
+        return ((monnaie >= 10)) ;
+    }
+
+    public BatRessources dko() {
+        BatRessources batiment = new BatRessources(Textures.deco.get(0), 0, 0, 0, 5, 10, 0);
+        this.payer(batiment.getPrix());
+        this.ajouterBatiment(batiment);
+        return batiment;
+    }
+
     public Gestion getgest() {
         return this;
     }
