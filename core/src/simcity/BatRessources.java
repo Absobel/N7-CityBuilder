@@ -12,12 +12,14 @@ public class BatRessources { // moyen que ce soit la classe batiment directement
 
     private Map<RessourceType, Double> ressources;
     private TextureRegion texture;
+    private double prix;
 
-    public BatRessources(TextureRegion texture, double i, double j, double k, double Bonheur, double argent, double habitants) {
+    public BatRessources(TextureRegion texture, double prix, double eau, double elec, double Bonheur, double argent, double habitants) {
         this.texture = texture;
+        this.prix = prix;
         this.ressources = new HashMap<>();
-        this.ressources.put(RessourceType.EAU, j);
-        this.ressources.put(RessourceType.ELECTRICITE, k);
+        this.ressources.put(RessourceType.EAU, eau);
+        this.ressources.put(RessourceType.ELECTRICITE, elec);
         this.ressources.put(RessourceType.BONHEUR, Bonheur);
         this.ressources.put(RessourceType.ARGENT, argent);
         this.ressources.put(RessourceType.HABITANTS, habitants);
@@ -32,10 +34,10 @@ public class BatRessources { // moyen que ce soit la classe batiment directement
     }
 
     public double getPrix() {
-        return this.ressources.get(RessourceType.ARGENT);
+        return this.prix;
     }
 
     public void setPrix(double Prix) {
-        this.ressources.put(RessourceType.ARGENT, Prix);
+        this.prix = prix ;
     }
 }
