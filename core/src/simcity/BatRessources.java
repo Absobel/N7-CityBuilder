@@ -8,13 +8,13 @@ import simcity.Ressource.RessourceType;
 import java.util.Map;
 import java.util.HashMap;
 
-public class BatRessources extends Batiment { // moyen que ce soit la classe batiment directement 
+public class BatRessources { // moyen que ce soit la classe batiment directement 
 
     private Map<RessourceType, Double> ressources;
     private TextureRegion texture;
 
     public BatRessources(TextureRegion texture, double i, double j, double k, double Bonheur, double argent, double habitants) {
-        super(texture, i);
+        this.texture = texture;
         this.ressources = new HashMap<>();
         this.ressources.put(RessourceType.EAU, j);
         this.ressources.put(RessourceType.ELECTRICITE, k);
@@ -29,5 +29,13 @@ public class BatRessources extends Batiment { // moyen que ce soit la classe bat
 
     public TextureRegion getTexture() {
         return this.texture;
+    }
+
+    public double getPrix() {
+        return this.ressources.get(RessourceType.ARGENT);
+    }
+
+    public void setPrix(double Prix) {
+        this.ressources.put(RessourceType.ARGENT, Prix);
     }
 }

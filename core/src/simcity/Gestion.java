@@ -16,12 +16,18 @@ public class Gestion {
     private List<BatRessources> batimentsConstruits;
     private Textures texture;
 
-    public Gestion(double monnaie) {
+
+    public Gestion(double monnaie ,double eau, double electricite, double bonheur, double habitants, double argent) {
         this.monnaie = monnaie;
         this.finances = new HashMap<>();
-        for (RessourceType type : RessourceType.values()) {
-            finances.put(type, 0.0);
-        }
+        //for (RessourceType type : RessourceType.values()) {
+         //   finances.put(type, );
+        //}
+        finances.put(RessourceType.EAU, eau);
+        finances.put(RessourceType.ELECTRICITE, electricite);
+        finances.put(RessourceType.BONHEUR, bonheur);
+        finances.put(RessourceType.HABITANTS, habitants);
+        finances.put(RessourceType.ARGENT, argent);
         this.batimentsConstruits = new ArrayList<BatRessources>();
         //this.batimentsConstruits.add(new BatRessources(new TextureRegion(Textures.publics.get(0)), (double) 0, (double) 0,(double) 0,(double) 0,(double) 0,(double) 0));
     }
@@ -36,13 +42,14 @@ public class Gestion {
     }
 
     public void miseAJour() {
-        for (RessourceType type : RessourceType.values()) {
-            finances.put(type, 0.0);
-        }
+        //for (RessourceType type : RessourceType.values()) {
+        //    finances.put(type, 0.0);
+        //}
         for (BatRessources batiments : this.batimentsConstruits) {
             for (RessourceType ressource : batiments.getRessources().keySet()) {
                 Double count = finances.get(ressource);
                 finances.put(ressource, count + batiments.getRessources().get(ressource));
+                System.out.println("ressource : " + ressource + " count : " + count + " batiments.getRessources().get(ressource) : " + batiments.getRessources().get(ressource));
             }
         }
     }
@@ -93,7 +100,7 @@ public class Gestion {
     }
 
     public Boolean centraleAchetable() {
-        return ((monnaie >= 200) && (finances.get(RessourceType.BONHEUR) > 5) && (finances.get(RessourceType.HABITANTS) > 5)) ;
+        return ((monnaie >= 200) && (finances.get(RessourceType.BONHEUR) > 5) ) ;
     }
 
     public BatRessources centrale() {
@@ -149,6 +156,10 @@ public class Gestion {
 
     public Gestion getgest() {
         return this;
+    }
+
+    public String getRessourceValue(RessourceType ressource) {
+        return String.valueOf(finances.get(ressource));
     }
 
 

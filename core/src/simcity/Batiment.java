@@ -20,13 +20,6 @@ public class Batiment { //batiment le plus classique va faire heriter les autres
         this.prix = prix;
     }
 
-    public double getPrix() {
-        return this.prix;
-    }
-
-    public void setPrix(double Prix) {
-        this.prix = prix;
-    }
 
 
 

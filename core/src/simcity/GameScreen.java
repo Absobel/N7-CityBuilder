@@ -33,23 +33,23 @@ public class GameScreen extends ScreenAdapter {
     private OrthographicCamera camera;
     private IsometricRenderer renderer;
     private InputHandler inputHandler;
-    private Boolean estdansGame;
-    private Gestion gestion = new Gestion(1000);
+    private Boolean estdansGame, paye;
+    private Gestion gestion;
 
     private java.util.List<Texture> skyCourant;
 
     private Time timer;
     private CycleJN cycleJN;
-
-    
-    //private CityManager manager;
+    private Afficher aff;
 
     public GameScreen(SpriteBatch batch, boolean dedans) {
         this.batch = batch;
         this.estdansGame = dedans;
+        this.paye = true;
         
-        //Gestion gestion = new Gestion();
-        hudStage = new menuHUD(viewport, batch, gestion);
+        this.gestion = new Gestion(1000, 10, 10, 50, 0, 0);
+        hudStage = new menuHUD(viewport, batch, this.gestion);
+        aff = new Afficher(this.gestion);
         
     }
 
@@ -59,7 +59,7 @@ public class GameScreen extends ScreenAdapter {
         camera = new OrthographicCamera(WIDTH, HEIGHT);
         camera.position.set(WIDTH / 2, HEIGHT / 2, 0);
         camera.zoom = 4f;
-
+        
         viewport = new FitViewport(WIDTH, HEIGHT, camera);
 
         renderer = new IsometricRenderer();
@@ -108,19 +108,39 @@ public class GameScreen extends ScreenAdapter {
         // temps
         timer.updateTime(Gdx.graphics.getDeltaTime());
         renderer.draw(batch);
-        batch.end();
 
-        TextureRegion texture = Textures.publics.get(0);
-        if (hudStage.getBatRessources() != null) {
-             texture = hudStage.getBatRessources().getTexture();
-            
+        //gagner de l'argent en fonction du temps
+        if ((timer.getJour() % 30 == 0) && (paye == false)) {
+            paye = true;
+            gestion.impots();
+        } else if (timer.getJour() % 30 != 0) {
+            paye = false;
         }
 
-        inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame, texture); // bool rajouté pour écran d'accueil
+        
+        
+        batch.end();
+        //gestion.miseAJour(); // nouveau mais je n'arrive pas a refiare passer à 0 les ressources
+        aff.maj(); // maj
+        aff.draw();
+
+        TextureRegion texture;
+        if (hudStage.getBatRessources() != null) {
+            texture = hudStage.getBatRessources().getTexture();
+            System.out.println("texture : " + texture);
+            inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame, texture);
+            
+        } else {
+            inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame, Textures.publics.get(0));
+            System.out.println("texture : ici " );
+        }
+
+         // bool rajouté pour écran d'accueil
         camera.update();
 
         hudStage.act(delta);
         hudStage.draw();
+        
         
         /*affichagescore
          affichageScore aff = new affichageScore(manager);
