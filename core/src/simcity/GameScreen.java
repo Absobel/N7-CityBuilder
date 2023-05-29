@@ -34,7 +34,7 @@ public class GameScreen extends ScreenAdapter {
     private IsometricRenderer renderer;
     private InputHandler inputHandler;
     private Boolean estdansGame;
-    private Gestion gestion = new Gestion(1000);
+    private Gestion gestion;
 
     private java.util.List<Texture> skyCourant;
 
@@ -46,9 +46,9 @@ public class GameScreen extends ScreenAdapter {
         this.batch = batch;
         this.estdansGame = dedans;
         
-        //Gestion gestion = new Gestion();
-        hudStage = new menuHUD(viewport, batch, gestion);
-        aff = new Afficher(gestion);
+        this.gestion = new Gestion(1000, 10, 10, 50, 0, 0);
+        hudStage = new menuHUD(viewport, batch, this.gestion);
+        aff = new Afficher(this.gestion);
         
     }
 

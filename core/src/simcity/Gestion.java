@@ -16,12 +16,18 @@ public class Gestion {
     private List<BatRessources> batimentsConstruits;
     private Textures texture;
 
-    public Gestion(double monnaie) {
+
+    public Gestion(double monnaie ,double eau, double electricite, double bonheur, double habitants, double argent) {
         this.monnaie = monnaie;
         this.finances = new HashMap<>();
-        for (RessourceType type : RessourceType.values()) {
-            finances.put(type, 0.0);
-        }
+        //for (RessourceType type : RessourceType.values()) {
+         //   finances.put(type, );
+        //}
+        finances.put(RessourceType.EAU, eau);
+        finances.put(RessourceType.ELECTRICITE, electricite);
+        finances.put(RessourceType.BONHEUR, bonheur);
+        finances.put(RessourceType.HABITANTS, habitants);
+        finances.put(RessourceType.ARGENT, argent);
         this.batimentsConstruits = new ArrayList<BatRessources>();
         //this.batimentsConstruits.add(new BatRessources(new TextureRegion(Textures.publics.get(0)), (double) 0, (double) 0,(double) 0,(double) 0,(double) 0,(double) 0));
     }

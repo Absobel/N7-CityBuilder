@@ -28,9 +28,9 @@ public class Afficher extends Stage{
         this.addActor(donnee);
         font.setColor(Color.RED);
         font.getData().setScale(1);
-        ressour.add( new Label("Monnaie : " + gestion.getRessourceValue(RessourceType.ARGENT), new Label.LabelStyle(font, font.getColor())));
+        ressour.add( new Label("Monnaie : " + gestion.getMonnaie(), new Label.LabelStyle(font, font.getColor())));
         ressour.get(0).setAlignment(Align.right);
-        ressour.add( new Label("    électricité : " + gestion.getRessourceValue(RessourceType.ELECTRICITE), new Label.LabelStyle(font, font.getColor())));
+        ressour.add( new Label("    électricité : " + gestion.getQuantite(RessourceType.ELECTRICITE), new Label.LabelStyle(font, font.getColor())));
         ressour.get(1).setAlignment(Align.right);
         ressour.add( new Label("    eau : " + gestion.getRessourceValue(RessourceType.EAU), new Label.LabelStyle(font, font.getColor())));
         ressour.get(2).setAlignment(Align.right);
