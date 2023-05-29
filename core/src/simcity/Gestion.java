@@ -20,9 +20,6 @@ public class Gestion {
     public Gestion(double monnaie ,double eau, double electricite, double bonheur, double habitants, double argent) {
         this.monnaie = monnaie;
         this.finances = new HashMap<>();
-        //for (RessourceType type : RessourceType.values()) {
-         //   finances.put(type, );
-        //}
         finances.put(RessourceType.EAU, eau);
         finances.put(RessourceType.ELECTRICITE, electricite);
         finances.put(RessourceType.BONHEUR, bonheur);
@@ -42,9 +39,12 @@ public class Gestion {
     }
 
     public void miseAJour() {
-        //for (RessourceType type : RessourceType.values()) {
-        //    finances.put(type, 0.0);
-        //}
+        finances.put(RessourceType.EAU, 10.0);
+        finances.put(RessourceType.ELECTRICITE, 10.0);
+        finances.put(RessourceType.BONHEUR, 50.0);
+        finances.put(RessourceType.HABITANTS, 0.0);
+        finances.put(RessourceType.ARGENT, 0.0);
+        
         for (BatRessources batiments : this.batimentsConstruits) {
             for (RessourceType ressource : batiments.getRessources().keySet()) {
                 Double count = finances.get(ressource);

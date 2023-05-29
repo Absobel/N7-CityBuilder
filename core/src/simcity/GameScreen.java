@@ -17,6 +17,9 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 /**
  * L'écran principal du jeu.
@@ -24,6 +27,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 public class GameScreen extends ScreenAdapter {
     public static final int WIDTH = 320 * 4; // 16:9 aspect ratio
     public static final int HEIGHT = 180 * 4;
+    public static final double eps = 10^(-3);
 
     private SpriteBatch batch;
     private Viewport viewport;
@@ -39,6 +43,7 @@ public class GameScreen extends ScreenAdapter {
     private java.util.List<Texture> skyCourant;
 
     private Time timer;
+    private float dernierPayement;
     private CycleJN cycleJN;
     private Afficher aff;
 
@@ -74,6 +79,7 @@ public class GameScreen extends ScreenAdapter {
 
         // le chrono
         this.timer = new Time(Gdx.graphics.getDeltaTime());
+        dernierPayement = timer.getTime();
 
         // cycle jour nuit
         this.cycleJN = new CycleJN();
@@ -109,11 +115,9 @@ public class GameScreen extends ScreenAdapter {
         renderer.draw(batch);
 
         //gagner de l'argent en fonction du temps
-        if ((timer.getTime() % 2 == 0) && (paye == false)) {
-            paye = true;
+        if (Math.abs(dernierPayement - timer.getTime()) > (float)2) {
             gestion.impots();
-        } else if (timer.getTime() % 2 != 0) {
-            paye = false;
+            dernierPayement = timer.getTime();
         }
 
         
