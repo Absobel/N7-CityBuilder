@@ -30,7 +30,7 @@ public class Afficher extends Stage{
         font.getData().setScale(1);
         ressour.add( new Label("Monnaie : " + gestion.getMonnaie(), new Label.LabelStyle(font, font.getColor())));
         ressour.get(0).setAlignment(Align.right);
-        ressour.add( new Label("    électricité : " + gestion.getQuantite(RessourceType.ELECTRICITE), new Label.LabelStyle(font, font.getColor())));
+        ressour.add( new Label("    électricité : " + gestion.getRessourceValue(RessourceType.ELECTRICITE), new Label.LabelStyle(font, font.getColor())));
         ressour.get(1).setAlignment(Align.right);
         ressour.add( new Label("    eau : " + gestion.getRessourceValue(RessourceType.EAU), new Label.LabelStyle(font, font.getColor())));
         ressour.get(2).setAlignment(Align.right);
@@ -42,6 +42,15 @@ public class Afficher extends Stage{
         for (Label ress : ressour) {
             donnee.add(ress).pad(1);
         }
+    }
+
+    public void maj() {
+        
+        ressour.get(0).setText("Monnaie : " + gestion.getMonnaie());
+        ressour.get(1).setText("    électricité : " + gestion.getRessourceValue(RessourceType.ELECTRICITE));
+        ressour.get(2).setText("    eau : " + gestion.getRessourceValue(RessourceType.EAU));
+        ressour.get(3).setText("    bonheur : " + gestion.getRessourceValue(RessourceType.BONHEUR));
+        ressour.get(4).setText("    habitants : " + gestion.getRessourceValue(RessourceType.HABITANTS));
     }
 
 

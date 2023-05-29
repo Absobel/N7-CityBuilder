@@ -111,7 +111,8 @@ public class GameScreen extends ScreenAdapter {
         
         
         batch.end();
-        aff.act(); // maj
+        //gestion.miseAJour(); // nouveau mais je n'arrive pas a refiare passer à 0 les ressources
+        aff.maj(); // maj
         aff.draw();
 
         TextureRegion texture;
