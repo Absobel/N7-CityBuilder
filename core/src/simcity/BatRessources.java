@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class BatRessources { // moyen que ce soit la classe batiment directement 
 
     private Map<RessourceType, Double> ressources;
-    private TextureRegion texture;
+    public TextureRegion texture;
     private double prix;
 
     public BatRessources(TextureRegion texture, double prix, double eau, double elec, double Bonheur, double argent, double habitants) {
@@ -31,6 +31,10 @@ public class BatRessources { // moyen que ce soit la classe batiment directement
 
     public TextureRegion getTexture() {
         return this.texture;
+    }
+
+    public void setTexture(TextureRegion texture) {
+        this.texture = texture;
     }
 
     public double getPrix() {
