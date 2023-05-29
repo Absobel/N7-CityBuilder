@@ -108,7 +108,7 @@ class CityManager{
 		}
 	} 
 	
-	
+/* 
 	public void updateHapiness() {
 		if(this.habitants.size()!=0) {
 			int globalHapiness = 0;
@@ -122,6 +122,6 @@ class CityManager{
 		}
 		
 	}
-	
+	*/
 }
 
