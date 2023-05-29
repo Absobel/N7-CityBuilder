@@ -101,7 +101,7 @@ class CityManager{
 		
 	}
 	
-	public void updateHabitat(Batiment batiment) {
+	public void updateHabitat(BatRessources batiment) {
 		this.habitat = this.habitat + HABITANTS;
 		for (int i = 0; i < HABITANTS; i++) {
 		    this.habitants.add(new Sim(batiment));
