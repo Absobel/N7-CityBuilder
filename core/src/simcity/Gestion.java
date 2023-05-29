@@ -137,7 +137,7 @@ public class Gestion {
     }
 
     public BatRessources maison() {
-        BatRessources batiment = new BatRessources(Textures.habitats.get(0), 300, 0, 0, 0, 20, 10);
+        BatRessources batiment = new BatRessources(Textures.habitats.get(0), 300, -5, -5, 5, 20, 5);
         this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
         return batiment;
@@ -148,7 +148,7 @@ public class Gestion {
     }
 
     public BatRessources immeuble() {
-        BatRessources batiment = new BatRessources(Textures.habitats.get(1), 1000, -15, -15, 0, 100, 100);
+        BatRessources batiment = new BatRessources(Textures.habitats.get(1), 1000, -10, -10, -4, 100, 15);
         this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
         return batiment;
