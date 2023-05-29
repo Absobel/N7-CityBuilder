@@ -28,7 +28,6 @@ public class GameScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private Viewport viewport;
     private menuHUD hudStage;
-    private Music musiq;
     // private Label labell;
     
     private OrthographicCamera camera;
@@ -68,14 +67,8 @@ public class GameScreen extends ScreenAdapter {
         multiplexer.addProcessor((InputProcessor) hudStage); // Ajouter le Stage de menuHUD
 
         // la musique
-        AssetManager assetManager = new AssetManager();
-
-        assetManager.load("musique_chill.mp3", Music.class);
-        assetManager.finishLoading();
-        this.musiq = assetManager.get("musique_chill.mp3", Music.class);
-        this.musiq.setLooping(true);
-        this.musiq.play();
-
+        //Accueil.MUSIQUE.changerMusique();
+        
         // le menu
         Gdx.input.setInputProcessor(multiplexer);
 
@@ -93,8 +86,6 @@ public class GameScreen extends ScreenAdapter {
 
     @Override
     public void hide() { // Called when this screen is no longer the current screen for a Game.
-        musiq.stop();
-
     }
 
     @Override
@@ -150,7 +141,6 @@ public class GameScreen extends ScreenAdapter {
     @Override
     public void dispose() { // Called when this screen should release all resources.
         renderer.dispose();
-        musiq.dispose();
         // hudStage.dispose();
     }
 

@@ -1,5 +1,7 @@
 package simcity;
 
+import javax.management.monitor.GaugeMonitor;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -16,16 +18,34 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class menuHUD extends Stage {
 
-    //private Boolean amodifier = false;
-    private Stage sousmenu;
-    private TextButton menu;
-    private Table table;
-    private Table sousmenuTable;  // Nouvelle table pour les boutons du sous-menu
-    private Label titleLabel;
-    private BitmapFont font;
     private Skin skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
-    private Table menubat; 
-    private Table service;
+    private TextButton menu; // Bouton pour dérouler le menu
+
+    // Boutons du sous-menu
+    private TextButton batimentsButton;
+    private TextButton decoraButton;
+    private TextButton sauvegardeButton;
+    private TextButton musiqueButton;
+    private TextButton accueilButton;
+    private TextButton backButton;
+
+    // Boutons du sous-menu bat
+    private TextButton servpubButton;
+    private TextButton habitationsButton;
+    private TextButton autresButton;
+    private TextButton retourButton;
+
+    // Boutons du sous-menu service
+    private TextButton elecButton;
+    private TextButton eauButton;
+    private TextButton ecoleButton;
+    private TextButton retour2Button;
+
+    private Table table; // Table qui contient le bouton du menu
+    private Table sousmenuTable;  // Nouvelle table pour les boutons du sous-menu
+    private Table menubat; // Table pour les différents batiments
+    private Table service; // Table pour les différents services
+    
     private BatRessources batRessources;
 
 
@@ -34,241 +54,168 @@ public class menuHUD extends Stage {
         Gdx.input.setInputProcessor(this);  // Active la scène pour récupérer les événements d'entrée
     
         // Création de la table qui contiendra les boutons du menu principal
-        table = new Table();
-        table.setFillParent(true);
-        table.bottom();
-        table.left();
-        this.addActor(table);
-
+        this.table = creerTable(true,null);
         // Création de la table qui contiendra les boutons du sous-menu
-        sousmenuTable = new Table();
-        sousmenuTable.setFillParent(true);
-        sousmenuTable.left();  // Alignement des boutons au centre de l'écran
-        sousmenuTable.bottom();
-        sousmenuTable.setVisible(false);  // Les boutons ne sont pas visibles au début
-        this.addActor(sousmenuTable);
-
-         // Création de la table qui contiendra les boutons du sous-menu batiments
-         menubat =new Table();
-         menubat.setFillParent(true);
-         menubat.left();  // Alignement des boutons au centre de l'écran
-         menubat.bottom();
-         menubat.setVisible(false);  // Les boutons ne sont pas visibles au début
-         menubat.setName("menubat");
-         this.addActor(menubat);
-
+        this.sousmenuTable = creerTable(false,null);
         // Création de la table qui contiendra les boutons du sous-menu batiments
-        service = new Table();
-        service.setFillParent(true);
-        service.left();  // Alignement des boutons au centre de l'écran
-        service.bottom();
-        service.setVisible(false);  // Les boutons ne sont pas visibles au début
-        service.setName("service");
-        this.addActor(service);
-
-        // Ajout du titre
-        menu = new TextButton("Menu", skin);
-        menu.getLabel().setFontScale(0.5f);
-        menu.addListener(new ClickListener() {
+        this.menubat = creerTable(false,"menubat");
+        // Création de la table qui contiendra les boutons du sous-menu batiments
+        this.service = creerTable(false,"service");
+        
+        // Ajout du Bouton du menu
+        this.menu = creerButon("Menu",0.5f, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 showmenu();  // Afficher les boutons du sous-menu
             }
         });
 
+        //////////////////////////////////////////////////////////
         // Ajout des boutons du sous-menu
-        TextButton batimentsButton = new TextButton("batiments", skin);
-        batimentsButton.getLabel().setFontScale(0.5f);
-        
-        TextButton decora = new TextButton("decoration", skin);
-
-        decora.getLabel().setFontScale(0.5f);
-        TextButton sauvegarde = new TextButton("sauvegarde", skin);
-
-        sauvegarde.getLabel().setFontScale(0.5f);
-        TextButton accueil = new TextButton("accueil", skin);
-
-        accueil.getLabel().setFontScale(0.5f);
-
-        TextButton backButton = new TextButton("Back", skin);
-
-        backButton.getLabel().setFontScale(0.5f);
-
-        // Ajout d'un listener pour chaque bouton du sous-menu
-        batimentsButton.addListener(new ClickListener() {
+        this.batimentsButton = creerButon("batiments", 0.5f, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 showbat();  // Afficher les boutons du sous-menu bat;
             }
         });
-
-        decora.addListener(new ClickListener() {
+        
+        this.decoraButton = creerButon("decoration", 0.5f, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-               TextureRegion Textures;
-            //Batiment bat = new Batiment(Textures, null); 
-            //showdeco();
+                TextureRegion Textures;
+                //Batiment bat = new Batiment(Textures, null); 
+                //showdeco();
             }
         });
 
-        sauvegarde.addListener(new ClickListener() {
+        this.sauvegardeButton = creerButon("sauvegarde", 0.5f, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Sauvegarde");
             }
         });
-
-        accueil.addListener(new ClickListener() {
+        
+        this.accueilButton = creerButon("accueil", 0.5f, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 Isometric isometric = (Isometric) Gdx.app.getApplicationListener(); // ca marche j'ai peur que si on ajout un mute qu'on le perde a chaque retour
-                isometric.retourAccueil();
-                
+                isometric.retourAccueil(); 
+            }
+        });
+        
+        this.musiqueButton = creerButon(Accueil.MUSIQUE.toString(), 0.5f, new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Accueil.MUSIQUE.changerEtat();
+                musiqueButton.setText(Accueil.MUSIQUE.toString());
             }
         });
 
-        backButton.addListener(new ClickListener() {
+        this.backButton = creerButon("Back", 0.5f, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 hidemenu();  // Cacher les boutons du sous-menu
             }
         });
 
-
-
         // Ajout des boutons à la table du sous-menu
-        sousmenuTable.add(batimentsButton).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
-        sousmenuTable.add(decora).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
-        sousmenuTable.add(sauvegarde).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
-        sousmenuTable.add(accueil).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
-        sousmenuTable.add(backButton).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
+        TextButton[] buttons = { batimentsButton, decoraButton, sauvegardeButton, musiqueButton, accueilButton, backButton };
+        for (TextButton button : buttons) {
+            sousmenuTable.add(button).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
+        }
         
-
+        //////////////////////////////////////////////////////////
         // Ajout des boutons du sous-menu bat
-        TextButton servpub = new TextButton("service pub", skin);
-        servpub.getLabel().setFontScale(0.5f);
-        TextButton habitations = new TextButton("habitations", skin);
-        habitations.getLabel().setFontScale(0.5f);
-        TextButton autres = new TextButton("autres", skin);
-        autres.getLabel().setFontScale(0.5f);
-        TextButton retour = new TextButton("retour", skin);
-        retour.getLabel().setFontScale(0.5f);
-
-
-        servpub.addListener(new ClickListener() {
+        this.servpubButton = creerButon("service pub", 0.5f, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 showservice();  // Afficher les boutons du sous-menu serv;
             }
         });
 
-        habitations.addListener(new ClickListener() {
+        this.habitationsButton = creerButon("habitations", 0.5f, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("habitations");
             }
         });
 
-        autres.addListener(new ClickListener() {
+        this.autresButton = creerButon("autres", 0.5f, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("autres");
             }
         });
 
-        retour.addListener(new ClickListener() {
+        this.retourButton = creerButon("retour", 0.5f, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 hidebat();  // Cacher les boutons du sous-menubat
             }
         });
 
-
-
         // Ajout des boutons à la table du sous-menubat
-        menubat.add(servpub).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
-        menubat.add(habitations).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
-        menubat.add(autres).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
+        TextButton[] buttonsBat = { servpubButton, habitationsButton, autresButton, retourButton};
+        for (TextButton button : buttonsBat) {
+            menubat.add(button).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
+        }
 
-        menubat.add(retour).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
+        //////////////////////////////////////////////////////////
+        // Ajout des boutons du sous-menu service
 
+        this.elecButton = creerButon("elec", 0.5f, new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if ( gestion.getgest().centraleAchetable()){
+                    setBatRessources( gestion.getgest().centrale());
 
-        //////////////////////////////////
+                }
+            }
+        });
 
-                // Ajout des boutons du sous-menu bat
-                TextButton elec = new TextButton("elec", skin);
-                elec.getLabel().setFontScale(0.5f);
-                TextButton eau = new TextButton("eau", skin);
-                eau.getLabel().setFontScale(0.5f);
-                TextButton ecole = new TextButton("ecole", skin);
-                ecole.getLabel().setFontScale(0.5f);
-                TextButton retour2 = new TextButton("retour", skin);
-                retour2.getLabel().setFontScale(0.5f);
-        
-                // en fonction ajoutue un string ou classe batiment pour relier puis utilsier le switch de Input handler pour la couleur
-                elec.addListener(new ClickListener() { 
-                
+        this.eauButton = creerButon("eau", 0.5f, new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("eau");
+            }
+        });
 
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        if ( gestion.getgest().centraleAchetable()){
-                            setBatRessources( gestion.getgest().centrale());
-                            System.out.println("elec");
+        this.ecoleButton = creerButon("ecole", 0.5f, new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("ecole");
+            }
+        });
 
-                        }
-                    }
-                });
-        
-                eau.addListener(new ClickListener() {
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        System.out.println("service pub");
-                    }
-                });
-        
-                ecole.addListener(new ClickListener() {
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        System.out.println("habitations");
-                    }
-                });
-        
-                retour2.addListener(new ClickListener() {
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        hideserv();  // Cacher les boutons du sous-menubat
-                    }
-                });
-        
-        
-        
-                // Ajout des boutons à la table du sous-menubat
-                service.add(elec).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
-                service.add(eau).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
-                service.add(ecole).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
-        
-                service.add(retour2).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
+        this.retour2Button = creerButon("retour", 0.5f, new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                hideserv();  // Cacher les boutons du sous-menu service
+            }
+        });
+
+        // Ajout des boutons à la table du sous-menu service
+        TextButton[] buttonsService = {elecButton,eauButton,ecoleButton,retour2Button};
+        for (TextButton button : buttonsService) {
+            service.add(button).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
+        }
 
         // Ajout du bouton menu à la table du menu principal
         table.add(menu).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
-            
     }
 
-    
-    
-
-    public void showmenu() {
+    private void showmenu() {
         sousmenuTable.setVisible(true);  // Rendre les boutons du sous-menu visibles
         table.setVisible(false);  // Cacher les boutons du menu principal
 
     }
 
-    public void hidemenu() {
+    private void hidemenu() {
         sousmenuTable.setVisible(false);  // Cacher les boutons du sous-menu
         table.setVisible(true); 
     }
 
-    public void showbat() {
+    private void showbat() {
 
         sousmenuTable.setVisible(false);
         table.setVisible(false);
@@ -296,7 +243,6 @@ public class menuHUD extends Stage {
     }
 
     public void dispose() {
-        sousmenu.dispose();
         this.dispose();
     }
 
@@ -308,4 +254,27 @@ public class menuHUD extends Stage {
         batRessources = batRessourcess;
     }
 
+    // Pour créer les différentes tables
+    private Table creerTable(Boolean visible, String nom) {
+        Table table = new Table();
+        table.setFillParent(true);
+        table.left();
+        table.bottom();
+        table.setVisible(visible);
+        if (nom != null) {
+            table.setName(nom);
+        }
+        this.addActor(table);
+        return table;
+    }
+
+    // Pour créer les différents boutons
+    private TextButton creerButon(String text, float fontScale, ClickListener clickListener) {
+        TextButton button = new TextButton(text, skin);
+        button.getLabel().setFontScale(fontScale);
+        if (clickListener != null) {
+            button.addListener(clickListener);
+        }
+        return button;
+    }
 }
