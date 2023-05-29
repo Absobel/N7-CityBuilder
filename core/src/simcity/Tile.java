@@ -8,7 +8,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.TextureData;
-import com.badlogic.gdx.graphics.glutils.FileTextureData;
 import com.badlogic.gdx.graphics.PixmapIO;
 import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.files.FileHandle;
@@ -40,8 +39,6 @@ public class Tile implements Serializable {
     public void write(Json json) {
         // Save the texture to a file
         Texture texture = this.texture.getTexture();
-        int width = texture.getWidth();
-        int height = texture.getHeight();
         TextureData textureData = texture.getTextureData();
         if (!textureData.isPrepared()) {
             textureData.prepare();
