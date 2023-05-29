@@ -132,7 +132,7 @@ public class GameScreen extends ScreenAdapter {
             texture = hudStage.getBatRessources().getTexture();
             System.out.println("texture : " + texture);
             inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame, texture);
-            
+            //hudStage.setBatRessources(null);
         } else {
             inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame, Textures.publics.get(0));
             System.out.println("texture : ici " );

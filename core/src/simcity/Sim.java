@@ -4,10 +4,10 @@ package simcity;
  */
 public class Sim {
 
-	private Batiment building;
+	private BatRessources building;
 	protected int happiness; 
 	
-	public Sim(Batiment buil) {
+	public Sim(BatRessources buil) {
 		this.building = buil;
 		this.happiness = 100;
 	}

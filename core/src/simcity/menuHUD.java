@@ -103,18 +103,18 @@ public class menuHUD extends Stage {
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Sauvegarde");
 
-                ///////////////// ça fait crash le jeu et ça bloat de fichiers, ne pas utilisr tel quel mais ne pas supprimer pour l'instant
-                // Json json = new Json();
+                /////////////// ça fait crash le jeu et ça bloat de fichiers, ne pas utilisr tel quel mais ne pas supprimer pour l'instant
+                Json json = new Json();
                 
-                // // Convert the Grid object into a JSON string
-                // String jsonString = json.toJson(grid);
+                // Convert the Grid object into a JSON string
+                String jsonString = json.toJson(grid);
                 
-                // // Write the string to a file
-                // try (java.io.FileWriter file = new java.io.FileWriter("grid.json")) {
-                //     file.write(jsonString);
-                // } catch (java.io.IOException e) {
-                //     e.printStackTrace();
-                // }
+                // Write the string to a file
+                try (java.io.FileWriter file = new java.io.FileWriter("grid.json")) {
+                    file.write(jsonString);
+                } catch (java.io.IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         

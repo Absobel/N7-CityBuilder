@@ -98,7 +98,7 @@ public class InputHandler {
                     
                     if (texture != Textures.publics.get(0)){
                         grid.setTile(new Tile(texture), col, row, 1);
-                        
+                        texture = Textures.publics.get(0);
                     } else {
                         System.out.println("Veuillez choisir un batiment.");
                     }
