@@ -118,10 +118,12 @@ public class GameScreen extends ScreenAdapter {
         TextureRegion texture;
         if (hudStage.getBatRessources() != null) {
             texture = hudStage.getBatRessources().getTexture();
+            System.out.println("texture : " + texture);
             inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame, texture);
             
         } else {
             inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame, Textures.publics.get(0));
+            System.out.println("texture : ici " );
         }
 
          // bool rajouté pour écran d'accueil
