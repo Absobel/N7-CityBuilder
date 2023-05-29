@@ -110,7 +110,7 @@ public class GameScreen extends ScreenAdapter {
         renderer.draw(batch);
 
         //gagner de l'argent en fonction du temps
-        if ((timer.getJour() % 30 == 0) && (payé == false)) {
+        if ((timer.getJour() % 30 == 0) && (paye == false)) {
             paye = true;
             gestion.impots();
         } else if (timer.getJour() % 30 != 0) {
