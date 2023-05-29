@@ -20,20 +20,19 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 /**
  * L'écran principal du jeu.
  */
 public class GameScreen extends ScreenAdapter {
     public static final int WIDTH = 320 * 4; // 16:9 aspect ratio
     public static final int HEIGHT = 180 * 4;
-    public static final double eps = 10^(-3);
+    public static final double eps = 10 ^ (-3);
 
     private SpriteBatch batch;
     private Viewport viewport;
     private menuHUD hudStage;
     // private Label labell;
-    
+
     private OrthographicCamera camera;
     private IsometricRenderer renderer;
     private InputHandler inputHandler;
@@ -55,7 +54,7 @@ public class GameScreen extends ScreenAdapter {
         this.gestion = new Gestion(1000, 10, 10, 50, 0, 0);
         hudStage = new menuHUD(viewport, batch, this.gestion, this.renderer.getGrid());
         aff = new Afficher(this.gestion);
-        
+
     }
 
     @Override
@@ -64,7 +63,7 @@ public class GameScreen extends ScreenAdapter {
         camera = new OrthographicCamera(WIDTH, HEIGHT);
         camera.position.set(WIDTH / 2, HEIGHT / 2, 0);
         camera.zoom = 4f;
-        
+
         viewport = new FitViewport(WIDTH, HEIGHT, camera);
 
         inputHandler = new InputHandler(camera, renderer.getGrid(), false);
@@ -72,8 +71,8 @@ public class GameScreen extends ScreenAdapter {
         multiplexer.addProcessor((InputProcessor) hudStage); // Ajouter le Stage de menuHUD
 
         // la musique
-        //Accueil.MUSIQUE.changerMusique();
-        
+        // Accueil.MUSIQUE.changerMusique();
+
         // le menu
         Gdx.input.setInputProcessor(multiplexer);
 
@@ -114,16 +113,15 @@ public class GameScreen extends ScreenAdapter {
         timer.updateTime(Gdx.graphics.getDeltaTime());
         renderer.draw(batch);
 
-        //gagner de l'argent en fonction du temps
-        if (Math.abs(dernierPayement - timer.getTime()) > (float)2) {
+        // gagner de l'argent en fonction du temps
+        if (Math.abs(dernierPayement - timer.getTime()) > (float) 2) {
             gestion.impots();
             dernierPayement = timer.getTime();
         }
 
-        
-        
         batch.end();
-        //gestion.miseAJour(); // nouveau mais je n'arrive pas a refiare passer à 0 les ressources
+        // gestion.miseAJour(); // nouveau mais je n'arrive pas a refiare passer à 0 les
+        // ressources
         aff.maj(); // maj
         aff.draw();
 
@@ -132,25 +130,30 @@ public class GameScreen extends ScreenAdapter {
             texture = hudStage.getBatRessources().getTexture();
             System.out.println("texture : " + texture);
             inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame, texture);
-            //hudStage.setBatRessources(null);
+            // hudStage.setBatRessources(null);
         } else {
             inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame, Textures.publics.get(0));
-            System.out.println("texture : ici " );
+            System.out.println("texture : ici ");
         }
 
-         // bool rajouté pour écran d'accueil
+        if (inputHandler.getBatPose()) {
+            hudStage.setBatRessources(null);
+            inputHandler.resetBatPose();
+        }
+
+        // bool rajouté pour écran d'accueil
         camera.update();
 
         hudStage.act(delta);
         hudStage.draw();
-        
-        
-        /*affichagescore
-         affichageScore aff = new affichageScore(manager);
-         aff.updateGame();
-         aff.afficher(batch,font);
+
+        /*
+         * affichagescore
+         * affichageScore aff = new affichageScore(manager);
+         * aff.updateGame();
+         * aff.afficher(batch,font);
          */
-        
+
     }
 
     @Override
