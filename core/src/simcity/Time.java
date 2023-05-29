@@ -22,11 +22,13 @@ public class Time {
 
     public Time(float delta) {
         this.debut = delta;
+        nb_jour = 0;
     }
 
     /* Mise à jour du temps */
     public void updateTime(float delta) {
         this.elapsed_time += delta;
+        nb_jour = (int) (secondes_init + (this.elapsed_time - this.debut) / 60) / 24;
     }
 
     /* Avoir le temps en heures */
