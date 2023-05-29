@@ -11,9 +11,8 @@ import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.PixmapIO;
 import com.badlogic.gdx.utils.JsonValue;
 import com.badlogic.gdx.files.FileHandle;
-
-
-
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Définition et methodes d'une tuile
@@ -21,6 +20,7 @@ import com.badlogic.gdx.files.FileHandle;
 public class Tile implements Serializable {
     private transient TextureRegion texture;
     private String textureFilePath;
+    private static Map<TextureRegion, String> textureFilePaths = new HashMap<>();
 
     public Tile(TextureRegion texture) {
         this.texture = texture;
@@ -37,22 +37,31 @@ public class Tile implements Serializable {
 
     @Override
     public void write(Json json) {
-        // Save the texture to a file
-        Texture texture = this.texture.getTexture();
-        TextureData textureData = texture.getTextureData();
-        if (!textureData.isPrepared()) {
-            textureData.prepare();
-        }
-        Pixmap pixmap = textureData.consumePixmap();
+        // Check if the texture is already in the map
+        if (textureFilePaths.containsKey(this.texture)) {
+            // If it is, use the existing file path
+            this.textureFilePath = textureFilePaths.get(this.texture);
+        } else {
+            // If it's not, save the texture to a new file
+            Texture texture = this.texture.getTexture();
+            TextureData textureData = texture.getTextureData();
+            if (!textureData.isPrepared()) {
+                textureData.prepare();
+            }
+            Pixmap pixmap = textureData.consumePixmap();
 
-        // Generate a unique file path for the texture
-        this.textureFilePath = "texture" + this.hashCode() + ".png";
+            // Generate a unique file path for the texture
+            this.textureFilePath = "texture" + this.hashCode() + ".png";
 
-        // Save the pixmap to a file
-        try {
-            PixmapIO.writePNG(new FileHandle(this.textureFilePath), pixmap);
-        } catch (Exception e) {
-            // Handle exception
+            // Save the pixmap to a file
+            try {
+                PixmapIO.writePNG(new FileHandle(this.textureFilePath), pixmap);
+            } catch (Exception e) {
+                // Handle exception
+            }
+
+            // Add the texture and file path to the map
+            textureFilePaths.put(this.texture, this.textureFilePath);
         }
 
         // Write the texture file path to the JSON
