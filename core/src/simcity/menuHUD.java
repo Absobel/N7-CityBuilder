@@ -213,6 +213,7 @@ public class menuHUD extends Stage {
                     public void clicked(InputEvent event, float x, float y) {
                         if ( gestion.getgest().centraleAchetable()){
                             setBatRessources( gestion.getgest().centrale());
+                            System.out.println("elec");
 
                         }
                     }

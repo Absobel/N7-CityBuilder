@@ -151,6 +151,10 @@ public class Gestion {
         return this;
     }
 
+    public String getRessourceValue(RessourceType ressource) {
+        return String.valueOf(finances.get(ressource));
+    }
+
 
 }
 

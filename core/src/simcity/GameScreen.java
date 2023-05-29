@@ -41,9 +41,7 @@ public class GameScreen extends ScreenAdapter {
 
     private Time timer;
     private CycleJN cycleJN;
-
-    
-    //private CityManager manager;
+    private Afficher aff;
 
     public GameScreen(SpriteBatch batch, boolean dedans) {
         this.batch = batch;
@@ -51,6 +49,7 @@ public class GameScreen extends ScreenAdapter {
         
         //Gestion gestion = new Gestion();
         hudStage = new menuHUD(viewport, batch, gestion);
+        aff = new Afficher(gestion);
         
     }
 
@@ -60,7 +59,7 @@ public class GameScreen extends ScreenAdapter {
         camera = new OrthographicCamera(WIDTH, HEIGHT);
         camera.position.set(WIDTH / 2, HEIGHT / 2, 0);
         camera.zoom = 4f;
-
+        
         viewport = new FitViewport(WIDTH, HEIGHT, camera);
 
         renderer = new IsometricRenderer();
@@ -117,19 +116,28 @@ public class GameScreen extends ScreenAdapter {
         // temps
         timer.updateTime(Gdx.graphics.getDeltaTime());
         renderer.draw(batch);
-        batch.end();
 
-        TextureRegion texture = Textures.publics.get(0);
+        
+        
+        batch.end();
+        aff.act(); // maj
+        aff.draw();
+
+        TextureRegion texture;
         if (hudStage.getBatRessources() != null) {
-             texture = hudStage.getBatRessources().getTexture();
+            texture = hudStage.getBatRessources().getTexture();
+            inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame, texture);
             
+        } else {
+            inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame, Textures.publics.get(0));
         }
 
-        inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame, texture); // bool rajouté pour écran d'accueil
+         // bool rajouté pour écran d'accueil
         camera.update();
 
         hudStage.act(delta);
         hudStage.draw();
+        
         
         /*affichagescore
          affichageScore aff = new affichageScore(manager);
