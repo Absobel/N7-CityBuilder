@@ -12,7 +12,7 @@ class CityManager{
 	protected double credits;
 	protected int habitat;
 	protected double happiness;
-	//private Gestion buildingManager;
+	
 	private ArrayList<Sim> habitants; 
 	
 	final int INT_CREDITS = 1000;    //nbr de coins initial
@@ -20,12 +20,12 @@ class CityManager{
 	final int HABITANTS = 10;        // nbr d'habitants par baitiments
 	//constructeur qui initialise l'état du jeu
 	public CityManager() {
-		this.level = 1;
+		this.level = 0;
 		this.score = 1;
 		this.credits = INT_CREDITS;
 		this.habitat = 0;
 		this.happiness = 0;
-		//this.buildingManager = new Gestion();
+		
 	}
 	
 	public void setScore(int newScore) {
@@ -108,7 +108,7 @@ class CityManager{
 		}
 	} 
 	
-	
+/* 
 	public void updateHapiness() {
 		if(this.habitants.size()!=0) {
 			int globalHapiness = 0;
@@ -122,6 +122,6 @@ class CityManager{
 		}
 		
 	}
-	
+	*/
 }
 

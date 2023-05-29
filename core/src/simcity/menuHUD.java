@@ -42,10 +42,16 @@ public class menuHUD extends Stage {
     private TextButton ecoleButton;
     private TextButton retour2Button;
 
+    //private habitations
+    private TextButton immeuble;
+    private TextButton maison;
+    private TextButton retour3Button;
+
     private Table table; // Table qui contient le bouton du menu
     private Table sousmenuTable;  // Nouvelle table pour les boutons du sous-menu
     private Table menubat; // Table pour les différents batiments
     private Table service; // Table pour les différents services
+    private Table habitations; // Table pour les différents habitations
     
     private BatRessources batRessources;
 
@@ -62,6 +68,8 @@ public class menuHUD extends Stage {
         this.menubat = creerTable(false,"menubat");
         // Création de la table qui contiendra les boutons du sous-menu batiments
         this.service = creerTable(false,"service");
+        // Création de la table qui contiendra les boutons du sous-menu habitations
+        this.habitations = creerTable(false,"habitations");
         
         // Ajout du Bouton du menu
         this.menu = creerButon("Menu",0.5f, new ClickListener() {
@@ -151,7 +159,7 @@ public class menuHUD extends Stage {
         this.habitationsButton = creerButon("habitations", 0.5f, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("habitations");
+                showhab();
             }
         });
 
@@ -191,14 +199,20 @@ public class menuHUD extends Stage {
         this.eauButton = creerButon("eau", 0.5f, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("eau");
+                if ( gestion.getgest().pompeEauAchetable()){
+                    setBatRessources( gestion.getgest().pompeEau());
+
+                }
             }
         });
 
         this.ecoleButton = creerButon("ecole", 0.5f, new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("ecole");
+                if ( gestion.getgest().ecoleAchetable()){
+                    setBatRessources( gestion.getgest().ecole());
+
+                }
             }
         });
 
@@ -213,6 +227,41 @@ public class menuHUD extends Stage {
         TextButton[] buttonsService = {elecButton,eauButton,ecoleButton,retour2Button};
         for (TextButton button : buttonsService) {
             service.add(button).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
+        }
+
+
+        //////////////////////////////////////////////////////////
+        // Ajout des boutons du sous-menu habitations
+        this.immeuble = creerButon("immeuble", 0.5f, new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if ( gestion.getgest().immeubleAchetable()){
+                    setBatRessources( gestion.getgest().immeuble());
+
+                }
+            }
+        });
+
+        this.maison = creerButon("maison", 0.5f, new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if ( gestion.getgest().maisonAchetable()){
+                    setBatRessources( gestion.getgest().maison());
+
+                }
+            }
+        });
+
+        this.retour3Button = creerButon("retour", 0.5f, new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                hidehab();  // Cacher les boutons du sous-menu habitations
+            }
+        });
+
+        TextButton[] buttonshab = {immeuble,maison,retour3Button};
+        for (TextButton button : buttonshab) {
+            habitations.add(button).width(batimentsButton.getWidth() * 0.5f).height(batimentsButton.getHeight()).padTop(20f).row();
         }
 
         // Ajout du bouton menu à la table du menu principal
@@ -259,6 +308,16 @@ public class menuHUD extends Stage {
 
     public void dispose() {
         this.dispose();
+    }
+
+    public void showhab(){
+        habitations.setVisible(true);
+        menubat.setVisible(false);
+    }
+
+    public void hidehab(){
+        habitations.setVisible(false);
+        menubat.setVisible(true);
     }
 
     public BatRessources getBatRessources() {
