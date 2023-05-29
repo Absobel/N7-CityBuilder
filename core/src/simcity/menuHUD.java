@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.badlogic.gdx.utils.Json;
 
 public class menuHUD extends Stage {
 
@@ -55,7 +56,7 @@ public class menuHUD extends Stage {
     private BatRessources batRessources;
 
 
-    public menuHUD(final Viewport viewport, final SpriteBatch batch, final Gestion gestion) {
+    public menuHUD(final Viewport viewport, final SpriteBatch batch, final Gestion gestion, final Grid grid) {
 
         Gdx.input.setInputProcessor(this);  // Active la scène pour récupérer les événements d'entrée
     
@@ -101,8 +102,22 @@ public class menuHUD extends Stage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("Sauvegarde");
+
+                ///////////////// ça fait crash le jeu et ça bloat de fichiers, ne pas utilisr tel quel mais ne pas supprimer pour l'instant
+                // Json json = new Json();
+                
+                // // Convert the Grid object into a JSON string
+                // String jsonString = json.toJson(grid);
+                
+                // // Write the string to a file
+                // try (java.io.FileWriter file = new java.io.FileWriter("grid.json")) {
+                //     file.write(jsonString);
+                // } catch (java.io.IOException e) {
+                //     e.printStackTrace();
+                // }
             }
         });
+        
         
         this.accueilButton = creerButon("accueil", 0.5f, new ClickListener() {
             @Override

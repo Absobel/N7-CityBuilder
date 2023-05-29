@@ -46,9 +46,9 @@ public class GameScreen extends ScreenAdapter {
         this.batch = batch;
         this.estdansGame = dedans;
         this.paye = true;
-        
+        this.renderer = new IsometricRenderer();
         this.gestion = new Gestion(1000, 10, 10, 50, 0, 0);
-        hudStage = new menuHUD(viewport, batch, this.gestion);
+        hudStage = new menuHUD(viewport, batch, this.gestion, this.renderer.getGrid());
         aff = new Afficher(this.gestion);
         
     }
@@ -62,7 +62,6 @@ public class GameScreen extends ScreenAdapter {
         
         viewport = new FitViewport(WIDTH, HEIGHT, camera);
 
-        renderer = new IsometricRenderer();
         inputHandler = new InputHandler(camera, renderer.getGrid(), false);
         // Nouveau stage
         multiplexer.addProcessor((InputProcessor) hudStage); // Ajouter le Stage de menuHUD
