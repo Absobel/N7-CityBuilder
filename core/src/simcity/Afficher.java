@@ -45,7 +45,6 @@ public class Afficher extends Stage{
         ressour.add( new Label("    Level : " + gestion.citymanager.level, new Label.LabelStyle(font, font.getColor())));
         ressour.get(6).setAlignment(Align.left);
 
-
         for (Label ress : ressour) {
             donnee.add(ress).pad(1);
         }
