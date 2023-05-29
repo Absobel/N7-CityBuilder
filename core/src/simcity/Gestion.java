@@ -15,7 +15,7 @@ public class Gestion {
     private Map<RessourceType, Double> finances;
     private List<BatRessources> batimentsConstruits;
     private Textures texture;
-
+    protected CityManager citymanager;
 
     public Gestion(double monnaie ,double eau, double electricite, double bonheur, double habitants, double argent) {
         this.monnaie = monnaie;
@@ -27,7 +27,9 @@ public class Gestion {
         finances.put(RessourceType.ARGENT, argent);
         this.batimentsConstruits = new ArrayList<BatRessources>();
         //this.batimentsConstruits.add(new BatRessources(new TextureRegion(Textures.publics.get(0)), (double) 0, (double) 0,(double) 0,(double) 0,(double) 0,(double) 0));
+        this.citymanager = new CityManager();
     }
+    
 
     public void ajouterRessource(RessourceType type, double quantite) {
         double nouvelleQuantite = finances.get(type) + quantite;
@@ -57,11 +59,19 @@ public class Gestion {
     public void ajouterBatiment(BatRessources batiment) {
         batimentsConstruits.add(batiment);
         miseAJour();
+        this.citymanager.updateScore(true);
+        boolean isLevelUp =this.citymanager.updateLevel();
+        if(isLevelUp) {
+        	this.monnaie = this.monnaie +1000;
+        }
     }
 
     public void retirerBatiment(BatRessources batiment) {
         batimentsConstruits.remove(batiment);
         miseAJour();
+        this.citymanager.updateScore(false);
+        boolean isLevelUp = this.citymanager.updateLevel();
+        
     }
 
     public void impots() {

@@ -16,12 +16,12 @@ class CityManager{
 	private ArrayList<Sim> habitants; 
 	
 	final int INT_CREDITS = 1000;    //nbr de coins initial
-	final int LEVEL_UP = 460;       // Cte pour passer d'un niveau à l'autre
+	final int LEVEL_UP = 200;       // Cte pour passer d'un niveau à l'autre
 	final int HABITANTS = 10;        // nbr d'habitants par baitiments
 	//constructeur qui initialise l'état du jeu
 	public CityManager() {
 		this.level = 0;
-		this.score = 1;
+		this.score = 0;
 		this.credits = INT_CREDITS;
 		this.habitat = 0;
 		this.happiness = 0;
@@ -65,10 +65,13 @@ class CityManager{
 		this.credits = this.credits-price;
 	}
 	
-	public void updateLevel() {
+	public boolean updateLevel() {
+		boolean isLevelUp = false;
 		if(this.score % LEVEL_UP ==0 ) {
 			this.level = this.level+1;
+			isLevelUp = true;
 		}
+		return isLevelUp;
 	}
 	
 	public int calculateScore(String type) {
@@ -95,8 +98,14 @@ class CityManager{
 		return score;
 	} 
 	
-	public void updateScore(String type) {
-		int scorePlus = calculateScore(type);
+	public void updateScore(boolean isAdded) {
+		int scorePlus ;
+		if(isAdded) {
+			scorePlus = 50;
+		}else {
+			scorePlus = -50;
+		}
+		
 		this.score = this.score + scorePlus;
 		
 	}
@@ -123,5 +132,7 @@ class CityManager{
 		
 	}
 	*/
+	
+	
 }
 

@@ -16,7 +16,7 @@ public class Afficher extends Stage{
     private Gestion gestion;
     private BitmapFont font;
     private Table donnee;
-    private Array<Label> ressour = new Array<>(5);
+    private Array<Label> ressour = new Array<>(7);
 
     public Afficher(Gestion gestion) {
         this.gestion = gestion;
@@ -38,6 +38,13 @@ public class Afficher extends Stage{
         ressour.get(3).setAlignment(Align.right);
         ressour.add( new Label("    habitants : " + gestion.getRessourceValue(RessourceType.HABITANTS), new Label.LabelStyle(font, font.getColor())));
         ressour.get(4).setAlignment(Align.right);
+        font.setColor(Color.BLACK);
+        ressour.add( new Label("    Score : " + gestion.citymanager.score, new Label.LabelStyle(font, font.getColor())));
+        ressour.get(5).setAlignment(Align.left);
+        
+        ressour.add( new Label("    Level : " + gestion.citymanager.level, new Label.LabelStyle(font, font.getColor())));
+        ressour.get(6).setAlignment(Align.left);
+
 
         for (Label ress : ressour) {
             donnee.add(ress).pad(1);
@@ -51,6 +58,9 @@ public class Afficher extends Stage{
         ressour.get(2).setText("    eau : " + gestion.getRessourceValue(RessourceType.EAU));
         ressour.get(3).setText("    bonheur : " + gestion.getRessourceValue(RessourceType.BONHEUR));
         ressour.get(4).setText("    habitants : " + gestion.getRessourceValue(RessourceType.HABITANTS));
+        ressour.get(5).setText("   Score : " + gestion.citymanager.score);
+        ressour.get(6).setText("   Level : " + gestion.citymanager.level);
+        
     }
 
 
