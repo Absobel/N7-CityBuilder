@@ -25,7 +25,7 @@ class CityManager{
 		this.credits = INT_CREDITS;
 		this.habitat = 0;
 		this.happiness = 0;
-		this.buildingManager = new Gestion();
+		
 	}
 	
 	public void setScore(int newScore) {
