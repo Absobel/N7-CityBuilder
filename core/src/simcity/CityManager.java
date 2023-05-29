@@ -12,7 +12,7 @@ class CityManager{
 	protected double credits;
 	protected int habitat;
 	protected double happiness;
-	private Gestion buildingManager;
+	
 	private ArrayList<Sim> habitants; 
 	
 	final int INT_CREDITS = 1000;    //nbr de coins initial
