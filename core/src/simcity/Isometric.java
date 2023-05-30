@@ -26,6 +26,7 @@ public class Isometric extends Game {
 	public void create() {   // Called when the Application is first created.
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 		batch = new SpriteBatch();
+		
 		gameScreen = new GameScreen(batch, false); // faire d'abord appel à écran d'accueil.
 		//setScreen(gameScreen);
 		accueil = new Accueil(batch, false);
