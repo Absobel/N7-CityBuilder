@@ -1,11 +1,8 @@
-Pour améliorer encore davantage l'expérience utilisateur, plusieurs améliorations ont été apportées. Tout d'abord, une deuxième musique a été ajoutée à l'écran d'accueil, offrant ainsi une sélection plus variée pour accompagner les utilisateurs pendant leur attente. Cette nouvelle piste musicale contribue à créer une ambiance agréable et personnalisée.
+Pose des blocs en fonction des boutons appuyés par le joueur et de la position de la souris en utilisant la classe gestion.
+Gestion des couleurs en fonction du bâtiment crée par le joueur.
+Création de la classe succès pour gérer les succès du jeu.
+Amélioration de la classe gestion et citymanager pour des valeurs cohérentes.
+Création de la classe Afficher pour gérer l'affichage des différents valeur utiles.
 
-Ensuite, afin de faciliter la navigation, un sous-menu a été créé dans le bouton "Bâtiment". Ce sous-menu permet aux utilisateurs d'accéder rapidement à des fonctionnalités spécifiques liées aux bâtiments, offrant ainsi une expérience plus intuitive et pratique.
+Image Menu en cours permettrait de mettre des images à la place des boutons avec les ressources requises.
 
-Une attention particulière a également été portée à l'aspect visuel de l'application. Les dimensions des boutons ont été soigneusement modifiées pour optimiser leur lisibilité et leur accessibilité. Les utilisateurs peuvent maintenant interagir avec les boutons de manière plus fluide et réactive, ce qui améliore la convivialité globale de l'interface.
-
-En outre, une nouvelle fonctionnalité a été ajoutée pour permettre aux utilisateurs de revenir facilement à l'écran d'accueil à partir du bouton "Accueil". Cela simplifie la navigation entre les différentes sections de l'application et offre un moyen rapide de retrouver l'endroit où l'utilisateur a commencé.
-
-Enfin, pour renforcer l'aspect visuel de l'application, une nouvelle classe a été développée spécifiquement pour l'affichage des images des bâtiments. Cette fonctionnalité permet aux utilisateurs de visualiser les différents types de bâtiments de manière plus immersive et attrayante. Les images ajoutent une dimension visuelle supplémentaire, permettant aux utilisateurs de mieux comprendre et d'apprécier les différentes caractéristiques des bâtiments.
-
-Grâce à toutes ces améliorations, l'application offre désormais une expérience utilisateur améliorée, combinant une sélection musicale plus diversifiée, une navigation intuitive, des boutons optimisés, une fonction de retour à l'écran d'accueil et des images des bâtiments pour une expérience visuelle immersive.
