@@ -1,8 +1,44 @@
-Pose des blocs en fonction des boutons appuyés par le joueur et de la position de la souris en utilisant la classe gestion.
-Gestion des couleurs en fonction du bâtiment crée par le joueur.
-Création de la classe succès pour gérer les succès du jeu.
-Amélioration de la classe gestion et citymanager pour des valeurs cohérentes.
-Création de la classe Afficher pour gérer l'affichage des différents valeur utiles.
+Coût des bâtiments:
 
-Image Menu en cours permettrait de mettre des images à la place des boutons avec les ressources requises.
-
+Maison: -prix 300 
+        -Eau 5
+        -Electricité 5
+        -Loyer 60
+        -bonheur 5
+        -habitants 5
+        
+immeuble: -prix 1000 
+        -Eau 10
+        -Electricité 10
+        -Loyer 400
+        -bonheur -5
+        -habitants 25        
+        
+ecole:  -prix 300 
+        -Eau 5
+        -Electricité 5
+        -Loyer 60
+        -bonheur 5
+        -habitants 10
+        
+        
+centrale: -prix 200 
+        -Eau 0
+        -Electricité 50
+        -Loyer 0
+        -bonheur -5
+        -habitants -5
+        
+pompe à eau: -prix 200 
+             -Eau 50
+            -Electricité 0
+            -Loyer 0
+            -bonheur -5 
+            -habitants -5
+            
+décoration: -prix 20 
+             -Eau 0
+            -Electricité 0
+            -Loyer 10
+            -bonheur 5 
+        
