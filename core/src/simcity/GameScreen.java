@@ -134,35 +134,7 @@ public class GameScreen extends ScreenAdapter {
 
         batch.end();
         aff.maj(); // maj
-        aff.draw();
-        /* 
-        Map<RessourceType, Array<Boolean>> succesMap = new HashMap<>();
-
-        // Initialisez la map avec des listes de booléens vides pour chaque type de ressource
-        for (RessourceType ressourceType : RessourceType.values()) {
-            Array<Boolean> succesList = new Array<>();
-            succesMap.put(ressourceType, succesList);
-        }
-        
-        
-        Map<RessourceType, Double> type = gestion.getFinances(); 
-        for (Map.Entry<RessourceType, Double> entry : type.entrySet()) {
-            RessourceType ressourceType = entry.getKey();
-            double valeur = entry.getValue();
-            Array<Boolean> succesList = succesMap.get(ressourceType);
-        
-            if (!succesList.contains(true,false)) {
-                Succes success = new Succes(ressourceType, valeur);
-                String message = success.toString();
-                showPopupMessage(message);
-                succesList.add(true);
-            }
-        }
-        
-        stage.draw();
-        */
-        
-        
+        aff.draw(); 
 
         TextureRegion texture;
         if (hudStage.getBatRessources() != null) {
@@ -185,14 +157,6 @@ public class GameScreen extends ScreenAdapter {
 
         hudStage.act(delta);
         hudStage.draw();
-
-        /*
-         * affichagescore
-         * affichageScore aff = new affichageScore(manager);
-         * aff.updateGame();
-         * aff.afficher(batch,font);
-         */
-
     }
 
     @Override
