@@ -284,9 +284,9 @@ public class menuHUD extends Stage {
 
         sousmenuTable.setVisible(false);
         table.setVisible(false);
-        System.out.println("showbat");
+        
         menubat.setVisible(true);
-        System.out.println("showbat2" + menubat);
+        
         Gdx.input.setInputProcessor(this);
     }
 

@@ -8,14 +8,23 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+import java.util.HashMap;
+import java.util.Map;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+
+import simcity.Ressource.RessourceType;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -32,6 +41,7 @@ public class GameScreen extends ScreenAdapter {
     private Viewport viewport;
     private menuHUD hudStage;
     // private Label labell;
+    private Stage stage;
 
     private OrthographicCamera camera;
     private IsometricRenderer renderer;
@@ -46,6 +56,9 @@ public class GameScreen extends ScreenAdapter {
     private CycleJN cycleJN;
     private Afficher aff;
 
+    private Array<Boolean> succeslist;
+    private Map<RessourceType, Array<Boolean>> succesMap;
+    
     public GameScreen(SpriteBatch batch, boolean dedans) {
         this.batch = batch;
         this.estdansGame = dedans;
@@ -54,6 +67,12 @@ public class GameScreen extends ScreenAdapter {
         this.gestion = new Gestion(1000, 10, 10, 50, 0, 0);
         hudStage = new menuHUD(viewport, batch, this.gestion, this.renderer.getGrid());
         aff = new Afficher(this.gestion);
+        succesMap = new HashMap<>();
+        for (RessourceType ressourceType : RessourceType.values()) {
+            Array<Boolean> succesList = new Array<>();
+            succesMap.put(ressourceType, succesList);
+        }
+        stage = new Stage(new ScreenViewport());
 
     }
 
@@ -120,20 +139,46 @@ public class GameScreen extends ScreenAdapter {
         }
 
         batch.end();
-        // gestion.miseAJour(); // nouveau mais je n'arrive pas a refiare passer à 0 les
-        // ressources
         aff.maj(); // maj
         aff.draw();
+
+        Map<RessourceType, Array<Boolean>> succesMap = new HashMap<>();
+
+        // Initialisez la map avec des listes de booléens vides pour chaque type de ressource
+        for (RessourceType ressourceType : RessourceType.values()) {
+            Array<Boolean> succesList = new Array<>();
+            succesMap.put(ressourceType, succesList);
+        }
+        
+        // ...
+        
+        Map<RessourceType, Double> type = gestion.getFinances(); 
+        for (Map.Entry<RessourceType, Double> entry : type.entrySet()) {
+            RessourceType ressourceType = entry.getKey();
+            double valeur = entry.getValue();
+            Array<Boolean> succesList = succesMap.get(ressourceType);
+        
+            if (!succesList.contains(true, false)) {
+                succes success = new succes(ressourceType, valeur);
+                String message = success.toString();
+                showPopupMessage(message);
+                succesList.add(true);
+            }
+        }
+        
+        
+        
+        
 
         TextureRegion texture;
         if (hudStage.getBatRessources() != null) {
             texture = hudStage.getBatRessources().getTexture();
-            System.out.println("texture : " + texture);
+            
             inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame, texture);
-            // hudStage.setBatRessources(null);
+           
         } else {
             inputHandler.handleInput(Gdx.graphics.getDeltaTime(), this.estdansGame, Textures.publics.get(0));
-            System.out.println("texture : ici ");
+            
         }
 
         if (inputHandler.getBatPose()) {
@@ -176,6 +221,14 @@ public class GameScreen extends ScreenAdapter {
 
     public void setBooldeInput(InputHandler inputHandler, boolean bool) {
         inputHandler.setBoolean(bool);
+    }
+
+    private void showPopupMessage(String message) {
+        Skin skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
+        Dialog dialog = new Dialog("Message", skin);
+        dialog.text(message);
+        dialog.button("OK");
+        dialog.show(stage);
     }
 
 }

@@ -114,7 +114,7 @@ public class Gestion {
     }
 
     public BatRessources centrale() {
-        BatRessources batiment = new BatRessources(Textures.publics.get(3), (double) 200, (double)0, (double) 50, -5, 0, -5);
+        BatRessources batiment = new BatRessources(Textures.publics.get(3), (double) 200, (double)0, (double) 50, -5, 20, -5);
         this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
         return batiment;
@@ -125,7 +125,7 @@ public class Gestion {
     }
 
     public BatRessources pompeEau() {
-        BatRessources batiment = new BatRessources(Textures.publics.get(4), 200, 50, 0, -5, 0, -5);
+        BatRessources batiment = new BatRessources(Textures.publics.get(4), 200, 50, 0, -5, 20, -5);
         this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
         return batiment;
@@ -136,7 +136,7 @@ public class Gestion {
     }
 
     public BatRessources ecole() {
-        BatRessources batiment = new BatRessources(Textures.publics.get(7), 300, 0, 0, 50, -10, 10);
+        BatRessources batiment = new BatRessources(Textures.publics.get(7), 300, -5, -5, 10, -10, 10);
         this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
         return batiment;
@@ -147,7 +147,7 @@ public class Gestion {
     }
 
     public BatRessources maison() {
-        BatRessources batiment = new BatRessources(Textures.habitats.get(0), 300, -5, -5, 5, 20, 5);
+        BatRessources batiment = new BatRessources(Textures.habitats.get(0), 300, -5, -5, 5, 60, 5);
         this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
         return batiment;
@@ -158,7 +158,7 @@ public class Gestion {
     }
 
     public BatRessources immeuble() {
-        BatRessources batiment = new BatRessources(Textures.habitats.get(1), 1000, -10, -10, -4, 100, 15);
+        BatRessources batiment = new BatRessources(Textures.habitats.get(1), 1000, -10, -10, -5, 200, 25);
         this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
         return batiment;
@@ -169,7 +169,7 @@ public class Gestion {
     }
 
     public BatRessources dko() {
-        BatRessources batiment = new BatRessources(Textures.deco.get(0), 0, 0, 0, 5, 10, 0);
+        BatRessources batiment = new BatRessources(Textures.deco.get(0), 20, 0, 0, 5, 5, 0);
         this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
         return batiment;
