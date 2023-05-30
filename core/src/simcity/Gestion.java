@@ -112,7 +112,7 @@ public class Gestion {
     }
 
     public BatRessources centrale() {
-        BatRessources batiment = new BatRessources(Textures.publics.get(3), (double) 200, (double)0, (double) 50, -5, 20, -5);
+        BatRessources batiment = new BatRessources(Textures.publics.get(3), (double) 200, (double)0, (double) 50, -5, -20, -5);
         this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
         return batiment;
@@ -123,7 +123,7 @@ public class Gestion {
     }
 
     public BatRessources pompeEau() {
-        BatRessources batiment = new BatRessources(Textures.publics.get(4), 200, 50, 0, -5, 20, -5);
+        BatRessources batiment = new BatRessources(Textures.publics.get(4), 200, 50, 0, -5, -20, -5);
         this.payer(batiment.getPrix());
         this.ajouterBatiment(batiment);
         return batiment;
