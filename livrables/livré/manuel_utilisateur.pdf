@@ -1,0 +1,65 @@
+					Manuel d’utilisateur
+
+
+Il faut avoir une version Java entre 11 et 18 pour pouvoir lancer le jeu. Pour voir la version : « java –version »
+
+
+Ensuite pour lancer le jeu : « ./gradlew desktop:run »
+Une fois le jeu lancé, l’utilisateur arrive sur un écran d’accueil. Il peut interagir avec 3 boutons :
+	- Jouer
+	- Nouvelle Partie
+	- Quitter
+
+Joueur et Nouvelle Partie ont pour l’instant le même effet, à savoir passer de l’écran d’accueil à l’écran de jeu. L’utilisateur peut également accéder à l’écran de jeu en appuyant sur la barre espace.
+
+Quitter permet ici d’arrêter le jeu.
+
+Une fois dans l’écran de jeu, l’utilisateur peut :
+	➔ Déplacer la caméra avec les touches directionnelles ;
+	➔ Zoomer/dézoomer avec respectivement les touches « a » et « e » (azerty) ou « q » et
+		« e » (qwerty) ;
+	➔ Poser des blocs avec le clic gauche de la souris ;
+	➔ Retirer des blocs avec le clic droit de la souris ;
+	➔ Revenir à l’écran d’accueil avec la touche « Echap ».
+
+Pour poser une route : ➔ mettre la sourie sur la tuile voulue ;
+		       ➔ appuyer sur r ;
+
+pour poser un bâtiment : ➔ cliquer sur menu/bâtiments
+			 ➔ choisir le type de bâtiments à construire
+			 ➔ choisir le bâtiment à consruire
+			 ➔ cliquer sur la tuile où vous voulez poser le bâtiment
+
+coût et production des différents bâtiments:
+centrale:	coûts : création (prix) : 200
+			argent (maintenance): 20
+			bonheur : 5
+			travailleur : 5
+		production: éléctricité : 50
+
+pompe à eau:	coûts : création (prix) : 200
+			argent (maintenance): 20
+			bonheur : 5
+			travailleur : 5
+		production: eau : 50
+
+école:		coûts : création (prix) :300
+			éléctricité : 5
+		        argent : 10
+			eau : 5	
+		production: bonheur : 5
+			    travailleur : 10
+
+maison:		coûts : création (prix) :300
+			éléctricité : 5
+			eau : 5	
+		production: bonheur : 5
+			    argent : 60
+			    travailleur : 25
+
+immeuble:	coûts : création (prix) :1000
+			éléctricité : 10
+			eau : 10
+			bonheur : 5	
+		production: argent : 200
+			    travailleur : 25
