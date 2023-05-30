@@ -2,12 +2,12 @@ package simcity;
 
 import simcity.Ressource.RessourceType;
 
-public class succes {
-    
+public class Succes {
+
     private RessourceType type;
     private double nbr;
 
-    public succes(RessourceType type, double nbr){
+    public Succes(RessourceType type, double nbr){
         this.type = type;
         this.nbr = nbr;
     }

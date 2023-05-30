@@ -62,7 +62,7 @@ public class Gestion {
         this.citymanager.updateScore(true);
         boolean isLevelUp =this.citymanager.updateLevel();
         if(isLevelUp) {
-        	this.monnaie = this.monnaie +1000;
+        	this.monnaie = this.monnaie + 1500;
         }
     }
 
@@ -110,7 +110,7 @@ public class Gestion {
     }
 
     public Boolean centraleAchetable() {
-        return ((monnaie >= 200) && (finances.get(RessourceType.BONHEUR) > 5) ) ;
+        return ((monnaie >= 200) && (finances.get(RessourceType.BONHEUR) >= 5) ) ;
     }
 
     public BatRessources centrale() {
@@ -121,7 +121,7 @@ public class Gestion {
     }
 
     public Boolean pompeEauAchetable() {
-        return ((monnaie >= 200) && (finances.get(RessourceType.BONHEUR) > 5) && (finances.get(RessourceType.HABITANTS) > 5)) ;
+        return ((monnaie >= 200) && (finances.get(RessourceType.BONHEUR) >= 5) && (finances.get(RessourceType.HABITANTS) >= 5)) ;
     }
 
     public BatRessources pompeEau() {
@@ -132,7 +132,7 @@ public class Gestion {
     }
 
     public Boolean ecoleAchetable() {
-        return (monnaie >= 300) ;
+        return (monnaie >= 300 ) ;
     }
 
     public BatRessources ecole() {
@@ -143,7 +143,7 @@ public class Gestion {
     }
 
     public Boolean maisonAchetable() {
-        return (monnaie >= 300);
+        return (monnaie >= 300 && (finances.get(RessourceType.ELECTRICITE) >= 5) && (finances.get(RessourceType.EAU) >= 5));
     }
 
     public BatRessources maison() {
@@ -154,7 +154,7 @@ public class Gestion {
     }
 
     public Boolean immeubleAchetable() {
-        return ((monnaie >= 500) && (finances.get(RessourceType.ELECTRICITE) > 5) && (finances.get(RessourceType.EAU) > 5)) ;
+        return ((monnaie >= 500) && (finances.get(RessourceType.ELECTRICITE) > 10) && (finances.get(RessourceType.EAU) > 10)) ;
     }
 
     public BatRessources immeuble() {

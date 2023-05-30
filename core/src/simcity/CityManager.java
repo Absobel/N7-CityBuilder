@@ -67,8 +67,9 @@ class CityManager{
 	
 	public boolean updateLevel() {
 		boolean isLevelUp = false;
-		if(this.score % LEVEL_UP ==0 ) {
+		if(this.score % (LEVEL_UP+LEVEL_UP*this.level) ==0 ) {
 			this.level = this.level+1;
+			this.score = 0;
 			isLevelUp = true;
 		}
 		return isLevelUp;

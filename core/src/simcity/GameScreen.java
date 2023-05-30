@@ -21,6 +21,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
@@ -141,7 +142,7 @@ public class GameScreen extends ScreenAdapter {
         batch.end();
         aff.maj(); // maj
         aff.draw();
-
+        /* 
         Map<RessourceType, Array<Boolean>> succesMap = new HashMap<>();
 
         // Initialisez la map avec des listes de booléens vides pour chaque type de ressource
@@ -150,7 +151,6 @@ public class GameScreen extends ScreenAdapter {
             succesMap.put(ressourceType, succesList);
         }
         
-        // ...
         
         Map<RessourceType, Double> type = gestion.getFinances(); 
         for (Map.Entry<RessourceType, Double> entry : type.entrySet()) {
@@ -158,15 +158,16 @@ public class GameScreen extends ScreenAdapter {
             double valeur = entry.getValue();
             Array<Boolean> succesList = succesMap.get(ressourceType);
         
-            if (!succesList.contains(true, false)) {
-                succes success = new succes(ressourceType, valeur);
+            if (!succesList.contains(true,false)) {
+                Succes success = new Succes(ressourceType, valeur);
                 String message = success.toString();
                 showPopupMessage(message);
                 succesList.add(true);
             }
         }
         
-        
+        stage.draw();
+        */
         
         
 
@@ -228,6 +229,9 @@ public class GameScreen extends ScreenAdapter {
         Dialog dialog = new Dialog("Message", skin);
         dialog.text(message);
         dialog.button("OK");
+        //public void clicked(InputEvent event, float x, float y) {
+        //    dialog.hide();
+       // });
         dialog.show(stage);
     }
 
