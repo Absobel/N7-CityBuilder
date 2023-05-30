@@ -2,17 +2,9 @@ package simcity;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.actions.AddListenerAction;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-
-import java.net.http.WebSocket.Listener;
-
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.Input.Keys;
 
 /**
  * Classe principale du jeu

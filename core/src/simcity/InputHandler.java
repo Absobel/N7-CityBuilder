@@ -1,9 +1,5 @@
 package simcity;
 
-import java.util.Random;
-
-import javax.swing.text.StyledEditorKit.BoldAction;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;

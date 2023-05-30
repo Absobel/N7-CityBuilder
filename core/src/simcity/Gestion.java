@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-
 import simcity.Ressource.RessourceType;
 
 public class Gestion {

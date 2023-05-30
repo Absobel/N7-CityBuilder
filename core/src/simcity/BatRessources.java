@@ -1,6 +1,5 @@
 package simcity;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import simcity.Ressource.RessourceType;
@@ -41,7 +40,7 @@ public class BatRessources { // moyen que ce soit la classe batiment directement
         return this.prix;
     }
 
-    public void setPrix(double Prix) {
+    public void setPrix(double prix) {
         this.prix = prix ;
     }
 }
